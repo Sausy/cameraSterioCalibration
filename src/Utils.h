@@ -13,6 +13,11 @@
 #include <opencv2/features2d.hpp>
 #include "PnPProblem.h"
 
+//double * cameraParamter = {fx,fy,cx,cy}
+void getCameraMatrixForLighthouse(double * cameraParamter);
+//double * cameraParamter = {fx,fy,cx,cy}
+std::vector<double> azimuthTo2D(double azimuth, double elevation, double * cameraParamter);
+
 // Draw a text with the question point
 void drawQuestion(cv::Mat image, cv::Point3f point, cv::Scalar color);
 

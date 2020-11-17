@@ -6,43 +6,67 @@
 
 #IncludeRegexTransform: 
 
-/home/sausy/Projects/lighthouse/cameraSterioCalibration/main_registration.cpp
+/home/sausy/Projects/lighthouse/cameraSterioCalibration/src/CsvWriter.h
 iostream
 -
-stdint.h
+fstream
 -
-stdlib.h
+opencv2/core.hpp
+-
+Utils.h
+/home/sausy/Projects/lighthouse/cameraSterioCalibration/src/Utils.h
+
+/home/sausy/Projects/lighthouse/cameraSterioCalibration/src/Mesh.h
+iostream
+-
+opencv2/core/core.hpp
+-
+
+/home/sausy/Projects/lighthouse/cameraSterioCalibration/src/Model.cpp
+Model.h
+/home/sausy/Projects/lighthouse/cameraSterioCalibration/src/Model.h
+CsvWriter.h
+/home/sausy/Projects/lighthouse/cameraSterioCalibration/src/CsvWriter.h
+vector
 -
 sstream
 -
-opencv2/core.hpp
--
-opencv2/imgproc.hpp
--
-opencv2/calib3d.hpp
--
-opencv2/features2d.hpp
--
-Mesh.h
--
-Model.h
--
-PnPProblem.h
--
-RobustMatcher.h
--
-ModelRegistration.h
--
-Utils.h
+fstream
 -
 
-/usr/local/include/opencv4/opencv2/calib3d.hpp
+/home/sausy/Projects/lighthouse/cameraSterioCalibration/src/Model.h
+iostream
+-
+opencv2/core/core.hpp
+-
+opencv2/features2d/features2d.hpp
+-
+
+/home/sausy/Projects/lighthouse/cameraSterioCalibration/src/ModelRegistration.h
+iostream
+-
 opencv2/core.hpp
-/usr/local/include/opencv4/opencv2/opencv2/core.hpp
+-
+
+/home/sausy/Projects/lighthouse/cameraSterioCalibration/src/PnPProblem.h
+iostream
+-
+opencv2/core/core.hpp
+-
+opencv2/highgui/highgui.hpp
+-
+Mesh.h
+/home/sausy/Projects/lighthouse/cameraSterioCalibration/src/Mesh.h
+ModelRegistration.h
+/home/sausy/Projects/lighthouse/cameraSterioCalibration/src/ModelRegistration.h
+
+/home/sausy/Projects/lighthouse/cameraSterioCalibration/src/Utils.h
+iostream
+-
 opencv2/features2d.hpp
-/usr/local/include/opencv4/opencv2/opencv2/features2d.hpp
-opencv2/core/affine.hpp
-/usr/local/include/opencv4/opencv2/opencv2/core/affine.hpp
+-
+PnPProblem.h
+/home/sausy/Projects/lighthouse/cameraSterioCalibration/src/PnPProblem.h
 
 /usr/local/include/opencv4/opencv2/core.hpp
 opencv2/core/cvdef.h
@@ -74,10 +98,6 @@ opencv2/core/optim.hpp
 opencv2/core/ovx.hpp
 /usr/local/include/opencv4/opencv2/opencv2/core/ovx.hpp
 
-/usr/local/include/opencv4/opencv2/core/affine.hpp
-opencv2/core.hpp
--
-
 /usr/local/include/opencv4/opencv2/core/base.hpp
 opencv2/opencv_modules.hpp
 /usr/local/include/opencv4/opencv2/core/opencv2/opencv_modules.hpp
@@ -101,6 +121,10 @@ opencv2/core/check.hpp
 /usr/local/include/opencv4/opencv2/core/check.hpp
 opencv2/core/base.hpp
 -
+
+/usr/local/include/opencv4/opencv2/core/core.hpp
+opencv2/core.hpp
+/usr/local/include/opencv4/opencv2/core/opencv2/core.hpp
 
 /usr/local/include/opencv4/opencv2/core/cv_cpu_dispatch.h
 cv_cpu_config.h
@@ -370,6 +394,10 @@ opencv2/core.hpp
 opencv2/flann/miniflann.hpp
 /usr/local/include/opencv4/opencv2/opencv2/flann/miniflann.hpp
 
+/usr/local/include/opencv4/opencv2/features2d/features2d.hpp
+opencv2/features2d.hpp
+/usr/local/include/opencv4/opencv2/features2d/opencv2/features2d.hpp
+
 /usr/local/include/opencv4/opencv2/flann/config.h
 
 /usr/local/include/opencv4/opencv2/flann/defines.h
@@ -382,9 +410,25 @@ opencv2/core.hpp
 opencv2/flann/defines.h
 /usr/local/include/opencv4/opencv2/flann/opencv2/flann/defines.h
 
-/usr/local/include/opencv4/opencv2/imgproc.hpp
+/usr/local/include/opencv4/opencv2/highgui.hpp
+opencv2/core.hpp
+/usr/local/include/opencv4/opencv2/opencv2/core.hpp
+opencv2/imgcodecs.hpp
+/usr/local/include/opencv4/opencv2/opencv2/imgcodecs.hpp
+opencv2/videoio.hpp
+/usr/local/include/opencv4/opencv2/opencv2/videoio.hpp
+
+/usr/local/include/opencv4/opencv2/highgui/highgui.hpp
+opencv2/highgui.hpp
+/usr/local/include/opencv4/opencv2/highgui/opencv2/highgui.hpp
+
+/usr/local/include/opencv4/opencv2/imgcodecs.hpp
 opencv2/core.hpp
 /usr/local/include/opencv4/opencv2/opencv2/core.hpp
 
 /usr/local/include/opencv4/opencv2/opencv_modules.hpp
+
+/usr/local/include/opencv4/opencv2/videoio.hpp
+opencv2/core.hpp
+/usr/local/include/opencv4/opencv2/opencv2/core.hpp
 

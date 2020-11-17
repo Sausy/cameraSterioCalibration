@@ -123,32 +123,32 @@ camerasterio/fast:
 	$(MAKE) -f CMakeFiles/camerasterio.dir/build.make CMakeFiles/camerasterio.dir/build
 .PHONY : camerasterio/fast
 
-main_registration.o: main_registration.cpp.o
+main.o: main.cpp.o
 
-.PHONY : main_registration.o
+.PHONY : main.o
 
 # target to build an object file
-main_registration.cpp.o:
-	$(MAKE) -f CMakeFiles/camerasterio.dir/build.make CMakeFiles/camerasterio.dir/main_registration.cpp.o
-.PHONY : main_registration.cpp.o
+main.cpp.o:
+	$(MAKE) -f CMakeFiles/camerasterio.dir/build.make CMakeFiles/camerasterio.dir/main.cpp.o
+.PHONY : main.cpp.o
 
-main_registration.i: main_registration.cpp.i
+main.i: main.cpp.i
 
-.PHONY : main_registration.i
+.PHONY : main.i
 
 # target to preprocess a source file
-main_registration.cpp.i:
-	$(MAKE) -f CMakeFiles/camerasterio.dir/build.make CMakeFiles/camerasterio.dir/main_registration.cpp.i
-.PHONY : main_registration.cpp.i
+main.cpp.i:
+	$(MAKE) -f CMakeFiles/camerasterio.dir/build.make CMakeFiles/camerasterio.dir/main.cpp.i
+.PHONY : main.cpp.i
 
-main_registration.s: main_registration.cpp.s
+main.s: main.cpp.s
 
-.PHONY : main_registration.s
+.PHONY : main.s
 
 # target to generate assembly for a file
-main_registration.cpp.s:
-	$(MAKE) -f CMakeFiles/camerasterio.dir/build.make CMakeFiles/camerasterio.dir/main_registration.cpp.s
-.PHONY : main_registration.cpp.s
+main.cpp.s:
+	$(MAKE) -f CMakeFiles/camerasterio.dir/build.make CMakeFiles/camerasterio.dir/main.cpp.s
+.PHONY : main.cpp.s
 
 src/CsvReader.o: src/CsvReader.cpp.o
 
@@ -366,6 +366,33 @@ src/Utils.cpp.s:
 	$(MAKE) -f CMakeFiles/camerasterio.dir/build.make CMakeFiles/camerasterio.dir/src/Utils.cpp.s
 .PHONY : src/Utils.cpp.s
 
+src/testData.o: src/testData.cpp.o
+
+.PHONY : src/testData.o
+
+# target to build an object file
+src/testData.cpp.o:
+	$(MAKE) -f CMakeFiles/camerasterio.dir/build.make CMakeFiles/camerasterio.dir/src/testData.cpp.o
+.PHONY : src/testData.cpp.o
+
+src/testData.i: src/testData.cpp.i
+
+.PHONY : src/testData.i
+
+# target to preprocess a source file
+src/testData.cpp.i:
+	$(MAKE) -f CMakeFiles/camerasterio.dir/build.make CMakeFiles/camerasterio.dir/src/testData.cpp.i
+.PHONY : src/testData.cpp.i
+
+src/testData.s: src/testData.cpp.s
+
+.PHONY : src/testData.s
+
+# target to generate assembly for a file
+src/testData.cpp.s:
+	$(MAKE) -f CMakeFiles/camerasterio.dir/build.make CMakeFiles/camerasterio.dir/src/testData.cpp.s
+.PHONY : src/testData.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -375,9 +402,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... camerasterio"
 	@echo "... edit_cache"
-	@echo "... main_registration.o"
-	@echo "... main_registration.i"
-	@echo "... main_registration.s"
+	@echo "... main.o"
+	@echo "... main.i"
+	@echo "... main.s"
 	@echo "... src/CsvReader.o"
 	@echo "... src/CsvReader.i"
 	@echo "... src/CsvReader.s"
@@ -402,6 +429,9 @@ help:
 	@echo "... src/Utils.o"
 	@echo "... src/Utils.i"
 	@echo "... src/Utils.s"
+	@echo "... src/testData.o"
+	@echo "... src/testData.i"
+	@echo "... src/testData.s"
 .PHONY : help
 
 

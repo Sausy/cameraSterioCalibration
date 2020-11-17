@@ -35,6 +35,8 @@ public:
     void save(const std::string &path);
     void load(const std::string &path);
 
+    std::vector<std::vector<double>> sensorData_3d;
+
 private:
     /** The current number of correspondences */
     int n_correspondences_;

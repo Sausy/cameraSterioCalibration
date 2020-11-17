@@ -161,18 +161,31 @@ CMakeFiles/camerasterio.dir/src/Utils.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/camerasterio.dir/src/Utils.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sausy/Projects/lighthouse/cameraSterioCalibration/src/Utils.cpp -o CMakeFiles/camerasterio.dir/src/Utils.cpp.s
 
-CMakeFiles/camerasterio.dir/main_registration.cpp.o: CMakeFiles/camerasterio.dir/flags.make
-CMakeFiles/camerasterio.dir/main_registration.cpp.o: ../main_registration.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sausy/Projects/lighthouse/cameraSterioCalibration/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/camerasterio.dir/main_registration.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/camerasterio.dir/main_registration.cpp.o -c /home/sausy/Projects/lighthouse/cameraSterioCalibration/main_registration.cpp
+CMakeFiles/camerasterio.dir/src/testData.cpp.o: CMakeFiles/camerasterio.dir/flags.make
+CMakeFiles/camerasterio.dir/src/testData.cpp.o: ../src/testData.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sausy/Projects/lighthouse/cameraSterioCalibration/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/camerasterio.dir/src/testData.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/camerasterio.dir/src/testData.cpp.o -c /home/sausy/Projects/lighthouse/cameraSterioCalibration/src/testData.cpp
 
-CMakeFiles/camerasterio.dir/main_registration.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/camerasterio.dir/main_registration.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sausy/Projects/lighthouse/cameraSterioCalibration/main_registration.cpp > CMakeFiles/camerasterio.dir/main_registration.cpp.i
+CMakeFiles/camerasterio.dir/src/testData.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/camerasterio.dir/src/testData.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sausy/Projects/lighthouse/cameraSterioCalibration/src/testData.cpp > CMakeFiles/camerasterio.dir/src/testData.cpp.i
 
-CMakeFiles/camerasterio.dir/main_registration.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/camerasterio.dir/main_registration.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sausy/Projects/lighthouse/cameraSterioCalibration/main_registration.cpp -o CMakeFiles/camerasterio.dir/main_registration.cpp.s
+CMakeFiles/camerasterio.dir/src/testData.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/camerasterio.dir/src/testData.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sausy/Projects/lighthouse/cameraSterioCalibration/src/testData.cpp -o CMakeFiles/camerasterio.dir/src/testData.cpp.s
+
+CMakeFiles/camerasterio.dir/main.cpp.o: CMakeFiles/camerasterio.dir/flags.make
+CMakeFiles/camerasterio.dir/main.cpp.o: ../main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sausy/Projects/lighthouse/cameraSterioCalibration/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/camerasterio.dir/main.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/camerasterio.dir/main.cpp.o -c /home/sausy/Projects/lighthouse/cameraSterioCalibration/main.cpp
+
+CMakeFiles/camerasterio.dir/main.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/camerasterio.dir/main.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sausy/Projects/lighthouse/cameraSterioCalibration/main.cpp > CMakeFiles/camerasterio.dir/main.cpp.i
+
+CMakeFiles/camerasterio.dir/main.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/camerasterio.dir/main.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sausy/Projects/lighthouse/cameraSterioCalibration/main.cpp -o CMakeFiles/camerasterio.dir/main.cpp.s
 
 # Object files for target camerasterio
 camerasterio_OBJECTS = \
@@ -184,7 +197,8 @@ camerasterio_OBJECTS = \
 "CMakeFiles/camerasterio.dir/src/PnPProblem.cpp.o" \
 "CMakeFiles/camerasterio.dir/src/RobustMatcher.cpp.o" \
 "CMakeFiles/camerasterio.dir/src/Utils.cpp.o" \
-"CMakeFiles/camerasterio.dir/main_registration.cpp.o"
+"CMakeFiles/camerasterio.dir/src/testData.cpp.o" \
+"CMakeFiles/camerasterio.dir/main.cpp.o"
 
 # External object files for target camerasterio
 camerasterio_EXTERNAL_OBJECTS =
@@ -197,7 +211,8 @@ camerasterio: CMakeFiles/camerasterio.dir/src/ModelRegistration.cpp.o
 camerasterio: CMakeFiles/camerasterio.dir/src/PnPProblem.cpp.o
 camerasterio: CMakeFiles/camerasterio.dir/src/RobustMatcher.cpp.o
 camerasterio: CMakeFiles/camerasterio.dir/src/Utils.cpp.o
-camerasterio: CMakeFiles/camerasterio.dir/main_registration.cpp.o
+camerasterio: CMakeFiles/camerasterio.dir/src/testData.cpp.o
+camerasterio: CMakeFiles/camerasterio.dir/main.cpp.o
 camerasterio: CMakeFiles/camerasterio.dir/build.make
 camerasterio: /usr/local/lib/libopencv_gapi.so.4.5.0
 camerasterio: /usr/local/lib/libopencv_stitching.so.4.5.0
@@ -255,7 +270,7 @@ camerasterio: /usr/local/lib/libopencv_photo.so.4.5.0
 camerasterio: /usr/local/lib/libopencv_imgproc.so.4.5.0
 camerasterio: /usr/local/lib/libopencv_core.so.4.5.0
 camerasterio: CMakeFiles/camerasterio.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/sausy/Projects/lighthouse/cameraSterioCalibration/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Linking CXX executable camerasterio"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/sausy/Projects/lighthouse/cameraSterioCalibration/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Linking CXX executable camerasterio"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/camerasterio.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

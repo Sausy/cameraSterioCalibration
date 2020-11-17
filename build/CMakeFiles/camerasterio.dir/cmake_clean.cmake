@@ -1,5 +1,5 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/camerasterio.dir/main_registration.cpp.o"
+  "CMakeFiles/camerasterio.dir/main.cpp.o"
   "CMakeFiles/camerasterio.dir/src/CsvReader.cpp.o"
   "CMakeFiles/camerasterio.dir/src/CsvWriter.cpp.o"
   "CMakeFiles/camerasterio.dir/src/Mesh.cpp.o"
@@ -8,6 +8,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/camerasterio.dir/src/PnPProblem.cpp.o"
   "CMakeFiles/camerasterio.dir/src/RobustMatcher.cpp.o"
   "CMakeFiles/camerasterio.dir/src/Utils.cpp.o"
+  "CMakeFiles/camerasterio.dir/src/testData.cpp.o"
   "camerasterio"
   "camerasterio.pdb"
 )
