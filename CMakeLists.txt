@@ -27,7 +27,8 @@ include_directories(
 add_executable( ${PROJECT_NAME}
         ${SRC_FILES}
         ${INCLUDE_FILES}
-        main_registration.cpp
+        main.cpp
+        #main_registration.cpp
         )
 
 target_link_libraries( ${PROJECT_NAME} ${OpenCV_LIBS})

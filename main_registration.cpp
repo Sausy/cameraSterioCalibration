@@ -115,7 +115,7 @@ int main(int argc, char *argv[])
     ss.str("");
     ss << SEARCH_PATH << "/Data/" << "cookies_ORB.yml";
     string write_path = cv::samples::findFile(ss.str());     // output file
-    
+
 
     int numKeyPoints = 2000;
     string featureName = "ORB";
@@ -190,6 +190,21 @@ int main(int argc, char *argv[])
         // Current registered points
         vector<Point2f> list_points2d = registration.get_points2d();
         vector<Point3f> list_points3d = registration.get_points3d();
+
+        //cout << "\nPoint ";
+        //cout << "\nPoint " << list_points2d[0] << "|" << list_points2d[1];
+        if(list_points2d.size() > 0){
+          cout << "\nPoint "; //<< list_points2d.size();
+          for (size_t i = 0; i < list_points2d.size(); i++) {
+            cout << list_points2d[i] << " | ";
+          }
+          cout << "\n3D: ";
+          for (size_t i = 0; i < list_points3d.size(); i++) {
+            cout << list_points3d[i] << " | ";
+          }
+        }
+
+
 
         // Draw current registered points
         drawPoints(img_vis, list_points2d, list_points3d, red);
