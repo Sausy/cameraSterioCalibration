@@ -1,3 +1,0 @@
-/home/sausy/Projects/lighthouse/cameraSterioCalibration/build/CMakeFiles/rebuild_cache.dir
-/home/sausy/Projects/lighthouse/cameraSterioCalibration/build/CMakeFiles/camerasterio.dir
-/home/sausy/Projects/lighthouse/cameraSterioCalibration/build/CMakeFiles/edit_cache.dir
