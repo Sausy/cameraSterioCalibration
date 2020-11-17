@@ -1,17 +1,20 @@
 // C++
 #include <iostream>
+#include <stdint.h>
+#include <stdlib.h>
+#include <sstream>
 // OpenCV
 #include <opencv2/core.hpp>
 #include <opencv2/imgproc.hpp>
 #include <opencv2/calib3d.hpp>
 #include <opencv2/features2d.hpp>
 // PnP Tutorial
-#include "Mesh.h"
-#include "Model.h"
-#include "PnPProblem.h"
-#include "RobustMatcher.h"
-#include "ModelRegistration.h"
-#include "Utils.h"
+#include <Mesh.h>
+#include <Model.h>
+#include <PnPProblem.h>
+#include <RobustMatcher.h>
+#include <ModelRegistration.h>
+#include <Utils.h>
 
 using namespace cv;
 using namespace std;
@@ -93,9 +96,27 @@ int main(int argc, char *argv[])
             ;
     CommandLineParser parser(argc, argv, keys);
 
-    string img_path = samples::findFile("samples/cpp/tutorial_code/calib3d/real_time_pose_estimation/Data/resized_IMG_3875.JPG");  // image to register
-    string ply_read_path = samples::findFile("samples/cpp/tutorial_code/calib3d/real_time_pose_estimation/Data/box.ply");          // object mesh
-    string write_path = samples::findFile("samples/cpp/tutorial_code/calib3d/real_time_pose_estimation/Data/cookies_ORB.yml");     // output file
+    //string img_path = samples::findFile("samples/cpp/tutorial_code/calib3d/real_time_pose_estimation/Data/resized_IMG_3875.JPG");  // image to register
+    //string ply_read_path = samples::findFile("samples/cpp/tutorial_code/calib3d/real_time_pose_estimation/Data/box.ply");          // object mesh
+    //string write_path = samples::findFile("samples/cpp/tutorial_code/calib3d/real_time_pose_estimation/Data/cookies_ORB.yml");     // output file
+    //string img_path = "./Data/resized_IMG_3875.JPG";//samples::findFile("./Data/resized_IMG_3875.JPG");  // image to register
+    //string ply_read_path = "./Data/box.ply";//samples::findFile("./Data/box.ply");          // object mesh
+    //string write_path = "./Data/cookies_ORB.yml";//samples::findFile("./Data/cookies_ORB.yml");     // output file
+
+    //Absolut Path was defined in CMAKELists.txt
+    cout << SEARCH_PATH << "\n";
+    std::stringstream ss;
+
+    ss << SEARCH_PATH << "/Data/" << "resized_IMG_3875.JPG";
+    string img_path = cv::samples::findFile(ss.str());  // image to register
+    ss.str("");
+    ss << SEARCH_PATH << "/Data/" << "box.ply";
+    string ply_read_path = cv::samples::findFile(ss.str());          // object mesh
+    ss.str("");
+    ss << SEARCH_PATH << "/Data/" << "cookies_ORB.yml";
+    string write_path = cv::samples::findFile(ss.str());     // output file
+    
+
     int numKeyPoints = 2000;
     string featureName = "ORB";
 

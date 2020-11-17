@@ -1,21 +1,33 @@
-set(sample_dir ${CMAKE_CURRENT_SOURCE_DIR}/tutorial_code/calib3d/real_time_pose_estimation/src/)
-set(target example_tutorial_)
+cmake_minimum_required(VERSION 3.1)
+project(camerasterio)
 
-set(sample_pnplib
-        ${sample_dir}CsvReader.cpp
-        ${sample_dir}CsvWriter.cpp
-        ${sample_dir}ModelRegistration.cpp
-        ${sample_dir}Mesh.cpp
-        ${sample_dir}Model.cpp
-        ${sample_dir}PnPProblem.cpp
-        ${sample_dir}Utils.cpp
-        ${sample_dir}RobustMatcher.cpp
-)
+find_package(OpenCV REQUIRED)
 
-ocv_include_modules_recurse(${OPENCV_CPP_SAMPLES_REQUIRED_DEPS})
+include_directories(${OpenCV_INCLUDE_DIRS})
 
-add_executable( ${target}pnp_registration ${sample_dir}main_registration.cpp ${sample_pnplib} )
-add_executable( ${target}pnp_detection ${sample_dir}main_detection.cpp ${sample_pnplib} )
+FILE(GLOB SRC_FILES src/*.cpp)
+FILE(GLOB INCLUDE_FILES src/*.h)
 
-ocv_target_link_libraries(${target}pnp_registration PRIVATE ${OPENCV_LINKER_LIBS} ${OPENCV_CPP_SAMPLES_REQUIRED_DEPS})
-ocv_target_link_libraries(${target}pnp_detection PRIVATE ${OPENCV_LINKER_LIBS} ${OPENCV_CPP_SAMPLES_REQUIRED_DEPS})
+
+#==============================================================================
+# Project specific defines
+#==============================================================================
+add_definitions(-DSEARCH_PATH="${CMAKE_SOURCE_DIR}")
+
+#==============================================================================
+# Dependencies
+#==============================================================================
+include_directories(
+        src/
+      )
+
+#==============================================================================
+# Application
+#==============================================================================
+add_executable( ${PROJECT_NAME}
+        ${SRC_FILES}
+        ${INCLUDE_FILES}
+        main_registration.cpp
+        )
+
+target_link_libraries( ${PROJECT_NAME} ${OpenCV_LIBS})
