@@ -55,7 +55,7 @@ int main(int argc, char const *argv[]) {
   Mat img_in = imread(img_path, IMREAD_COLOR);
   Mat img;
   if(img_in.empty()){
-    cout << "\No Image found \n";
+    std::cout << "\No Image found \n";
     return 0;
   }
   img = img_in.clone();
