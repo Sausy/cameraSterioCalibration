@@ -13,7 +13,7 @@ git clone https://github.com/opencv/opencv_contrib.git
 
 mkdir build && cd build
 
-cmake -DOPENCV_EXTRA_MODULES_PATH=/full/path/to/opencv_contrib/modules ../opencv
+cmake -DOPENCV_EXTRA_MODULES_PATH=../opencv_contrib/modules ../opencv
 
 cmake --build .
 ```
