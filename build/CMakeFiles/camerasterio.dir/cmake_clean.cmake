@@ -1,5 +1,4 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/camerasterio.dir/main.cpp.o"
   "CMakeFiles/camerasterio.dir/src/CsvReader.cpp.o"
   "CMakeFiles/camerasterio.dir/src/CsvWriter.cpp.o"
   "CMakeFiles/camerasterio.dir/src/Mesh.cpp.o"
@@ -9,8 +8,9 @@ file(REMOVE_RECURSE
   "CMakeFiles/camerasterio.dir/src/RobustMatcher.cpp.o"
   "CMakeFiles/camerasterio.dir/src/Utils.cpp.o"
   "CMakeFiles/camerasterio.dir/src/testData.cpp.o"
-  "camerasterio"
+  "CMakeFiles/camerasterio.dir/main.cpp.o"
   "camerasterio.pdb"
+  "camerasterio"
 )
 
 # Per-language clean rules from dependency scanning.

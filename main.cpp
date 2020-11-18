@@ -52,17 +52,18 @@ int main(int argc, char const *argv[]) {
   model.load(sensor_model_path);
 
   //open plane image
+  /*
   Mat img_in = imread(img_path, IMREAD_COLOR);
   Mat img;
   if(img_in.empty()){
-    cout << "\No Image found \n";
+    std::cout << "\No Image found \n";
     return 0;
   }
   img = img_in.clone();
 
 
   imshow("MODEL REGISTRATION", img);
-
+  */
 
 
   //init lighthouse camera matrix
@@ -120,8 +121,8 @@ int main(int argc, char const *argv[]) {
     //list_points3d[i].insert(list_points3d[i].begin(), tdata.sensorData_solver_3d[i].begin(), tdata.sensorData_solver_3d[i].end());
   }
 
-  drawPoints(img, list_points2d, list_points3d, red);
-  imshow("MODEL REGISTRATION", img);
+  //drawPoints(img, list_points2d, list_points3d, red);
+  //imshow("MODEL REGISTRATION", img);
   //imshow("MODEL REGISTRATION", img);
   /*===========[DEBUG STuff END]= ==========*/
 
@@ -144,8 +145,8 @@ int main(int argc, char const *argv[]) {
   cout << "\nTrans: " << transMatrix.size();
   cout << "\n" << transMatrix;
   cout << "\n";
-  draw2DPoints(img, list_points2d, green);
-  imshow("MODEL REGISTRATION", img);
+  //draw2DPoints(img, list_points2d, green);
+  //imshow("MODEL REGISTRATION", img);
 
   bool is_correspondence = pnp_registration.estimatePose(list_points3d, list_points2d, SOLVEPNP_ITERATIVE);
 

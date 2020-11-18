@@ -130,7 +130,7 @@ void testData::matchData(const std::vector<std::vector<float>> inVec){
     }
   }
 
-
+  /*
   for (size_t i = 0; i < sensorData_solver_2d.size(); i++) {
     std::cout << "\n2D: Data ";
     for (size_t j = 0; j < sensorData_solver_2d[0].size(); j++) {
@@ -142,5 +142,6 @@ void testData::matchData(const std::vector<std::vector<float>> inVec){
       std::cout << sensorData_solver_3d[i][j] << " ";
     }
   }
+  */
 
 }
