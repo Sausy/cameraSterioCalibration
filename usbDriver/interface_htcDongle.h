@@ -2,6 +2,9 @@
 #define __INTERFACE_HTCDONGLE_H__
 
 #define MAX_SENSORS 24
+
+#include "rayFinder.h"
+#include "driver_htcDongle.h"
 #include "parser_htcDongle.h"
 
 //#include "rayFinder.h"
@@ -18,7 +21,7 @@ class driverHtcDongle
 
   private:
     double first_phi[MAX_SENSORS][32];
-    double ray[2][3];
+    //double ray[2][3];
 };
 
 #endif

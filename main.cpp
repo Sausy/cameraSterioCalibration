@@ -41,22 +41,29 @@ int main(int argc, char const *argv[]) {
   //init vive dongle
   driverHtcDongle driver;//TODO: find usbDongle automatically
 
-  std::vector<int> id;
-  std::vector<float> azimuth;
-  std::vector<float> elevation;
-  std::vector<int> channel;
 
   //todo change this to an infinity loop
-  for(uint8_t i = 0; i < 5; i++){
+  uint16_t sucessCnt = 0;
+  for(;;){
+    std::vector<int> id;
+    std::vector<float> azimuth;
+    std::vector<float> elevation;
+    std::vector<int> channel;
+
     if(driver.pullData(&id,&azimuth,&elevation, &channel)){
-      std::cout<<"\nWe could gather the following data";
-      for(uint8_t dataCnt = 0; dataCnt < id.size(); dataCnt++){
-        std::cout<<"\nid: " << id[dataCnt];
-        std::cout<<"\taz: " << azimuth[dataCnt];
-        std::cout<<"\tel: " << elevation[dataCnt];
-        std::cout<<"\tch: " << channel[dataCnt];
+      if(id.size() > 0){
+        sucessCnt++;
+        std::cout<<"\nWe could gather the following data [size:" << id.size();
+        for(uint8_t dataCnt = 0; dataCnt < id.size(); dataCnt++){
+          std::cout<<"\nid: " << id[dataCnt];
+          std::cout<<"\taz: " << azimuth[dataCnt] * 180.0/M_PI;
+          std::cout<<"\tel: " << elevation[dataCnt] * 180.0/M_PI;
+          std::cout<<"\tch: " << channel[dataCnt];
+        }
       }
     }
+    if(sucessCnt > 1000)
+      break;
   }
 
   //find the path to 3DModel file  that includes the

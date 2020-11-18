@@ -1,4 +1,5 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/camerasterio.dir/main.cpp.o"
   "CMakeFiles/camerasterio.dir/src/CsvReader.cpp.o"
   "CMakeFiles/camerasterio.dir/src/CsvWriter.cpp.o"
   "CMakeFiles/camerasterio.dir/src/Mesh.cpp.o"
@@ -12,9 +13,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/camerasterio.dir/usbDriver/interface_htcDongle.cpp.o"
   "CMakeFiles/camerasterio.dir/usbDriver/parser_htcDongle.cpp.o"
   "CMakeFiles/camerasterio.dir/usbDriver/rayFinder.cpp.o"
-  "CMakeFiles/camerasterio.dir/main.cpp.o"
-  "camerasterio.pdb"
   "camerasterio"
+  "camerasterio.pdb"
 )
 
 # Per-language clean rules from dependency scanning.
