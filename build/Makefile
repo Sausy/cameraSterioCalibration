@@ -393,6 +393,114 @@ src/testData.cpp.s:
 	$(MAKE) -f CMakeFiles/camerasterio.dir/build.make CMakeFiles/camerasterio.dir/src/testData.cpp.s
 .PHONY : src/testData.cpp.s
 
+usbDriver/driver_htcDongle.o: usbDriver/driver_htcDongle.cpp.o
+
+.PHONY : usbDriver/driver_htcDongle.o
+
+# target to build an object file
+usbDriver/driver_htcDongle.cpp.o:
+	$(MAKE) -f CMakeFiles/camerasterio.dir/build.make CMakeFiles/camerasterio.dir/usbDriver/driver_htcDongle.cpp.o
+.PHONY : usbDriver/driver_htcDongle.cpp.o
+
+usbDriver/driver_htcDongle.i: usbDriver/driver_htcDongle.cpp.i
+
+.PHONY : usbDriver/driver_htcDongle.i
+
+# target to preprocess a source file
+usbDriver/driver_htcDongle.cpp.i:
+	$(MAKE) -f CMakeFiles/camerasterio.dir/build.make CMakeFiles/camerasterio.dir/usbDriver/driver_htcDongle.cpp.i
+.PHONY : usbDriver/driver_htcDongle.cpp.i
+
+usbDriver/driver_htcDongle.s: usbDriver/driver_htcDongle.cpp.s
+
+.PHONY : usbDriver/driver_htcDongle.s
+
+# target to generate assembly for a file
+usbDriver/driver_htcDongle.cpp.s:
+	$(MAKE) -f CMakeFiles/camerasterio.dir/build.make CMakeFiles/camerasterio.dir/usbDriver/driver_htcDongle.cpp.s
+.PHONY : usbDriver/driver_htcDongle.cpp.s
+
+usbDriver/interface_htcDongle.o: usbDriver/interface_htcDongle.cpp.o
+
+.PHONY : usbDriver/interface_htcDongle.o
+
+# target to build an object file
+usbDriver/interface_htcDongle.cpp.o:
+	$(MAKE) -f CMakeFiles/camerasterio.dir/build.make CMakeFiles/camerasterio.dir/usbDriver/interface_htcDongle.cpp.o
+.PHONY : usbDriver/interface_htcDongle.cpp.o
+
+usbDriver/interface_htcDongle.i: usbDriver/interface_htcDongle.cpp.i
+
+.PHONY : usbDriver/interface_htcDongle.i
+
+# target to preprocess a source file
+usbDriver/interface_htcDongle.cpp.i:
+	$(MAKE) -f CMakeFiles/camerasterio.dir/build.make CMakeFiles/camerasterio.dir/usbDriver/interface_htcDongle.cpp.i
+.PHONY : usbDriver/interface_htcDongle.cpp.i
+
+usbDriver/interface_htcDongle.s: usbDriver/interface_htcDongle.cpp.s
+
+.PHONY : usbDriver/interface_htcDongle.s
+
+# target to generate assembly for a file
+usbDriver/interface_htcDongle.cpp.s:
+	$(MAKE) -f CMakeFiles/camerasterio.dir/build.make CMakeFiles/camerasterio.dir/usbDriver/interface_htcDongle.cpp.s
+.PHONY : usbDriver/interface_htcDongle.cpp.s
+
+usbDriver/parser_htcDongle.o: usbDriver/parser_htcDongle.cpp.o
+
+.PHONY : usbDriver/parser_htcDongle.o
+
+# target to build an object file
+usbDriver/parser_htcDongle.cpp.o:
+	$(MAKE) -f CMakeFiles/camerasterio.dir/build.make CMakeFiles/camerasterio.dir/usbDriver/parser_htcDongle.cpp.o
+.PHONY : usbDriver/parser_htcDongle.cpp.o
+
+usbDriver/parser_htcDongle.i: usbDriver/parser_htcDongle.cpp.i
+
+.PHONY : usbDriver/parser_htcDongle.i
+
+# target to preprocess a source file
+usbDriver/parser_htcDongle.cpp.i:
+	$(MAKE) -f CMakeFiles/camerasterio.dir/build.make CMakeFiles/camerasterio.dir/usbDriver/parser_htcDongle.cpp.i
+.PHONY : usbDriver/parser_htcDongle.cpp.i
+
+usbDriver/parser_htcDongle.s: usbDriver/parser_htcDongle.cpp.s
+
+.PHONY : usbDriver/parser_htcDongle.s
+
+# target to generate assembly for a file
+usbDriver/parser_htcDongle.cpp.s:
+	$(MAKE) -f CMakeFiles/camerasterio.dir/build.make CMakeFiles/camerasterio.dir/usbDriver/parser_htcDongle.cpp.s
+.PHONY : usbDriver/parser_htcDongle.cpp.s
+
+usbDriver/rayFinder.o: usbDriver/rayFinder.cpp.o
+
+.PHONY : usbDriver/rayFinder.o
+
+# target to build an object file
+usbDriver/rayFinder.cpp.o:
+	$(MAKE) -f CMakeFiles/camerasterio.dir/build.make CMakeFiles/camerasterio.dir/usbDriver/rayFinder.cpp.o
+.PHONY : usbDriver/rayFinder.cpp.o
+
+usbDriver/rayFinder.i: usbDriver/rayFinder.cpp.i
+
+.PHONY : usbDriver/rayFinder.i
+
+# target to preprocess a source file
+usbDriver/rayFinder.cpp.i:
+	$(MAKE) -f CMakeFiles/camerasterio.dir/build.make CMakeFiles/camerasterio.dir/usbDriver/rayFinder.cpp.i
+.PHONY : usbDriver/rayFinder.cpp.i
+
+usbDriver/rayFinder.s: usbDriver/rayFinder.cpp.s
+
+.PHONY : usbDriver/rayFinder.s
+
+# target to generate assembly for a file
+usbDriver/rayFinder.cpp.s:
+	$(MAKE) -f CMakeFiles/camerasterio.dir/build.make CMakeFiles/camerasterio.dir/usbDriver/rayFinder.cpp.s
+.PHONY : usbDriver/rayFinder.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -432,6 +540,18 @@ help:
 	@echo "... src/testData.o"
 	@echo "... src/testData.i"
 	@echo "... src/testData.s"
+	@echo "... usbDriver/driver_htcDongle.o"
+	@echo "... usbDriver/driver_htcDongle.i"
+	@echo "... usbDriver/driver_htcDongle.s"
+	@echo "... usbDriver/interface_htcDongle.o"
+	@echo "... usbDriver/interface_htcDongle.i"
+	@echo "... usbDriver/interface_htcDongle.s"
+	@echo "... usbDriver/parser_htcDongle.o"
+	@echo "... usbDriver/parser_htcDongle.i"
+	@echo "... usbDriver/parser_htcDongle.s"
+	@echo "... usbDriver/rayFinder.o"
+	@echo "... usbDriver/rayFinder.i"
+	@echo "... usbDriver/rayFinder.s"
 .PHONY : help
 
 

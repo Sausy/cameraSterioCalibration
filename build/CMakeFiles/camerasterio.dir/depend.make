@@ -8,6 +8,8 @@ CMakeFiles/camerasterio.dir/main.cpp.o: ../src/PnPProblem.h
 CMakeFiles/camerasterio.dir/main.cpp.o: ../src/RobustMatcher.h
 CMakeFiles/camerasterio.dir/main.cpp.o: ../src/Utils.h
 CMakeFiles/camerasterio.dir/main.cpp.o: ../src/testData.h
+CMakeFiles/camerasterio.dir/main.cpp.o: ../usbDriver/interface_htcDongle.h
+CMakeFiles/camerasterio.dir/main.cpp.o: ../usbDriver/parser_htcDongle.h
 CMakeFiles/camerasterio.dir/main.cpp.o: ../main.cpp
 CMakeFiles/camerasterio.dir/main.cpp.o: /usr/local/include/opencv4/opencv2/calib3d.hpp
 CMakeFiles/camerasterio.dir/main.cpp.o: /usr/local/include/opencv4/opencv2/core.hpp
@@ -486,4 +488,19 @@ CMakeFiles/camerasterio.dir/src/testData.cpp.o: /usr/local/include/opencv4/openc
 CMakeFiles/camerasterio.dir/src/testData.cpp.o: /usr/local/include/opencv4/opencv2/imgcodecs.hpp
 CMakeFiles/camerasterio.dir/src/testData.cpp.o: /usr/local/include/opencv4/opencv2/opencv_modules.hpp
 CMakeFiles/camerasterio.dir/src/testData.cpp.o: /usr/local/include/opencv4/opencv2/videoio.hpp
+
+CMakeFiles/camerasterio.dir/usbDriver/driver_htcDongle.cpp.o: ../usbDriver/driver_htcDongle.cpp
+CMakeFiles/camerasterio.dir/usbDriver/driver_htcDongle.cpp.o: ../usbDriver/driver_htcDongle.h
+
+CMakeFiles/camerasterio.dir/usbDriver/interface_htcDongle.cpp.o: ../usbDriver/driver_htcDongle.h
+CMakeFiles/camerasterio.dir/usbDriver/interface_htcDongle.cpp.o: ../usbDriver/interface_htcDongle.cpp
+CMakeFiles/camerasterio.dir/usbDriver/interface_htcDongle.cpp.o: ../usbDriver/interface_htcDongle.h
+CMakeFiles/camerasterio.dir/usbDriver/interface_htcDongle.cpp.o: ../usbDriver/parser_htcDongle.h
+CMakeFiles/camerasterio.dir/usbDriver/interface_htcDongle.cpp.o: ../usbDriver/rayFinder.h
+
+CMakeFiles/camerasterio.dir/usbDriver/parser_htcDongle.cpp.o: ../usbDriver/parser_htcDongle.cpp
+CMakeFiles/camerasterio.dir/usbDriver/parser_htcDongle.cpp.o: ../usbDriver/parser_htcDongle.h
+
+CMakeFiles/camerasterio.dir/usbDriver/rayFinder.cpp.o: ../usbDriver/rayFinder.cpp
+CMakeFiles/camerasterio.dir/usbDriver/rayFinder.cpp.o: ../usbDriver/rayFinder.h
 

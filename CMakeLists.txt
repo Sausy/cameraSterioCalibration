@@ -8,6 +8,10 @@ include_directories(${OpenCV_INCLUDE_DIRS})
 FILE(GLOB SRC_FILES src/*.cpp)
 FILE(GLOB INCLUDE_FILES src/*.h)
 
+#====UsbDriver Stuff
+FILE(GLOB SRC_FILES_USB usbDriver/*.cpp)
+FILE(GLOB INCLUDE_FILES_USB usbDriver/*.h)
+
 
 #==============================================================================
 # Project specific defines
@@ -19,6 +23,7 @@ add_definitions(-DSEARCH_PATH="${CMAKE_SOURCE_DIR}")
 #==============================================================================
 include_directories(
         src/
+        usbDriver/
       )
 
 #==============================================================================
@@ -27,6 +32,8 @@ include_directories(
 add_executable( ${PROJECT_NAME}
         ${SRC_FILES}
         ${INCLUDE_FILES}
+        ${SRC_FILES_USB}
+        ${INCLUDE_FILES_USB}
         main.cpp
         #main_registration.cpp
         )

@@ -273,9 +273,105 @@ CMakeFiles/camerasterio.dir/src/testData.cpp.o.provides: CMakeFiles/camerasterio
 CMakeFiles/camerasterio.dir/src/testData.cpp.o.provides.build: CMakeFiles/camerasterio.dir/src/testData.cpp.o
 
 
+CMakeFiles/camerasterio.dir/usbDriver/driver_htcDongle.cpp.o: CMakeFiles/camerasterio.dir/flags.make
+CMakeFiles/camerasterio.dir/usbDriver/driver_htcDongle.cpp.o: ../usbDriver/driver_htcDongle.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/Micha/Projekt/cameraSterioCalibration/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/camerasterio.dir/usbDriver/driver_htcDongle.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/camerasterio.dir/usbDriver/driver_htcDongle.cpp.o -c /mnt/c/Users/Micha/Projekt/cameraSterioCalibration/usbDriver/driver_htcDongle.cpp
+
+CMakeFiles/camerasterio.dir/usbDriver/driver_htcDongle.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/camerasterio.dir/usbDriver/driver_htcDongle.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/Micha/Projekt/cameraSterioCalibration/usbDriver/driver_htcDongle.cpp > CMakeFiles/camerasterio.dir/usbDriver/driver_htcDongle.cpp.i
+
+CMakeFiles/camerasterio.dir/usbDriver/driver_htcDongle.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/camerasterio.dir/usbDriver/driver_htcDongle.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/Micha/Projekt/cameraSterioCalibration/usbDriver/driver_htcDongle.cpp -o CMakeFiles/camerasterio.dir/usbDriver/driver_htcDongle.cpp.s
+
+CMakeFiles/camerasterio.dir/usbDriver/driver_htcDongle.cpp.o.requires:
+
+.PHONY : CMakeFiles/camerasterio.dir/usbDriver/driver_htcDongle.cpp.o.requires
+
+CMakeFiles/camerasterio.dir/usbDriver/driver_htcDongle.cpp.o.provides: CMakeFiles/camerasterio.dir/usbDriver/driver_htcDongle.cpp.o.requires
+	$(MAKE) -f CMakeFiles/camerasterio.dir/build.make CMakeFiles/camerasterio.dir/usbDriver/driver_htcDongle.cpp.o.provides.build
+.PHONY : CMakeFiles/camerasterio.dir/usbDriver/driver_htcDongle.cpp.o.provides
+
+CMakeFiles/camerasterio.dir/usbDriver/driver_htcDongle.cpp.o.provides.build: CMakeFiles/camerasterio.dir/usbDriver/driver_htcDongle.cpp.o
+
+
+CMakeFiles/camerasterio.dir/usbDriver/interface_htcDongle.cpp.o: CMakeFiles/camerasterio.dir/flags.make
+CMakeFiles/camerasterio.dir/usbDriver/interface_htcDongle.cpp.o: ../usbDriver/interface_htcDongle.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/Micha/Projekt/cameraSterioCalibration/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/camerasterio.dir/usbDriver/interface_htcDongle.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/camerasterio.dir/usbDriver/interface_htcDongle.cpp.o -c /mnt/c/Users/Micha/Projekt/cameraSterioCalibration/usbDriver/interface_htcDongle.cpp
+
+CMakeFiles/camerasterio.dir/usbDriver/interface_htcDongle.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/camerasterio.dir/usbDriver/interface_htcDongle.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/Micha/Projekt/cameraSterioCalibration/usbDriver/interface_htcDongle.cpp > CMakeFiles/camerasterio.dir/usbDriver/interface_htcDongle.cpp.i
+
+CMakeFiles/camerasterio.dir/usbDriver/interface_htcDongle.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/camerasterio.dir/usbDriver/interface_htcDongle.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/Micha/Projekt/cameraSterioCalibration/usbDriver/interface_htcDongle.cpp -o CMakeFiles/camerasterio.dir/usbDriver/interface_htcDongle.cpp.s
+
+CMakeFiles/camerasterio.dir/usbDriver/interface_htcDongle.cpp.o.requires:
+
+.PHONY : CMakeFiles/camerasterio.dir/usbDriver/interface_htcDongle.cpp.o.requires
+
+CMakeFiles/camerasterio.dir/usbDriver/interface_htcDongle.cpp.o.provides: CMakeFiles/camerasterio.dir/usbDriver/interface_htcDongle.cpp.o.requires
+	$(MAKE) -f CMakeFiles/camerasterio.dir/build.make CMakeFiles/camerasterio.dir/usbDriver/interface_htcDongle.cpp.o.provides.build
+.PHONY : CMakeFiles/camerasterio.dir/usbDriver/interface_htcDongle.cpp.o.provides
+
+CMakeFiles/camerasterio.dir/usbDriver/interface_htcDongle.cpp.o.provides.build: CMakeFiles/camerasterio.dir/usbDriver/interface_htcDongle.cpp.o
+
+
+CMakeFiles/camerasterio.dir/usbDriver/parser_htcDongle.cpp.o: CMakeFiles/camerasterio.dir/flags.make
+CMakeFiles/camerasterio.dir/usbDriver/parser_htcDongle.cpp.o: ../usbDriver/parser_htcDongle.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/Micha/Projekt/cameraSterioCalibration/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/camerasterio.dir/usbDriver/parser_htcDongle.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/camerasterio.dir/usbDriver/parser_htcDongle.cpp.o -c /mnt/c/Users/Micha/Projekt/cameraSterioCalibration/usbDriver/parser_htcDongle.cpp
+
+CMakeFiles/camerasterio.dir/usbDriver/parser_htcDongle.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/camerasterio.dir/usbDriver/parser_htcDongle.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/Micha/Projekt/cameraSterioCalibration/usbDriver/parser_htcDongle.cpp > CMakeFiles/camerasterio.dir/usbDriver/parser_htcDongle.cpp.i
+
+CMakeFiles/camerasterio.dir/usbDriver/parser_htcDongle.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/camerasterio.dir/usbDriver/parser_htcDongle.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/Micha/Projekt/cameraSterioCalibration/usbDriver/parser_htcDongle.cpp -o CMakeFiles/camerasterio.dir/usbDriver/parser_htcDongle.cpp.s
+
+CMakeFiles/camerasterio.dir/usbDriver/parser_htcDongle.cpp.o.requires:
+
+.PHONY : CMakeFiles/camerasterio.dir/usbDriver/parser_htcDongle.cpp.o.requires
+
+CMakeFiles/camerasterio.dir/usbDriver/parser_htcDongle.cpp.o.provides: CMakeFiles/camerasterio.dir/usbDriver/parser_htcDongle.cpp.o.requires
+	$(MAKE) -f CMakeFiles/camerasterio.dir/build.make CMakeFiles/camerasterio.dir/usbDriver/parser_htcDongle.cpp.o.provides.build
+.PHONY : CMakeFiles/camerasterio.dir/usbDriver/parser_htcDongle.cpp.o.provides
+
+CMakeFiles/camerasterio.dir/usbDriver/parser_htcDongle.cpp.o.provides.build: CMakeFiles/camerasterio.dir/usbDriver/parser_htcDongle.cpp.o
+
+
+CMakeFiles/camerasterio.dir/usbDriver/rayFinder.cpp.o: CMakeFiles/camerasterio.dir/flags.make
+CMakeFiles/camerasterio.dir/usbDriver/rayFinder.cpp.o: ../usbDriver/rayFinder.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/Micha/Projekt/cameraSterioCalibration/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/camerasterio.dir/usbDriver/rayFinder.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/camerasterio.dir/usbDriver/rayFinder.cpp.o -c /mnt/c/Users/Micha/Projekt/cameraSterioCalibration/usbDriver/rayFinder.cpp
+
+CMakeFiles/camerasterio.dir/usbDriver/rayFinder.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/camerasterio.dir/usbDriver/rayFinder.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/Micha/Projekt/cameraSterioCalibration/usbDriver/rayFinder.cpp > CMakeFiles/camerasterio.dir/usbDriver/rayFinder.cpp.i
+
+CMakeFiles/camerasterio.dir/usbDriver/rayFinder.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/camerasterio.dir/usbDriver/rayFinder.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/Micha/Projekt/cameraSterioCalibration/usbDriver/rayFinder.cpp -o CMakeFiles/camerasterio.dir/usbDriver/rayFinder.cpp.s
+
+CMakeFiles/camerasterio.dir/usbDriver/rayFinder.cpp.o.requires:
+
+.PHONY : CMakeFiles/camerasterio.dir/usbDriver/rayFinder.cpp.o.requires
+
+CMakeFiles/camerasterio.dir/usbDriver/rayFinder.cpp.o.provides: CMakeFiles/camerasterio.dir/usbDriver/rayFinder.cpp.o.requires
+	$(MAKE) -f CMakeFiles/camerasterio.dir/build.make CMakeFiles/camerasterio.dir/usbDriver/rayFinder.cpp.o.provides.build
+.PHONY : CMakeFiles/camerasterio.dir/usbDriver/rayFinder.cpp.o.provides
+
+CMakeFiles/camerasterio.dir/usbDriver/rayFinder.cpp.o.provides.build: CMakeFiles/camerasterio.dir/usbDriver/rayFinder.cpp.o
+
+
 CMakeFiles/camerasterio.dir/main.cpp.o: CMakeFiles/camerasterio.dir/flags.make
 CMakeFiles/camerasterio.dir/main.cpp.o: ../main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/Micha/Projekt/cameraSterioCalibration/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/camerasterio.dir/main.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/Micha/Projekt/cameraSterioCalibration/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/camerasterio.dir/main.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/camerasterio.dir/main.cpp.o -c /mnt/c/Users/Micha/Projekt/cameraSterioCalibration/main.cpp
 
 CMakeFiles/camerasterio.dir/main.cpp.i: cmake_force
@@ -308,6 +404,10 @@ camerasterio_OBJECTS = \
 "CMakeFiles/camerasterio.dir/src/RobustMatcher.cpp.o" \
 "CMakeFiles/camerasterio.dir/src/Utils.cpp.o" \
 "CMakeFiles/camerasterio.dir/src/testData.cpp.o" \
+"CMakeFiles/camerasterio.dir/usbDriver/driver_htcDongle.cpp.o" \
+"CMakeFiles/camerasterio.dir/usbDriver/interface_htcDongle.cpp.o" \
+"CMakeFiles/camerasterio.dir/usbDriver/parser_htcDongle.cpp.o" \
+"CMakeFiles/camerasterio.dir/usbDriver/rayFinder.cpp.o" \
 "CMakeFiles/camerasterio.dir/main.cpp.o"
 
 # External object files for target camerasterio
@@ -322,6 +422,10 @@ camerasterio: CMakeFiles/camerasterio.dir/src/PnPProblem.cpp.o
 camerasterio: CMakeFiles/camerasterio.dir/src/RobustMatcher.cpp.o
 camerasterio: CMakeFiles/camerasterio.dir/src/Utils.cpp.o
 camerasterio: CMakeFiles/camerasterio.dir/src/testData.cpp.o
+camerasterio: CMakeFiles/camerasterio.dir/usbDriver/driver_htcDongle.cpp.o
+camerasterio: CMakeFiles/camerasterio.dir/usbDriver/interface_htcDongle.cpp.o
+camerasterio: CMakeFiles/camerasterio.dir/usbDriver/parser_htcDongle.cpp.o
+camerasterio: CMakeFiles/camerasterio.dir/usbDriver/rayFinder.cpp.o
 camerasterio: CMakeFiles/camerasterio.dir/main.cpp.o
 camerasterio: CMakeFiles/camerasterio.dir/build.make
 camerasterio: /usr/local/lib/libopencv_gapi.so.4.5.0
@@ -379,7 +483,7 @@ camerasterio: /usr/local/lib/libopencv_photo.so.4.5.0
 camerasterio: /usr/local/lib/libopencv_imgproc.so.4.5.0
 camerasterio: /usr/local/lib/libopencv_core.so.4.5.0
 camerasterio: CMakeFiles/camerasterio.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/mnt/c/Users/Micha/Projekt/cameraSterioCalibration/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Linking CXX executable camerasterio"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/mnt/c/Users/Micha/Projekt/cameraSterioCalibration/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Linking CXX executable camerasterio"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/camerasterio.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -396,6 +500,10 @@ CMakeFiles/camerasterio.dir/requires: CMakeFiles/camerasterio.dir/src/PnPProblem
 CMakeFiles/camerasterio.dir/requires: CMakeFiles/camerasterio.dir/src/RobustMatcher.cpp.o.requires
 CMakeFiles/camerasterio.dir/requires: CMakeFiles/camerasterio.dir/src/Utils.cpp.o.requires
 CMakeFiles/camerasterio.dir/requires: CMakeFiles/camerasterio.dir/src/testData.cpp.o.requires
+CMakeFiles/camerasterio.dir/requires: CMakeFiles/camerasterio.dir/usbDriver/driver_htcDongle.cpp.o.requires
+CMakeFiles/camerasterio.dir/requires: CMakeFiles/camerasterio.dir/usbDriver/interface_htcDongle.cpp.o.requires
+CMakeFiles/camerasterio.dir/requires: CMakeFiles/camerasterio.dir/usbDriver/parser_htcDongle.cpp.o.requires
+CMakeFiles/camerasterio.dir/requires: CMakeFiles/camerasterio.dir/usbDriver/rayFinder.cpp.o.requires
 CMakeFiles/camerasterio.dir/requires: CMakeFiles/camerasterio.dir/main.cpp.o.requires
 
 .PHONY : CMakeFiles/camerasterio.dir/requires

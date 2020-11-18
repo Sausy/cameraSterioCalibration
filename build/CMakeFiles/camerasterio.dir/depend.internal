@@ -9,6 +9,8 @@ CMakeFiles/camerasterio.dir/main.cpp.o
  ../src/RobustMatcher.h
  ../src/Utils.h
  ../src/testData.h
+ ../usbDriver/interface_htcDongle.h
+ ../usbDriver/parser_htcDongle.h
  /mnt/c/Users/Micha/Projekt/cameraSterioCalibration/main.cpp
  /usr/local/include/opencv4/opencv2/calib3d.hpp
  /usr/local/include/opencv4/opencv2/core.hpp
@@ -487,3 +489,18 @@ CMakeFiles/camerasterio.dir/src/testData.cpp.o
  /usr/local/include/opencv4/opencv2/imgcodecs.hpp
  /usr/local/include/opencv4/opencv2/opencv_modules.hpp
  /usr/local/include/opencv4/opencv2/videoio.hpp
+CMakeFiles/camerasterio.dir/usbDriver/driver_htcDongle.cpp.o
+ /mnt/c/Users/Micha/Projekt/cameraSterioCalibration/usbDriver/driver_htcDongle.cpp
+ /mnt/c/Users/Micha/Projekt/cameraSterioCalibration/usbDriver/driver_htcDongle.h
+CMakeFiles/camerasterio.dir/usbDriver/interface_htcDongle.cpp.o
+ /mnt/c/Users/Micha/Projekt/cameraSterioCalibration/usbDriver/driver_htcDongle.h
+ /mnt/c/Users/Micha/Projekt/cameraSterioCalibration/usbDriver/interface_htcDongle.cpp
+ /mnt/c/Users/Micha/Projekt/cameraSterioCalibration/usbDriver/interface_htcDongle.h
+ /mnt/c/Users/Micha/Projekt/cameraSterioCalibration/usbDriver/parser_htcDongle.h
+ /mnt/c/Users/Micha/Projekt/cameraSterioCalibration/usbDriver/rayFinder.h
+CMakeFiles/camerasterio.dir/usbDriver/parser_htcDongle.cpp.o
+ /mnt/c/Users/Micha/Projekt/cameraSterioCalibration/usbDriver/parser_htcDongle.cpp
+ /mnt/c/Users/Micha/Projekt/cameraSterioCalibration/usbDriver/parser_htcDongle.h
+CMakeFiles/camerasterio.dir/usbDriver/rayFinder.cpp.o
+ /mnt/c/Users/Micha/Projekt/cameraSterioCalibration/usbDriver/rayFinder.cpp
+ /mnt/c/Users/Micha/Projekt/cameraSterioCalibration/usbDriver/rayFinder.h

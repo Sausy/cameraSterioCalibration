@@ -22,6 +22,9 @@
 // test
 #include <testData.h>
 
+// Usb driver
+#include <interface_htcDongle.h>
+
 using namespace cv;
 using namespace std;
 
@@ -33,6 +36,28 @@ const Scalar yellow(0,255,255);
 
 
 int main(int argc, char const *argv[]) {
+
+  //=========[usb driver]========
+  //init vive dongle
+  driverHtcDongle driver;//TODO: find usbDongle automatically
+
+  std::vector<int> id;
+  std::vector<float> azimuth;
+  std::vector<float> elevation;
+  std::vector<int> channel;
+
+  //todo change this to an infinity loop
+  for(uint8_t i = 0; i < 5; i++){
+    if(driver.pullData(&id,&azimuth,&elevation, &channel)){
+      std::cout<<"\nWe could gather the following data";
+      for(uint8_t dataCnt = 0; dataCnt < id.size(); dataCnt++){
+        std::cout<<"\nid: " << id[dataCnt];
+        std::cout<<"\taz: " << azimuth[dataCnt];
+        std::cout<<"\tel: " << elevation[dataCnt];
+        std::cout<<"\tch: " << channel[dataCnt];
+      }
+    }
+  }
 
   //find the path to 3DModel file  that includes the
   //relativ 3D positions of the Lighthouse Sensors

@@ -14,6 +14,10 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/mnt/c/Users/Micha/Projekt/cameraSterioCalibration/src/RobustMatcher.cpp" "/mnt/c/Users/Micha/Projekt/cameraSterioCalibration/build/CMakeFiles/camerasterio.dir/src/RobustMatcher.cpp.o"
   "/mnt/c/Users/Micha/Projekt/cameraSterioCalibration/src/Utils.cpp" "/mnt/c/Users/Micha/Projekt/cameraSterioCalibration/build/CMakeFiles/camerasterio.dir/src/Utils.cpp.o"
   "/mnt/c/Users/Micha/Projekt/cameraSterioCalibration/src/testData.cpp" "/mnt/c/Users/Micha/Projekt/cameraSterioCalibration/build/CMakeFiles/camerasterio.dir/src/testData.cpp.o"
+  "/mnt/c/Users/Micha/Projekt/cameraSterioCalibration/usbDriver/driver_htcDongle.cpp" "/mnt/c/Users/Micha/Projekt/cameraSterioCalibration/build/CMakeFiles/camerasterio.dir/usbDriver/driver_htcDongle.cpp.o"
+  "/mnt/c/Users/Micha/Projekt/cameraSterioCalibration/usbDriver/interface_htcDongle.cpp" "/mnt/c/Users/Micha/Projekt/cameraSterioCalibration/build/CMakeFiles/camerasterio.dir/usbDriver/interface_htcDongle.cpp.o"
+  "/mnt/c/Users/Micha/Projekt/cameraSterioCalibration/usbDriver/parser_htcDongle.cpp" "/mnt/c/Users/Micha/Projekt/cameraSterioCalibration/build/CMakeFiles/camerasterio.dir/usbDriver/parser_htcDongle.cpp.o"
+  "/mnt/c/Users/Micha/Projekt/cameraSterioCalibration/usbDriver/rayFinder.cpp" "/mnt/c/Users/Micha/Projekt/cameraSterioCalibration/build/CMakeFiles/camerasterio.dir/usbDriver/rayFinder.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
@@ -26,6 +30,7 @@ set(CMAKE_TARGET_DEFINITIONS_CXX
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "/usr/local/include/opencv4"
   "../src"
+  "../usbDriver"
   )
 
 # Targets to which this target links.
