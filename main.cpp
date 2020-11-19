@@ -25,6 +25,9 @@
 // Usb driver
 #include <interface_htcDongle.h>
 
+// 3D sensor position
+#include <3dModel.h>
+
 using namespace cv;
 using namespace std;
 
@@ -146,11 +149,6 @@ int main(int argc, char const *argv[]) {
     list_points2d.push_back(buf2d);
     list_points3d.push_back(buf3d);
 
-    //list_points2d.push_back(std::vector<double>(0,0));
-    //list_points3d.push_back(std::vector<double>(0,0));
-
-    //list_points2d[i].insert(list_points2d[i].begin(), tdata.sensorData_solver_2d[i].begin(), tdata.sensorData_solver_2d[i].end());
-    //list_points3d[i].insert(list_points3d[i].begin(), tdata.sensorData_solver_3d[i].begin(), tdata.sensorData_solver_3d[i].end());
   }
 
   //drawPoints(img, list_points2d, list_points3d, red);
@@ -186,90 +184,7 @@ int main(int argc, char const *argv[]) {
   cout << "\nTrans: " << transMatrix.size();
   cout << "\n" << transMatrix;
   cout << "\n";
-  /*
 
-  if ( is_correspondence )
-  {
-      cout << "Correspondence found" << endl;
-
-      // Compute all the 2D points of the mesh to verify the algorithm and draw it
-      //vector<Point2f> list_points2d_mesh = pnp_registration.verify_points(&mesh);
-
-      cv::Mat transMatrix(3,1,CV_64F);
-      transMatrix = pnp_registration.get_t_matrix();
-      cout << "\nTrans: " << transMatrix.size();
-      cout << "\n" << transMatrix;
-      cout << "\n";
-      draw2DPoints(img, list_points2d, green);
-      imshow("MODEL REGISTRATION", img);
-      //for (size_t i = 0; i < pnp_registration._t_matrix; i++) {
-      //
-      //}
-  } else {
-      cout << "Correspondence not found" << endl << endl;
-  }
-  */
-
-
-
-
-  /*
-
-
-  for(unsigned int match_index = 0; match_index < good_matches.size(); ++match_index)
-  {
-      Point3f point3d_model = list_points3d_model[ good_matches[match_index].trainIdx ];  // 3D point from model
-      Point2f point2d_scene = keypoints_scene[ good_matches[match_index].queryIdx ].pt; // 2D point from the scene
-      list_points3d_model_match.push_back(point3d_model);         // add 3D point
-      list_points2d_scene_match.push_back(point2d_scene);         // add 2D point
-  }
-
-
-  if(good_matches.size() >= 4) // OpenCV requires solvePnPRANSAC to minimally have 4 set of points
-  {
-      // -- Step 3: Estimate the pose using RANSAC approach
-      pnp_detection.estimatePoseRANSAC( list_points3d_model_match, list_points2d_scene_match,
-                                        pnpMethod, inliers_idx,
-                                        iterationsCount, reprojectionError, confidence );
-
-      // -- Step 4: Catch the inliers keypoints to draw
-      for(int inliers_index = 0; inliers_index < inliers_idx.rows; ++inliers_index)
-      {
-          int n = inliers_idx.at<int>(inliers_index);         // i-inlier
-          Point2f point2d = list_points2d_scene_match[n];     // i-inlier point 2D
-          list_points2d_inliers.push_back(point2d);           // add i-inlier to list
-      }
-
-      // Draw inliers points 2D
-      draw2DPoints(frame_vis, list_points2d_inliers, blue);
-
-      // -- Step 5: Kalman Filter
-
-      // GOOD MEASUREMENT
-      if( inliers_idx.rows >= minInliersKalman )
-      {
-          // Get the measured translation
-          Mat translation_measured = pnp_detection.get_t_matrix();
-
-          // Get the measured rotation
-          Mat rotation_measured = pnp_detection.get_R_matrix();
-
-          // fill the measurements vector
-          fillMeasurements(measurements, translation_measured, rotation_measured);
-          good_measurement = true;
-      }
-
-      // update the Kalman filter with good measurements, otherwise with previous valid measurements
-      Mat translation_estimated(3, 1, CV_64FC1);
-      Mat rotation_estimated(3, 3, CV_64FC1);
-      updateKalmanFilter( KF, measurements,
-                          translation_estimated, rotation_estimated);
-
-      // -- Step 6: Set estimated projection matrix
-      pnp_detection_est.set_P_matrix(rotation_estimated, translation_estimated);
-  }
-
-  */
   //int k = waitKey(0);
   return 0;
 }
