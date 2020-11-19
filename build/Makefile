@@ -258,6 +258,33 @@ include/usbDriver/rayFinder.cpp.s:
 	$(MAKE) -f CMakeFiles/camerasterio.dir/build.make CMakeFiles/camerasterio.dir/include/usbDriver/rayFinder.cpp.s
 .PHONY : include/usbDriver/rayFinder.cpp.s
 
+include/utils/DataMatcher.o: include/utils/DataMatcher.cpp.o
+
+.PHONY : include/utils/DataMatcher.o
+
+# target to build an object file
+include/utils/DataMatcher.cpp.o:
+	$(MAKE) -f CMakeFiles/camerasterio.dir/build.make CMakeFiles/camerasterio.dir/include/utils/DataMatcher.cpp.o
+.PHONY : include/utils/DataMatcher.cpp.o
+
+include/utils/DataMatcher.i: include/utils/DataMatcher.cpp.i
+
+.PHONY : include/utils/DataMatcher.i
+
+# target to preprocess a source file
+include/utils/DataMatcher.cpp.i:
+	$(MAKE) -f CMakeFiles/camerasterio.dir/build.make CMakeFiles/camerasterio.dir/include/utils/DataMatcher.cpp.i
+.PHONY : include/utils/DataMatcher.cpp.i
+
+include/utils/DataMatcher.s: include/utils/DataMatcher.cpp.s
+
+.PHONY : include/utils/DataMatcher.s
+
+# target to generate assembly for a file
+include/utils/DataMatcher.cpp.s:
+	$(MAKE) -f CMakeFiles/camerasterio.dir/build.make CMakeFiles/camerasterio.dir/include/utils/DataMatcher.cpp.s
+.PHONY : include/utils/DataMatcher.cpp.s
+
 include/utils/Utils.o: include/utils/Utils.cpp.o
 
 .PHONY : include/utils/Utils.o
@@ -552,6 +579,9 @@ help:
 	@echo "... include/usbDriver/rayFinder.o"
 	@echo "... include/usbDriver/rayFinder.i"
 	@echo "... include/usbDriver/rayFinder.s"
+	@echo "... include/utils/DataMatcher.o"
+	@echo "... include/utils/DataMatcher.i"
+	@echo "... include/utils/DataMatcher.s"
 	@echo "... include/utils/Utils.o"
 	@echo "... include/utils/Utils.i"
 	@echo "... include/utils/Utils.s"

@@ -19,6 +19,27 @@ CMakeFiles/camerasterio.dir/include/usbDriver/parser_htcDongle.cpp.o: ../include
 CMakeFiles/camerasterio.dir/include/usbDriver/rayFinder.cpp.o: ../include/usbDriver/rayFinder.cpp
 CMakeFiles/camerasterio.dir/include/usbDriver/rayFinder.cpp.o: ../include/usbDriver/rayFinder.h
 
+CMakeFiles/camerasterio.dir/include/utils/DataMatcher.cpp.o: ../include/utils/DataMatcher.cpp
+CMakeFiles/camerasterio.dir/include/utils/DataMatcher.cpp.o: ../include/utils/DataMatcher.hpp
+CMakeFiles/camerasterio.dir/include/utils/DataMatcher.cpp.o: ../include/utils/Utils.hpp
+CMakeFiles/camerasterio.dir/include/utils/DataMatcher.cpp.o: /usr/local/include/opencv4/opencv2/core/base.hpp
+CMakeFiles/camerasterio.dir/include/utils/DataMatcher.cpp.o: /usr/local/include/opencv4/opencv2/core/check.hpp
+CMakeFiles/camerasterio.dir/include/utils/DataMatcher.cpp.o: /usr/local/include/opencv4/opencv2/core/cv_cpu_dispatch.h
+CMakeFiles/camerasterio.dir/include/utils/DataMatcher.cpp.o: /usr/local/include/opencv4/opencv2/core/cv_cpu_helper.h
+CMakeFiles/camerasterio.dir/include/utils/DataMatcher.cpp.o: /usr/local/include/opencv4/opencv2/core/cvdef.h
+CMakeFiles/camerasterio.dir/include/utils/DataMatcher.cpp.o: /usr/local/include/opencv4/opencv2/core/cvstd.hpp
+CMakeFiles/camerasterio.dir/include/utils/DataMatcher.cpp.o: /usr/local/include/opencv4/opencv2/core/cvstd_wrapper.hpp
+CMakeFiles/camerasterio.dir/include/utils/DataMatcher.cpp.o: /usr/local/include/opencv4/opencv2/core/fast_math.hpp
+CMakeFiles/camerasterio.dir/include/utils/DataMatcher.cpp.o: /usr/local/include/opencv4/opencv2/core/hal/interface.h
+CMakeFiles/camerasterio.dir/include/utils/DataMatcher.cpp.o: /usr/local/include/opencv4/opencv2/core/hal/msa_macros.h
+CMakeFiles/camerasterio.dir/include/utils/DataMatcher.cpp.o: /usr/local/include/opencv4/opencv2/core/matx.hpp
+CMakeFiles/camerasterio.dir/include/utils/DataMatcher.cpp.o: /usr/local/include/opencv4/opencv2/core/neon_utils.hpp
+CMakeFiles/camerasterio.dir/include/utils/DataMatcher.cpp.o: /usr/local/include/opencv4/opencv2/core/saturate.hpp
+CMakeFiles/camerasterio.dir/include/utils/DataMatcher.cpp.o: /usr/local/include/opencv4/opencv2/core/traits.hpp
+CMakeFiles/camerasterio.dir/include/utils/DataMatcher.cpp.o: /usr/local/include/opencv4/opencv2/core/types.hpp
+CMakeFiles/camerasterio.dir/include/utils/DataMatcher.cpp.o: /usr/local/include/opencv4/opencv2/core/vsx_utils.hpp
+CMakeFiles/camerasterio.dir/include/utils/DataMatcher.cpp.o: /usr/local/include/opencv4/opencv2/opencv_modules.hpp
+
 CMakeFiles/camerasterio.dir/include/utils/Utils.cpp.o: ../include/utils/Utils.cpp
 CMakeFiles/camerasterio.dir/include/utils/Utils.cpp.o: ../include/utils/Utils.hpp
 
@@ -31,6 +52,7 @@ CMakeFiles/camerasterio.dir/main.cpp.o: ../include/usbDriver/driver_htcDongle.h
 CMakeFiles/camerasterio.dir/main.cpp.o: ../include/usbDriver/interface_htcDongle.h
 CMakeFiles/camerasterio.dir/main.cpp.o: ../include/usbDriver/parser_htcDongle.h
 CMakeFiles/camerasterio.dir/main.cpp.o: ../include/usbDriver/rayFinder.h
+CMakeFiles/camerasterio.dir/main.cpp.o: ../include/utils/DataMatcher.hpp
 CMakeFiles/camerasterio.dir/main.cpp.o: ../include/utils/Utils.hpp
 CMakeFiles/camerasterio.dir/main.cpp.o: ../include/utils/testData.hpp
 CMakeFiles/camerasterio.dir/main.cpp.o: ../src/Mesh.h

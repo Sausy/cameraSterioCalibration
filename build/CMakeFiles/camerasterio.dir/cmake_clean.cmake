@@ -11,6 +11,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/camerasterio.dir/include/usbDriver/parser_htcDongle.cpp.o"
   "CMakeFiles/camerasterio.dir/include/usbDriver/rayFinder.cpp.o"
   "CMakeFiles/camerasterio.dir/include/load3dModel/3dModel.cpp.o"
+  "CMakeFiles/camerasterio.dir/include/utils/DataMatcher.cpp.o"
   "CMakeFiles/camerasterio.dir/include/utils/Utils.cpp.o"
   "CMakeFiles/camerasterio.dir/include/utils/testData.cpp.o"
   "CMakeFiles/camerasterio.dir/main.cpp.o"
