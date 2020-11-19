@@ -9,12 +9,17 @@ FILE(GLOB SRC_FILES src/*.cpp)
 FILE(GLOB INCLUDE_FILES src/*.h)
 
 #====UsbDriver Stuff=====
-FILE(GLOB SRC_FILES_USB usbDriver/*.cpp)
-FILE(GLOB INCLUDE_FILES_USB usbDriver/*.h)
+FILE(GLOB SRC_FILES_USB include/usbDriver/*.cpp)
+FILE(GLOB INCLUDE_FILES_USB include/usbDriver/*.h)
 
 #====3dModel=====
-FILE(GLOB SRC_FILES_MODEL load3dModel/*.cpp)
-FILE(GLOB INCLUDE_FILES_MODEL load3dModel/*.h)
+FILE(GLOB SRC_FILES_MODEL include/load3dModel/*.cpp)
+FILE(GLOB INCLUDE_FILES_MODEL include/load3dModel/*.h)
+
+#====utils=====
+#this includes utils like azimuth,elevation to 2D plane calculation
+FILE(GLOB SRC_FILES_UTIL include/utils/*.cpp)
+FILE(GLOB INCLUDE_FILES_UTIL include/utils/*.hpp)
 
 
 #==============================================================================
@@ -28,8 +33,10 @@ add_definitions(-DSEARCH_PATH="${CMAKE_SOURCE_DIR}")
 #==============================================================================
 include_directories(
         src/
-        usbDriver/
-        load3dModel/
+        include/
+        include/usbDriver/
+        include/load3dModel/
+        include/utils/
       )
 
 #==============================================================================
@@ -42,6 +49,8 @@ add_executable( ${PROJECT_NAME}
         ${INCLUDE_FILES_USB}
         ${SRC_FILES_MODEL}
         ${INCLUDE_FILES_MODEL}
+        ${SRC_FILES_UTIL}
+        ${INCLUDE_FILES_UTIL}
         main.cpp
         #main_registration.cpp
         )

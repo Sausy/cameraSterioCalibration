@@ -13,14 +13,16 @@
 #include <opencv2/features2d.hpp>
 // PnP Tutorial
 #include <Mesh.h>
-#include <Model.h>
 #include <PnPProblem.h>
 #include <RobustMatcher.h>
 #include <ModelRegistration.h>
-#include <Utils.h>
+#include <Utils_openCV.h>
+
+//common Utils
+#include <Utils.hpp>
 
 // test
-#include <testData.h>
+#include <testData.hpp>
 
 // Usb driver
 #include <interface_htcDongle.h>
