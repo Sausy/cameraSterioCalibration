@@ -1,3 +1,9 @@
+#define MIN_AZIMUTH_ANGLE 10 //in deg
+#define MAX_AZIMUTH_ANGLE 190 //in deg
+
+#define MIN_AZIMUTH_ANGLE_RAD 0.18 //in deg
+#define MAX_AZIMUTH_ANGLE_RAD 3.3 //in deg
+
 void vecCros(double *A, double *B, double *retVec);
 
 void matrixDotVector(double A[][4], double *B, uint8_t m, double *retMatrix);

@@ -8,6 +8,7 @@
 
 #include "Utils.hpp"
 
+#define PIC_WIDTH 2800.0
 
 //double * cameraParamter = {fx,fy,cx,cy}
 void getCameraMatrixForLighthouse(double * cameraParamter){
@@ -46,7 +47,7 @@ void getCameraMatrixForLighthouse(double * cameraParamter){
   // cx = u0 = 1400
 
   //const double c = 100.0; //in mm
-  const double width = 2800.0;
+  const double width = PIC_WIDTH;
   const double height = width;
 
   const double phi_FOV = 140;
@@ -90,15 +91,18 @@ std::vector<double> azimuthTo2D(double azimuth, double elevation, double * camer
   //u = u + cx;
   u = u * fx + cx;
 
-
-  double buffer1 = pow(X,2);
-  double buffer2 = pow(Z,2);
-
-  buffer1 = buffer1 + buffer2;
-  double r1 = sqrt(buffer1);
+  /*
+  //calc the help vector length
+  double r1 = sqrt(pow(X,2)+pow(Z,2));
+  //the minus adresses the axis direction swap from the lighthouse
+  //coord system to the picture coord system
   double Y = -r1 * tan(elevation);
 
   double v = Y/Z * fy + cy;
+  */
+
+  //the minus adresses the axis direction swap from the lighthouse
+  double v = (tan(-1 * elevation)) * fy + cy;
 
 
   std::cout << "\naz: " << azimuth * 180/M_PI;
@@ -106,9 +110,9 @@ std::vector<double> azimuthTo2D(double azimuth, double elevation, double * camer
   std::cout << " u: " << u;
   std::cout << " v: " << v;
 
-  std::cout << " === " << X;
-  std::cout << " | " << Y;
-  std::cout << " | cx: " << cx;
+  //std::cout << " === " << X;
+  //std::cout << " | " << Y;
+  std::cout << "\t| cx: " << cx;
   std::cout << " | fx: " << fx;
 
   vec2D.push_back(u);
