@@ -70,8 +70,9 @@ int main(int argc, char const *argv[]) {
   //init lighthouse camera matrix
   //params_Lighthouse = {fx,fy,cx,cy}
 
-  //double params_Lighthouse[4];
-  //getCameraMatrixForLighthouse(&params_Lighthouse[0]);
+  double params_Lighthouse[4];
+  getCameraMatrixForLighthouse(&params_Lighthouse[0]);
+  /*
   double f = 55;                           // focal length in mm
   //double sx = 22.3, sy = 14.9;             // sensor size
   double sx = 32, sy = 24.9;             // sensor size
@@ -81,6 +82,7 @@ int main(int argc, char const *argv[]) {
                              height*f/sy,  // fy
                              width/2,      // cx
                              height/2};    // cy
+                             */
 
   //==================[PNP]==================
   //register the camera Matrix to the pnp-solver
