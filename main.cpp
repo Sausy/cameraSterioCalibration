@@ -73,7 +73,8 @@ int main(int argc, char const *argv[]) {
   //double params_Lighthouse[4];
   //getCameraMatrixForLighthouse(&params_Lighthouse[0]);
   double f = 55;                           // focal length in mm
-  double sx = 22.3, sy = 14.9;             // sensor size
+  //double sx = 22.3, sy = 14.9;             // sensor size
+  double sx = 32, sy = 24.9;             // sensor size
   double width = 640, height = 480;        // image size
 
   double params_Lighthouse[] = { width*f/sx,   // fx
@@ -123,6 +124,7 @@ int main(int argc, char const *argv[]) {
         sucessCnt++;
 
         //debug output azimuth
+        /*
         std::cout<<"\nWe could gather the following data [size:" << id.size();
         for(uint8_t dataCnt = 0; dataCnt < id.size(); dataCnt++){
           std::cout<<"\nid: " << id[dataCnt];
@@ -130,6 +132,7 @@ int main(int argc, char const *argv[]) {
           std::cout<<"\tel: " << elevation[dataCnt] * 180.0/M_PI;
           std::cout<<"\tch: " << channel[dataCnt];
         }
+        */
 
         //after this function (matchData()) we get two vectors
         //vector<Point3f> list_points3d;
@@ -138,6 +141,8 @@ int main(int argc, char const *argv[]) {
         dataRdy = dataM.matchData(model.sensorData_3d,id,azimuth,elevation,channel);
 
         if(dataRdy){
+            std::cout << "\n3d: " << dataM.list_points3d;
+            std::cout << "\n2d: " << dataM.list_points2d;
             //============ PNP Solver============
             pnp_registration.estimatePoseRANSAC( dataM.list_points3d, dataM.list_points2d,
                                               pnpMethod, inliers_idx,
@@ -158,7 +163,7 @@ int main(int argc, char const *argv[]) {
             cout << "\n" << transMatrix;
             cout << "\n";
 
-            break;
+            return 0;
         }
     }
     //===for debuging

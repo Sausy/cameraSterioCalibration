@@ -35,6 +35,8 @@ class DataMatcher{
     private:
       double params_Lighthouse[4];
       uint16_t BaseStationsEventCount[MAX_BASE_AMOUNT];
+      int goodCount;
+      bool idIsTaken[64];
 
 };
 

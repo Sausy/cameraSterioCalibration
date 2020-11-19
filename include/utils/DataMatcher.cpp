@@ -17,6 +17,7 @@ DataMatcher::DataMatcher(double * params_Lighthouse_):\
       params_Lighthouse[i] = *params_Lighthouse_;
       params_Lighthouse_++;
     }
+    goodCount = 0;
 
 }
 
@@ -83,10 +84,8 @@ bool DataMatcher::matchData(const std::vector<std::vector<float>> inVec,\
   //std::vector<std::vector<double>> * vbuf = &sensorData_buffer;
   //std::vector<std::vector<double>> * v2d = &sensorData_solver_2d;
   //std::vector<std::vector<double>> * v4d = &sensorData_solver_3d;
-  std::cout << "\nMatch Data: size=" << id.size();
+  //std::cout << "\nMatch Data: size=" << id.size();
 
-  bool idIsTaken[64] = {0};
-  uint8_t goodCount = 0;
 
   for(size_t i = 0; i < id.size(); i++){
     //std::cout << "\nMatch Data: size=" << id.size() << "/i: " << i;
@@ -94,14 +93,16 @@ bool DataMatcher::matchData(const std::vector<std::vector<float>> inVec,\
     //check if base station id is one of the registered ones
     if(availableBaseStations[channel[i]]){
       //TODO: this should be some kind of kalman filter setup ...
+      //std::cout<<"\nGOOD COUnT: " << goodCount;
       if(idIsTaken[id[i]]){
       //if(false){
-          std::cout<<"\nID: " << id[i] << " was already taken";
+          //std::cout<<"\nID: " << id[i] << " was already taken";
+          ;//
       }else{
           //std::cout<<"\nID: " << id[i] << " ac: " << azimuth[i];
           //TODO: DIRTY WORKAROUND FOR THE TEST DATA
           //NEEDS Prober filtering
-          if(elevation[i] < 20.0){
+          if(elevation[i] < (20.0 * M_PI/180.0)){
               //sensorData_solver_2d.push_back(std::vector<float>(0,0));
               //sensorData_solver_3d.push_back(std::vector<float>(0,0));
 
@@ -112,6 +113,8 @@ bool DataMatcher::matchData(const std::vector<std::vector<float>> inVec,\
               //load the 2d and 3d to a vector
               cv::Point2f buf2d;
               cv::Point3f buf3d;
+
+              //int id_ = id.push_back();
 
               buf2d.x = (float)Vec2D[0];
               buf2d.y = (float)Vec2D[1];
@@ -139,10 +142,10 @@ bool DataMatcher::matchData(const std::vector<std::vector<float>> inVec,\
 
 
 
-
-
-    if(goodCount > 20){
-      break;
+    if(goodCount >= 7){
+      goodCount = 7;
+      return true;
+      //break;
     }
   }
 

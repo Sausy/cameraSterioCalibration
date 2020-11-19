@@ -41,7 +41,7 @@ void getCameraMatrixForLighthouse(double * cameraParamter){
   dx = dx * c;
 
   const double kx = 1.0/dx;
-  std::cout << "\n=====\nKx: " << kx << " | " << dx;
+  //std::cout << "\n=====\nKx: " << kx << " | " << dx;
   const double ky = kx;
 
   cameraParamter[0] = c * kx;
@@ -55,8 +55,8 @@ void getCameraMatrixForLighthouse(double * cameraParamter){
 std::vector<double> azimuthTo2D(double azimuth, double elevation, double * cameraParamter){
   std::vector<double> vec2D;
 
-  azimuth = azimuth * M_PI/180;
-  elevation = elevation * M_PI/180;
+  //azimuth = azimuth * M_PI/180;
+  //elevation = elevation * M_PI/180;
 
 
   const double fx = cameraParamter[0];
@@ -71,7 +71,7 @@ std::vector<double> azimuthTo2D(double azimuth, double elevation, double * camer
   //TODO: 100 ist die brennweite, die sollte als Paramter vorhanden sein nicht
   //hard gecoded
   u = 1/tan(azimuth);
-  std::cout << "\nplain U: " << u;
+  //std::cout << "\nplain U: " << u;
   //u = u * fx;
   //u = u + cx;
   u = u * fx + cx;

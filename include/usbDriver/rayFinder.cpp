@@ -76,7 +76,14 @@ void vec2azimuth(double (*ray)[2][3], double *az, double *ele){
     //in this case the azimuth
     //describes the angle betwenn x and -z
     //*az = atan(y/x);
-    *az = atan2(-z,x);
+    *az = atan2(z,x);
+
+    //due to the fact that when we look at the lighthouse base
+    //the coordinate system looks like
+    //      ^  y
+    //      |
+    // x <--O  ..z is pointing from the front to the back
+    *az = M_PI + *az;
 
     //in this case the elevation
     //describes the angle betwenn r_{x,-z} and y
