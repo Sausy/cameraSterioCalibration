@@ -1,0 +1,41 @@
+#ifndef DATAMATCHER_H_
+#define DATAMATCHER_H_
+
+#define MIN_POSITIV_BASE_EVENTS 100
+#define MAX_BASE_AMOUNT 32 //we have 32Polynomes and per base 2 Polynomes are used
+
+class DataMatcher{
+  public:
+      DataMatcher(double * params_Lighthouse_);
+
+      //if we get a certain amount of data from a base Station
+      //it will be added to the list of known Base Stations
+      void registNewBaseStation(const std::vector<int> channel);
+
+      //match Data returns true if enough valid data was captured
+      bool matchData( const std::vector<std::vector<float>> inVec,\
+                      const std::vector<int> id,\
+                      const std::vector<float> azimuth,\
+                      const std::vector<float> elevation,\
+                      const std::vector<int> channel\
+                    );
+      bool matchData( const std::vector<std::vector<double>> inVec,\
+                      const std::vector<int> id,\
+                      const std::vector<float> azimuth,\
+                      const std::vector<float> elevation,\
+                      const std::vector<int> channel\
+                    );
+
+
+      std::vector<cv::Point3f> list_points3d; // container for the model 3D coordinates found in the scene
+      std::vector<cv::Point2f> list_points2d; // container for the model 2D coordinates found in the scene
+
+      bool availableBaseStations[MAX_BASE_AMOUNT];
+
+    private:
+      double params_Lighthouse[4];
+      uint16_t BaseStationsEventCount[MAX_BASE_AMOUNT];
+
+};
+
+#endif
