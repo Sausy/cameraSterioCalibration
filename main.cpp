@@ -157,6 +157,8 @@ int main(int argc, char const *argv[]) {
             cout << "\nTrans: " << transMatrix.size();
             cout << "\n" << transMatrix;
             cout << "\n";
+
+            break;
         }
     }
     //===for debuging
