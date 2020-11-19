@@ -9,7 +9,10 @@
 
 #include "Utils.hpp"
 
-DataMatcher::DataMatcher(double * params_Lighthouse_){
+DataMatcher::DataMatcher(double * params_Lighthouse_):\
+                        BaseStationsEventCount{0},\
+                        availableBaseStations{false}
+{
     for (size_t i = 0; i < 4; i++) {
       params_Lighthouse[i] = *params_Lighthouse_;
       params_Lighthouse_++;
@@ -20,29 +23,37 @@ DataMatcher::DataMatcher(double * params_Lighthouse_){
 //if we get a certain amount of data from a base Station
 //it will be added to the list of known Base Stations
 void DataMatcher::registNewBaseStation(const std::vector<int> channel){
+
   for (size_t i = 0; i < channel.size(); i++) {
-    //if we get enough  base events, the base will be added to the available list
-    if(BaseStationsEventCount[channel[i]] < MIN_POSITIV_BASE_EVENTS){
-        BaseStationsEventCount[channel[i]]++;
-    }else{
-      availableBaseStations[channel[i]] = true;
-    }
-  }
-
-
-  //deregister base if it doesn't ocure in a while
-  for (size_t j = 0; j < MAX_BASE_AMOUNT; j++) {
-    //check if base was already registerd
-    if(availableBaseStations[channel[j]]){
-      std::cout<<"\nBase Event Counter: " << BaseStationsEventCount[channel[j]];
-      if(BaseStationsEventCount[channel[j]] > 10){
-          BaseStationsEventCount[channel[j]]--;
+    if(channel[i] < MAX_BASE_AMOUNT){
+      //if we get enough  base events, the base will be added to the available list
+      if(BaseStationsEventCount[channel[i]] < MIN_POSITIV_BASE_EVENTS){
+          BaseStationsEventCount[channel[i]]++;
       }else{
-          //if the amount of base events false under 10 .. it will be degristerd
-          availableBaseStations[channel[j]] = false;
+        availableBaseStations[channel[i]] = true;
       }
     }
   }
+
+
+
+  //deregister base if it doesn't ocure in a while
+  for (size_t j = 0; j < channel.size(); j++) {
+    if(channel[j] < MAX_BASE_AMOUNT){
+    //check if base was already registerd
+      if(availableBaseStations[channel[j]]){
+        //std::cout<<"\nBase Event Counter: " << BaseStationsEventCount[channel[j]];
+        if(BaseStationsEventCount[channel[j]] > 10){
+            BaseStationsEventCount[channel[j]]--;
+        }else{
+            //if the amount of base events false under 10 .. it will be degristerd
+            availableBaseStations[channel[j]] = false;
+        }
+
+      }
+    }
+  }
+
 }
 
 
