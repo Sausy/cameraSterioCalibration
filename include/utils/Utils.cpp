@@ -8,44 +8,59 @@
 
 #include "Utils.hpp"
 
+#define PIC_WIDTH 2800.0
 
 //double * cameraParamter = {fx,fy,cx,cy}
 void getCameraMatrixForLighthouse(double * cameraParamter){
   //if we assume
-  //1000x1000 picture size and a
-  //brennweitenabstand c = 100mm
-  //cx = 500
-  //cy = 500
   //
-  //This creates a Field of view FOV = 2*(90 - atan(c/cx)) = 157.3
-  //phi = 11.3deg
-  //
-  //If we want a resolution of at least 0.01deg per pixel
-  //and a pixel size of dx = c * [tan(11.3 + 0.01) - tan(11.3)] = 0.018
-  //this means we have
-  // kx = 1/dx = 55.093 Pixels/mm
+  //p.s.: umso kleiner die brennweite ist um so mehr weitwinkel
+  //brennweitenabstand c = 1mm
 
-  const double c = 100.0; //in mm
-  const double width = 10000.0;
+  //
+  //If we want to have a field of view
+  //Fow = 140
+  //phi = 90-140/2 = 20
+  //
+  //now to achiev this the following
+  //equation needs to be satisfied
+  //fx/tan(phi) + u0 = width/2
+  //
+  //fx = kx *c = with/2 * tan(phi)
+  //
+  //if we want to achiev a certain precision
+  //lets call it delta phi (dp) and the given equation
+  //
+  // kx = 1/dx ...where dx are pixel size in [mm]
+  // kx * c = fx = 1/[tan(phi + dp) - tan(phi)]
+  //
+  // this means we have the following equatin
+  // 1/[tan(phi + dp) - tan(phi)]  = with/2 * tan(phi)
+  //
+  // with = 2/{tan(phi)  * [tan(phi + dp) - tan(phi)]}
+  //
+  // lets say we want a precision of 0.1deg per pixel
+  // dw = 2778,3181
+  // to keep it clean
+  //
+  // 2800x2800
+  // cx = u0 = 1400
+
+  //const double c = 100.0; //in mm
+  const double width = PIC_WIDTH;
   const double height = width;
+
+  const double phi_FOV = 140;
+  const double phi = 90-(2*phi_FOV);
+
+  const double fx = width/2 * tan(phi);
+  const double fy = height/2 * tan(phi);
 
   const double cx = width/2;
   const double cy = height/2;
 
-  const double fov = 12.0 * M_PI/180.0; //~160 deg
-  const double precision = 0.01 * M_PI/180.0; //0.01deg
-
-  double dx = 0.0;
-  dx = dx + tan(fov + precision);
-  dx = dx - tan(fov);
-  dx = dx * c;
-
-  const double kx = 1.0/dx;
-  //std::cout << "\n=====\nKx: " << kx << " | " << dx;
-  const double ky = kx;
-
-  cameraParamter[0] = c * kx;
-  cameraParamter[1] = c * ky;
+  cameraParamter[0] = fx;
+  cameraParamter[1] = fy;
   cameraParamter[2] = cx;
   cameraParamter[3] = cy;
 
@@ -76,15 +91,18 @@ std::vector<double> azimuthTo2D(double azimuth, double elevation, double * camer
   //u = u + cx;
   u = u * fx + cx;
 
-
-  double buffer1 = pow(X,2);
-  double buffer2 = pow(Z,2);
-
-  buffer1 = buffer1 + buffer2;
-  double r1 = sqrt(buffer1);
+  /*
+  //calc the help vector length
+  double r1 = sqrt(pow(X,2)+pow(Z,2));
+  //the minus adresses the axis direction swap from the lighthouse
+  //coord system to the picture coord system
   double Y = -r1 * tan(elevation);
 
   double v = Y/Z * fy + cy;
+  */
+
+  //the minus adresses the axis direction swap from the lighthouse
+  double v = (tan(-1 * elevation)) * fy + cy;
 
 
   std::cout << "\naz: " << azimuth * 180/M_PI;
@@ -92,13 +110,53 @@ std::vector<double> azimuthTo2D(double azimuth, double elevation, double * camer
   std::cout << " u: " << u;
   std::cout << " v: " << v;
 
-  std::cout << " === " << X;
-  std::cout << " | " << Y;
-  std::cout << " | cx: " << cx;
+  //std::cout << " === " << X;
+  //std::cout << " | " << Y;
+  std::cout << "\t| cx: " << cx;
   std::cout << " | fx: " << fx;
 
   vec2D.push_back(u);
   vec2D.push_back(v);
 
   return vec2D;
+}
+
+double calcMean(const std::vector<double> data_){
+    uint8_t N = data_.size();
+    const double *data = &data_[0];
+
+    return (calcMean(data,N));
+}
+
+double calcMean(const double * data_, uint8_t N){
+  double mean = 0.0;
+
+  for (size_t i = 0; i < N; i++) {
+    mean = mean + *data_;
+    std::cout << "\nDATA: " << *data_ << "\tMean: " << mean;
+    data_++;
+  }
+  mean = mean/N;
+  return mean;
+}
+
+double standardDeviation(const std::vector<double> data_, double mean_){
+  uint8_t N = data_.size();
+  const double *data = &data_[0];
+
+  return standardDeviation(data,mean_,N);
+}
+
+double standardDeviation(const double * data_, double mean_, uint8_t N){
+  double s = 0.0;
+  double buffer_ = 0.0;
+
+  for (size_t i = 0; i < N; i++) {
+    buffer_ = buffer_ + ((mean_ - *data_)*(mean_ - *data_));
+    data_++;
+  }
+
+  s = buffer_/(N-1);
+
+  return sqrt(s);
 }

@@ -40,6 +40,8 @@ CMakeFiles/camerasterio.dir/include/utils/DataMatcher.cpp.o
  /usr/local/include/opencv4/opencv2/core/types.hpp
  /usr/local/include/opencv4/opencv2/core/vsx_utils.hpp
  /usr/local/include/opencv4/opencv2/opencv_modules.hpp
+CMakeFiles/camerasterio.dir/include/utils/KalmanFilter.cpp.o
+ /home/sausy/Projects/lighthouse/cameraSterioCalibration/include/utils/KalmanFilter.cpp
 CMakeFiles/camerasterio.dir/include/utils/Utils.cpp.o
  /home/sausy/Projects/lighthouse/cameraSterioCalibration/include/utils/Utils.cpp
  /home/sausy/Projects/lighthouse/cameraSterioCalibration/include/utils/Utils.hpp

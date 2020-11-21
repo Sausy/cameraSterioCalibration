@@ -42,8 +42,29 @@ const Scalar green(0,255,0);
 const Scalar blue(255,0,0);
 const Scalar yellow(0,255,255);
 
+/*
+#define MIN_AZIMUTH_ANGLE 25.0 //in deg
+#define MAX_AZIMUTH_ANGLE ( 180.0 + 30.0 - MIN_AZIMUTH_ANGLE) //in deg
+
+#define MIN_AZIMUTH_ANGLE_RAD ( MIN_AZIMUTH_ANGLE * M_PI/180.0 ) //in deg
+#define MAX_AZIMUTH_ANGLE_RAD ( MAX_AZIMUTH_ANGLE * M_PI/180.0 ) //in deg
+
+#define MIN_ELEVATION_ANGLE ( -1 * MIN_AZIMUTH_ANGLE ) //in deg
+#define MAX_ELEVATION_ANGLE ( MIN_AZIMUTH_ANGLE ) //in deg
+
+#define MIN_ELEVATION_ANGLE_RAD ( MIN_ELEVATION_ANGLE * M_PI/180.0 ) //in deg
+#define MAX_ELEVATION_ANGLE_RAD ( MAX_ELEVATION_ANGLE * M_PI/180.0 ) //in deg
+*/
 
 int main(int argc, char const *argv[]) {
+  /*std::cout<<"\nMax: " << MIN_AZIMUTH_ANGLE;
+  std::cout<<"\tMax: " << MAX_AZIMUTH_ANGLE;
+  std::cout<<"\tMin: " << MIN_AZIMUTH_ANGLE_RAD;
+  std::cout<<"\tMax: " << MAX_AZIMUTH_ANGLE_RAD;
+  std::cout<<"\tMin: " << MIN_ELEVATION_ANGLE;
+  std::cout<<"\tMax: " << MAX_ELEVATION_ANGLE;
+  return 0;
+  */
 
   //==================[define paths]==================
   //find the path to 3DModel file  that includes the
@@ -70,8 +91,9 @@ int main(int argc, char const *argv[]) {
   //init lighthouse camera matrix
   //params_Lighthouse = {fx,fy,cx,cy}
 
-  //double params_Lighthouse[4];
-  //getCameraMatrixForLighthouse(&params_Lighthouse[0]);
+  double params_Lighthouse[4];
+  getCameraMatrixForLighthouse(&params_Lighthouse[0]);
+  /*
   double f = 55;                           // focal length in mm
   //double sx = 22.3, sy = 14.9;             // sensor size
   double sx = 32, sy = 24.9;             // sensor size
@@ -81,6 +103,7 @@ int main(int argc, char const *argv[]) {
                              height*f/sy,  // fy
                              width/2,      // cx
                              height/2};    // cy
+                             */
 
   //==================[PNP]==================
   //register the camera Matrix to the pnp-solver
@@ -101,7 +124,6 @@ int main(int argc, char const *argv[]) {
   //============Match Data init ============
   DataMatcher dataM(params_Lighthouse);
   //match 2d data with 3d data
-
 
 
   //todo change this to an infinity loop

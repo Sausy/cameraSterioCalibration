@@ -3,6 +3,9 @@
 
 #define MIN_POSITIV_BASE_EVENTS 100
 #define MAX_BASE_AMOUNT 32 //we have 32Polynomes and per base 2 Polynomes are used
+#define MAX_SENSOR_CNT 30
+
+#define FILTER_HISTORY_LEN 8
 
 class DataMatcher{
   public:
@@ -36,7 +39,12 @@ class DataMatcher{
       double params_Lighthouse[4];
       uint16_t BaseStationsEventCount[MAX_BASE_AMOUNT];
       int goodCount;
-      bool idIsTaken[64];
+      bool idIsTaken[MAX_SENSOR_CNT][MAX_BASE_AMOUNT];
+
+      std::vector<double> azimuth_buffer[MAX_BASE_AMOUNT][MAX_SENSOR_CNT];
+      std::vector<double> elevation_buffer[MAX_BASE_AMOUNT][MAX_SENSOR_CNT];
+
+      bool filter(int id_, double *azimuth_, double *elevation_, int channel_);
 
 };
 

@@ -45,12 +45,17 @@ bool driverHtcDongle::pullData(std::vector<int> *id, std::vector<float> *azimuth
                 //std::cout<< " " << ray[1][1];
                 //std::cout<< " " << ray[1][2];
                 vec2azimuth(&ray, &az_, &ele_);
+
+                //filter out obvious wrong data
+                if((az_ < MAX_AZIMUTH_ANGLE_RAD) && (az_ > MIN_AZIMUTH_ANGLE_RAD) && (ele_ < MAX_ELEVATION_ANGLE_RAD) && (ele_ > MIN_ELEVATION_ANGLE_RAD)){
+                  id->push_back(le->id);
+                  azimuth->push_back((float)az_);
+                  elevation->push_back((float)ele_);
+                  channel->push_back(le->channel);
+                }
                 //printf("\n[%u=%u]%f/%f",le->id,le->channel,az_*180.0/M_PI, ele_*180.0/M_PI);
 
-                id->push_back(le->id);
-                azimuth->push_back((float)az_);
-                elevation->push_back((float)ele_);
-                channel->push_back(le->channel);
+
               }else{
                 //angle_old[le->id][le->channel] =  angle;
                 first_phi[le->id][le->channel] = angle_rad;

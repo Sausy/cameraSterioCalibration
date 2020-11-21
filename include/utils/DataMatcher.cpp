@@ -88,56 +88,46 @@ bool DataMatcher::matchData(const std::vector<std::vector<float>> inVec,\
 
 
   for(size_t i = 0; i < id.size(); i++){
+    double az_ = azimuth[i];
+    double ele_ = elevation[i];
+    int ch_ = channel[i];
     //std::cout << "\nMatch Data: size=" << id.size() << "/i: " << i;
 
     //check if base station id is one of the registered ones
-    if(availableBaseStations[channel[i]]){
+    if(availableBaseStations[ch_]){
       //TODO: this should be some kind of kalman filter setup ...
       //std::cout<<"\nGOOD COUnT: " << goodCount;
-      if(idIsTaken[id[i]]){
+      if(idIsTaken[id[i]][ch_]){
       //if(false){
           //std::cout<<"\nID: " << id[i] << " was already taken";
           ;//
       }else{
-          //std::cout<<"\nID: " << id[i] << " ac: " << azimuth[i];
-          //TODO: DIRTY WORKAROUND FOR THE TEST DATA
-          //NEEDS Prober filtering
-          if(elevation[i] < (20.0 * M_PI/180.0)){
-              //sensorData_solver_2d.push_back(std::vector<float>(0,0));
-              //sensorData_solver_3d.push_back(std::vector<float>(0,0));
+          if(filter(id[i], &az_, &ele_, ch_)){
+            //after we found an average, we register the coresponding id
+            idIsTaken[id[i]][ch_] = true;
 
-              //translate azimuth and elevation to a 2D plane
-              std::vector<double> Vec2D = azimuthTo2D(azimuth[i], elevation[i], &params_Lighthouse[0]);
-              //std::vector<float> buf2d(Vec2D.begin(),Vec2D.end());
+            //translate azimuth and elevation to a 2D plane
+            std::vector<double> Vec2D = azimuthTo2D(az_, ele_, &params_Lighthouse[0]);
+            //std::vector<float> buf2d(Vec2D.begin(),Vec2D.end());
 
-              //load the 2d and 3d to a vector
-              cv::Point2f buf2d;
-              cv::Point3f buf3d;
+            //load the 2d and 3d to a vector
+            cv::Point2f buf2d;
+            cv::Point3f buf3d;
 
-              //int id_ = id.push_back();
+            //int id_ = id.push_back();
 
-              buf2d.x = (float)Vec2D[0];
-              buf2d.y = (float)Vec2D[1];
-              buf3d.x = (float)inVec[id[i]][0];
-              buf3d.y = (float)inVec[id[i]][1];
-              buf3d.z = (float)inVec[id[i]][2];
+            buf2d.x = (float)Vec2D[0];
+            buf2d.y = (float)Vec2D[1];
+            buf3d.x = (float)inVec[id[i]][0];
+            buf3d.y = (float)inVec[id[i]][1];
+            buf3d.z = (float)inVec[id[i]][2];
 
-              list_points2d.push_back(buf2d);
-              list_points3d.push_back(buf3d);
+            list_points2d.push_back(buf2d);
+            list_points3d.push_back(buf3d);
 
-              //sensorData_solver_2d[goodCount].insert(sensorData_solver_2d[goodCount].begin(), buf2d.begin(), buf2d.end());
-              //sensorData_solver_3d[goodCount].insert(sensorData_solver_3d[goodCount].begin(), inVec[id[i]].begin(), inVec[id[i]].end());
-
-              //list_points2d.push_back(buf2d);
-              //list_points3d.push_back(buf3d);
-
-              idIsTaken[id[i]] = true;
-
-              goodCount++;
-        }
+            goodCount++;
+          }
       }
-    }else{
-      std::cout<<"\nBaseStation:"<<channel[i]<<" was not registerd yet";
     }
 
 
@@ -151,4 +141,67 @@ bool DataMatcher::matchData(const std::vector<std::vector<float>> inVec,\
 
   return false;
 
+}
+
+
+
+
+bool DataMatcher::filter(int id_, double * azimuth_, double * elevation_, int channel_){
+
+  std::vector<double> *azBuf = &azimuth_buffer[channel_][id_];
+  std::vector<double> *elBuf = &elevation_buffer[channel_][id_];
+
+  //std::cout << "\n[" << id_ << "/" << channel_  << "]filter:" << azBuf->size();
+
+
+  azBuf->push_back(*azimuth_);
+  elBuf->push_back(*elevation_);
+
+  if(azBuf->size() == FILTER_HISTORY_LEN){
+    std::cout << "\n" << id_ << "/"<< channel_ << "\t";
+    for (size_t i = 0; i < FILTER_HISTORY_LEN; i++) {
+      std::cout << (*azBuf)[i] << " | " << (*elBuf)[i];
+    }
+
+  }else if(azBuf->size() > FILTER_HISTORY_LEN){
+    int inc_ = azBuf->size() - FILTER_HISTORY_LEN - 1;
+    azBuf->erase(azBuf->begin()+inc_);
+    elBuf->erase(elBuf->begin()+inc_);
+  }else{
+    return false;
+  }
+
+  std::cout << "\n[" << id_ << "/"<< channel_ << "]\tNow lets calc the mean:";
+
+  double meanAzi = calcMean(*azBuf);
+  double meanEle = calcMean(*elBuf);
+
+  std::cout << "\n[" << id_ << "/"<< channel_ << "]\tNow lets calc the deviation:";
+  double deviAzi = standardDeviation(*azBuf,meanAzi);
+  double deviEle = standardDeviation(*elBuf,meanEle);
+
+
+  //now erase outliers
+  for (size_t i = 0; i < azBuf->size(); i++) {
+    //erase outliers from azimuth
+    if(((meanAzi+deviAzi) < (*azBuf)[i]) || ((meanAzi-deviAzi) > (*azBuf)[i])){
+      azBuf->erase(azBuf->begin()+i);
+    }
+    //erase outliers from azimuth
+    if(((meanEle+deviEle) < (*elBuf)[i]) || ((meanEle-deviEle) > (*elBuf)[i])){
+      elBuf->erase(elBuf->begin()+i);
+    }
+  }
+
+  std::cout << "\nSize of remaining vec: " << elBuf->size() << " | " << azBuf->size();
+
+  //calculate the aritmetric mean
+  //and return with sucess
+  //*azimuth_ = calcMean(*azBuf);
+  //*elevation_ = calcMean(*elBuf);
+  *azimuth_ = (*azBuf)[0];
+  *elevation_ = (*elBuf)[0];
+
+
+  return true;
 }
