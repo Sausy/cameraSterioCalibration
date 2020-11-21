@@ -47,7 +47,7 @@ bool driverHtcDongle::pullData(std::vector<int> *id, std::vector<float> *azimuth
                 vec2azimuth(&ray, &az_, &ele_);
 
                 //filter out obvious wrong data
-                if((az_ < MAX_AZIMUTH_ANGLE_RAD) && (az_ > MIN_AZIMUTH_ANGLE_RAD)){
+                if((az_ < MAX_AZIMUTH_ANGLE_RAD) && (az_ > MIN_AZIMUTH_ANGLE_RAD) && (ele_ < MAX_ELEVATION_ANGLE_RAD) && (ele_ > MIN_ELEVATION_ANGLE_RAD)){
                   id->push_back(le->id);
                   azimuth->push_back((float)az_);
                   elevation->push_back((float)ele_);

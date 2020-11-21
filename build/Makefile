@@ -285,6 +285,33 @@ include/utils/DataMatcher.cpp.s:
 	$(MAKE) -f CMakeFiles/camerasterio.dir/build.make CMakeFiles/camerasterio.dir/include/utils/DataMatcher.cpp.s
 .PHONY : include/utils/DataMatcher.cpp.s
 
+include/utils/KalmanFilter.o: include/utils/KalmanFilter.cpp.o
+
+.PHONY : include/utils/KalmanFilter.o
+
+# target to build an object file
+include/utils/KalmanFilter.cpp.o:
+	$(MAKE) -f CMakeFiles/camerasterio.dir/build.make CMakeFiles/camerasterio.dir/include/utils/KalmanFilter.cpp.o
+.PHONY : include/utils/KalmanFilter.cpp.o
+
+include/utils/KalmanFilter.i: include/utils/KalmanFilter.cpp.i
+
+.PHONY : include/utils/KalmanFilter.i
+
+# target to preprocess a source file
+include/utils/KalmanFilter.cpp.i:
+	$(MAKE) -f CMakeFiles/camerasterio.dir/build.make CMakeFiles/camerasterio.dir/include/utils/KalmanFilter.cpp.i
+.PHONY : include/utils/KalmanFilter.cpp.i
+
+include/utils/KalmanFilter.s: include/utils/KalmanFilter.cpp.s
+
+.PHONY : include/utils/KalmanFilter.s
+
+# target to generate assembly for a file
+include/utils/KalmanFilter.cpp.s:
+	$(MAKE) -f CMakeFiles/camerasterio.dir/build.make CMakeFiles/camerasterio.dir/include/utils/KalmanFilter.cpp.s
+.PHONY : include/utils/KalmanFilter.cpp.s
+
 include/utils/Utils.o: include/utils/Utils.cpp.o
 
 .PHONY : include/utils/Utils.o
@@ -582,6 +609,9 @@ help:
 	@echo "... include/utils/DataMatcher.o"
 	@echo "... include/utils/DataMatcher.i"
 	@echo "... include/utils/DataMatcher.s"
+	@echo "... include/utils/KalmanFilter.o"
+	@echo "... include/utils/KalmanFilter.i"
+	@echo "... include/utils/KalmanFilter.s"
 	@echo "... include/utils/Utils.o"
 	@echo "... include/utils/Utils.i"
 	@echo "... include/utils/Utils.s"

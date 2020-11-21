@@ -42,8 +42,29 @@ const Scalar green(0,255,0);
 const Scalar blue(255,0,0);
 const Scalar yellow(0,255,255);
 
+/*
+#define MIN_AZIMUTH_ANGLE 25.0 //in deg
+#define MAX_AZIMUTH_ANGLE ( 180.0 + 30.0 - MIN_AZIMUTH_ANGLE) //in deg
+
+#define MIN_AZIMUTH_ANGLE_RAD ( MIN_AZIMUTH_ANGLE * M_PI/180.0 ) //in deg
+#define MAX_AZIMUTH_ANGLE_RAD ( MAX_AZIMUTH_ANGLE * M_PI/180.0 ) //in deg
+
+#define MIN_ELEVATION_ANGLE ( -1 * MIN_AZIMUTH_ANGLE ) //in deg
+#define MAX_ELEVATION_ANGLE ( MIN_AZIMUTH_ANGLE ) //in deg
+
+#define MIN_ELEVATION_ANGLE_RAD ( MIN_ELEVATION_ANGLE * M_PI/180.0 ) //in deg
+#define MAX_ELEVATION_ANGLE_RAD ( MAX_ELEVATION_ANGLE * M_PI/180.0 ) //in deg
+*/
 
 int main(int argc, char const *argv[]) {
+  /*std::cout<<"\nMax: " << MIN_AZIMUTH_ANGLE;
+  std::cout<<"\tMax: " << MAX_AZIMUTH_ANGLE;
+  std::cout<<"\tMin: " << MIN_AZIMUTH_ANGLE_RAD;
+  std::cout<<"\tMax: " << MAX_AZIMUTH_ANGLE_RAD;
+  std::cout<<"\tMin: " << MIN_ELEVATION_ANGLE;
+  std::cout<<"\tMax: " << MAX_ELEVATION_ANGLE;
+  return 0;
+  */
 
   //==================[define paths]==================
   //find the path to 3DModel file  that includes the
@@ -103,7 +124,6 @@ int main(int argc, char const *argv[]) {
   //============Match Data init ============
   DataMatcher dataM(params_Lighthouse);
   //match 2d data with 3d data
-
 
 
   //todo change this to an infinity loop
