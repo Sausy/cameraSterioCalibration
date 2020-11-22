@@ -17,6 +17,15 @@ DataMatcher::DataMatcher(double * params_Lighthouse_):\
       params_Lighthouse[i] = *params_Lighthouse_;
       params_Lighthouse_++;
     }
+
+    //init filters .. there should be one for each lighthouse base
+    for (size_t i = 0; i < MAX_BASE_AMOUNT; i++){
+      for (size_t j = 0; j < 2; j++) {
+        filterClass[i][j] = new filter(FILTER_HISTORY_LEN);
+      }
+    }
+
+
     goodCount = 0;
 
 }
@@ -102,8 +111,9 @@ bool DataMatcher::matchData(const std::vector<std::vector<float>> inVec,\
           //std::cout<<"\nID: " << id[i] << " was already taken";
           ;//
       }else{
-          if(filter(id[i], &az_, &ele_, ch_)){
-            //after we found an average, we register the coresponding id
+          if(customFilter(id[i], &az_, &ele_, ch_)){
+            //after we found a valid azimuth and elevation value
+            //, we register the coresponding id
             idIsTaken[id[i]][ch_] = true;
 
             //translate azimuth and elevation to a 2D plane
@@ -146,11 +156,39 @@ bool DataMatcher::matchData(const std::vector<std::vector<float>> inVec,\
 
 
 
-bool DataMatcher::filter(int id_, double * azimuth_, double * elevation_, int channel_){
+bool DataMatcher::customFilter(int id_, double * azimuth_, double * elevation_, int channel_){
+  if(channel_ != 0){
+    std::cout << "\n==================================";
+    std::cout << "\nWAIT A SECOND";
+    std::cout << "\nCH>: " << channel_;
+  }
 
-  std::vector<double> *azBuf = &azimuth_buffer[channel_][id_];
-  std::vector<double> *elBuf = &elevation_buffer[channel_][id_];
+  //assign the matching lighthouse base and
+  //the azimuth 0 / elevation 1 to a easy to read pointer
+  filter *faz = filterClass[channel_][0];
+  filter *fele = filterClass[channel_][1];
 
+  //std::vector<double> *azBuf = &azimuth_buffer[channel_][id_];
+  //std::vector<double> *elBuf = &elevation_buffer[channel_][id_];
+
+  if(*faz->stdDeviationFilter()){
+    //for both values there are upper and lower boundaries
+    bool upperBound_az = (*azimuth_ <= (*faz->mean + *faz->variance));
+    bool lowerBound_az = (*azimuth_ >= (*faz->mean - *faz->variance));
+    bool upperBound_el = (*elevation_ <= (*fele->mean + *fele->variance));
+    bool lowerBound_el = (*elevation_ >= (*fele->mean - *fele->variance));
+
+    //if both values are with a variance range of 1*var
+    //we shall consider the as good
+    if(upperBound_az && lowerBound_az && upperBound_el && lowerBound_el){
+      return true;
+    }
+  }
+  return false;
+
+
+
+  /*
   //std::cout << "\n[" << id_ << "/" << channel_  << "]filter:" << azBuf->size();
 
 
@@ -202,6 +240,7 @@ bool DataMatcher::filter(int id_, double * azimuth_, double * elevation_, int ch
   *azimuth_ = (*azBuf)[0];
   *elevation_ = (*elBuf)[0];
 
-
+  */
   return true;
+
 }

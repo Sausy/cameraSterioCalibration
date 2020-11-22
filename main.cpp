@@ -22,7 +22,7 @@
 #include <Utils.hpp>
 
 // test
-#include <testData.hpp>
+//#include <testData.hpp>
 
 // Usb driver
 #include <interface_htcDongle.h>
@@ -32,6 +32,10 @@
 
 // to match 2D with 3D data
 #include <DataMatcher.hpp>
+
+// add a filter include
+#include <filter.hpp>
+
 
 using namespace cv;
 using namespace std;
@@ -57,6 +61,20 @@ const Scalar yellow(0,255,255);
 */
 
 int main(int argc, char const *argv[]) {
+  filter *filt = new filter(20);
+
+  double mean;
+  double Var;
+
+  for (size_t i = 0; i < 23; i++) {
+    double foo_ = 8.3+i;
+    filt->stdDeviationFilter(foo_, &mean, &Var);
+  }
+
+  std::cout<<"\nMean: " << mean;
+  std::cout<<"\tVar: " << Var;
+
+  return 0;
   /*std::cout<<"\nMax: " << MIN_AZIMUTH_ANGLE;
   std::cout<<"\tMax: " << MAX_AZIMUTH_ANGLE;
   std::cout<<"\tMin: " << MIN_AZIMUTH_ANGLE_RAD;

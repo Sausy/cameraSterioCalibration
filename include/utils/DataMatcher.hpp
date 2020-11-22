@@ -1,11 +1,13 @@
 #ifndef DATAMATCHER_H_
 #define DATAMATCHER_H_
 
+#include <filter.hpp>
+
 #define MIN_POSITIV_BASE_EVENTS 100
 #define MAX_BASE_AMOUNT 32 //we have 32Polynomes and per base 2 Polynomes are used
 #define MAX_SENSOR_CNT 30
 
-#define FILTER_HISTORY_LEN 8
+#define FILTER_HISTORY_LEN 40
 
 class DataMatcher{
   public:
@@ -44,7 +46,11 @@ class DataMatcher{
       std::vector<double> azimuth_buffer[MAX_BASE_AMOUNT][MAX_SENSOR_CNT];
       std::vector<double> elevation_buffer[MAX_BASE_AMOUNT][MAX_SENSOR_CNT];
 
-      bool filter(int id_, double *azimuth_, double *elevation_, int channel_);
+      bool customFilter(int id_,double *azimuth_, double *elevation_, int channel_);
+
+      //filter *f;
+      //the additional 2 is needed, because of azimuth&elevation
+      filter *filterClass[MAX_BASE_AMOUNT][2];
 
 };
 

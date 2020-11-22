@@ -1,25 +1,36 @@
 cmake_minimum_required(VERSION 3.1)
 project(camerasterio)
 
-find_package(OpenCV REQUIRED)
 
+add_subdirectory (include/mathUtils)
+
+#========OPENCV=========
+find_package(OpenCV REQUIRED)
 include_directories(${OpenCV_INCLUDE_DIRS})
 
-FILE(GLOB SRC_FILES src/*.cpp)
-FILE(GLOB INCLUDE_FILES src/*.h)
 
-#====UsbDriver Stuff=====
+#====UsbDriver Stuff=========
 FILE(GLOB SRC_FILES_USB include/usbDriver/*.cpp)
 FILE(GLOB INCLUDE_FILES_USB include/usbDriver/*.h)
 
-#====3dModel=====
+#========3dModel=========
 FILE(GLOB SRC_FILES_MODEL include/load3dModel/*.cpp)
 FILE(GLOB INCLUDE_FILES_MODEL include/load3dModel/*.h)
 
-#====utils=====
+#========utils=========
 #this includes utils like azimuth,elevation to 2D plane calculation
 FILE(GLOB SRC_FILES_UTIL include/utils/*.cpp)
 FILE(GLOB INCLUDE_FILES_UTIL include/utils/*.hpp)
+
+#========filter=========
+FILE(GLOB SRC_FILES_FILTER include/filter/*.cpp)
+FILE(GLOB INCLUDE_FILES_FILTER include/filter/*.hpp)
+
+#==============================================================================
+# Main Project files
+#==============================================================================
+FILE(GLOB SRC_FILES src/*.cpp)
+FILE(GLOB INCLUDE_FILES src/*.h)
 
 
 #==============================================================================
@@ -37,6 +48,7 @@ include_directories(
         include/usbDriver/
         include/load3dModel/
         include/utils/
+        include/filter/
       )
 
 #==============================================================================
@@ -51,8 +63,10 @@ add_executable( ${PROJECT_NAME}
         ${INCLUDE_FILES_MODEL}
         ${SRC_FILES_UTIL}
         ${INCLUDE_FILES_UTIL}
+        ${SRC_FILES_FILTER}
+        ${INCLUDE_FILES_FILTER}
         main.cpp
         #main_registration.cpp
         )
 
-target_link_libraries( ${PROJECT_NAME} ${OpenCV_LIBS})
+target_link_libraries( ${PROJECT_NAME} ${OpenCV_LIBS} mathUtils)
