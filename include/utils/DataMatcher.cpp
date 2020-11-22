@@ -139,6 +139,18 @@ bool DataMatcher::matchData(const std::vector<std::vector<float>> inVec,\
       //std::cout<<"\nGOOD COUnT: " << goodCount;
 
       if(customFilter(id[i], &az_, &ele_, ch_)){
+        //push azimuth and elevation onto history buffer
+        if(azimuthHistory[ch_][id[i]].size() == MAX_DATA_HISTORY){
+          azimuthHistory[ch_][id[i]].push_back(az_);
+          elevatiHistory[ch_][id[i]].push_back(ele_);
+        }else if(azimuthHistory[ch_][id[i]].size() > MAX_DATA_HISTORY){
+          int inc_ = azimuthHistory[ch_][id[i]].size() - MAX_DATA_HISTORY - 1;
+
+          azimuthHistory[ch_][id[i]].erase(azimuthHistory[ch_][id[i]].begin()+inc_);
+          elevatiHistory[ch_][id[i]].erase(elevatiHistory[ch_][id[i]].begin()+inc_);
+        }
+
+        //only use one sample per sensor and lighhouse base
         if(idIsTaken[id[i]][ch_]){
             ;
         }else{

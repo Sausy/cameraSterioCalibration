@@ -9,6 +9,8 @@
 
 #define FILTER_HISTORY_LEN 200
 
+#define MAX_DATA_HISTORY 20
+
 class DataMatcher{
   public:
       DataMatcher(double * params_Lighthouse_);
@@ -39,6 +41,9 @@ class DataMatcher{
       std::vector<cv::Point2f> list_points2d; // container for the model 2D coordinates found in the scene
 
       bool availableBaseStations[MAX_BASE_AMOUNT];
+
+      std::vector<double> azimuthHistory[MAX_BASE_AMOUNT][MAX_SENSOR_CNT];
+      std::vector<double> elevatiHistory[MAX_BASE_AMOUNT][MAX_SENSOR_CNT];
 
     private:
       double params_Lighthouse[4];

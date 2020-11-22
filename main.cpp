@@ -155,16 +155,6 @@ int main(int argc, char const *argv[]) {
 
         sucessCnt++;
 
-        //debug output azimuth
-        /*
-        std::cout<<"\nWe could gather the following data [size:" << id.size();
-        for(uint8_t dataCnt = 0; dataCnt < id.size(); dataCnt++){
-          std::cout<<"\nid: " << id[dataCnt];
-          std::cout<<"\taz: " << azimuth[dataCnt] * 180.0/M_PI;
-          std::cout<<"\tel: " << elevation[dataCnt] * 180.0/M_PI;
-          std::cout<<"\tch: " << channel[dataCnt];
-        }
-        */
 
         //after this function (matchData()) we get two vectors
         //vector<Point3f> list_points3d;
@@ -173,6 +163,15 @@ int main(int argc, char const *argv[]) {
         dataRdy = dataM.matchData(model.sensorData_3d,id,azimuth,elevation,channel);
 
         if(dataRdy){
+            for (size_t k = 0; k < MAX_SENSOR_CNT; k++) {
+              int data_size = dataM.azimuthHistory[0][k].size();
+              if(data_size > 0){
+                std::cout << "ID:"<< k << "\n";
+                for (size_t l = 0; l < data_size; l++) {
+                  std::cout << dataM.azimuthHistory[0][k][l] << "\t";
+                }
+              }
+            }
             //std::cout << "\n3d: " << dataM.list_points3d;
             //std::cout << "\n2d: " << dataM.list_points2d;
             //============ PNP Solver============
