@@ -30,16 +30,52 @@ DataMatcher::DataMatcher(double * params_Lighthouse_):\
 
 }
 
+
+//resets all data proberly
+//to start a new run
+//INFO: doesn't reset known lighthouse bases
+void DataMatcher::reset_matchData(){
+  list_points2d.clear();
+  list_points3d.clear();
+
+  //clear old filter
+  for (size_t i = 0; i < MAX_BASE_AMOUNT; i++){
+    for (size_t j = 0; j < 2; j++) {
+      //clear old filter
+      delete(filterClass[i][j]);
+
+      //init them again
+      filterClass[i][j] = new filter(FILTER_HISTORY_LEN);
+
+
+    }
+
+    for (size_t j = 0; j < MAX_SENSOR_CNT; j++) {
+      //reset all taken flags from all sensors;
+      idIsTaken[j][i] = false;
+    }
+  }
+
+  goodCount = 0;
+}
+
+
 //if we get a certain amount of data from a base Station
 //it will be added to the list of known Base Stations
 void DataMatcher::registNewBaseStation(const std::vector<int> channel){
 
   for (size_t i = 0; i < channel.size(); i++) {
+    //check if channel data is valid,
+    //it shall not exeed 16base stations
     if(channel[i] < MAX_BASE_AMOUNT){
       //if we get enough  base events, the base will be added to the available list
       if(BaseStationsEventCount[channel[i]] < MIN_POSITIV_BASE_EVENTS){
           BaseStationsEventCount[channel[i]]++;
       }else{
+        //if the base wasn't already registered we output an info
+        if(availableBaseStations[channel[i]] == false){
+          std::cout<<"\n[FOUND BASE:] " << channel[i];
+        }
         availableBaseStations[channel[i]] = true;
       }
     }
@@ -82,6 +118,8 @@ bool DataMatcher::matchData(const std::vector<std::vector<double>> inVec,\
   return (matchData(vec,id,azimuth,elevation,channel));
 }
 
+
+
 //match 2d with 3d data
 bool DataMatcher::matchData(const std::vector<std::vector<float>> inVec,\
                             const std::vector<int> id,\
@@ -90,28 +128,26 @@ bool DataMatcher::matchData(const std::vector<std::vector<float>> inVec,\
                             const std::vector<int> channel\
                           ){
 
-  //std::vector<std::vector<double>> * vbuf = &sensorData_buffer;
-  //std::vector<std::vector<double>> * v2d = &sensorData_solver_2d;
-  //std::vector<std::vector<double>> * v4d = &sensorData_solver_3d;
-  //std::cout << "\nMatch Data: size=" << id.size();
-
-
   for(size_t i = 0; i < id.size(); i++){
     double az_ = azimuth[i];
     double ele_ = elevation[i];
     int ch_ = channel[i];
-    //std::cout << "\nMatch Data: size=" << id.size() << "/i: " << i;
 
     //check if base station id is one of the registered ones
     if(availableBaseStations[ch_]){
       //TODO: this should be some kind of kalman filter setup ...
       //std::cout<<"\nGOOD COUnT: " << goodCount;
-      if(idIsTaken[id[i]][ch_]){
-      //if(false){
-          //std::cout<<"\nID: " << id[i] << " was already taken";
-          ;//
-      }else{
-          if(customFilter(id[i], &az_, &ele_, ch_)){
+
+      if(customFilter(id[i], &az_, &ele_, ch_)){
+        if(idIsTaken[id[i]][ch_]){
+            ;
+        }else{
+
+            std::cout<<"\n\n[ID:" << id[i] << "/" << ch_;
+            std::cout<<"]\taz: " << az_ << "\tele: " << ele_;
+            std::cout<<"\tMeanAZ: " << filterClass[ch_][0]->mean * 180/M_PI;
+            std::cout<<"\tMeanEL: " << filterClass[ch_][1]->mean * 180/M_PI;
+
             //after we found a valid azimuth and elevation value
             //, we register the coresponding id
             idIsTaken[id[i]][ch_] = true;
@@ -136,14 +172,17 @@ bool DataMatcher::matchData(const std::vector<std::vector<float>> inVec,\
             list_points3d.push_back(buf3d);
 
             goodCount++;
-          }
+
+        }
       }
+
+
     }
 
 
 
-    if(goodCount >= 7){
-      goodCount = 7;
+    if(goodCount >= 9){
+      goodCount = 9;
       return true;
       //break;
     }
@@ -157,11 +196,6 @@ bool DataMatcher::matchData(const std::vector<std::vector<float>> inVec,\
 
 
 bool DataMatcher::customFilter(int id_, double * azimuth_, double * elevation_, int channel_){
-  if(channel_ != 0){
-    std::cout << "\n==================================";
-    std::cout << "\nWAIT A SECOND";
-    std::cout << "\nCH>: " << channel_;
-  }
 
   //assign the matching lighthouse base and
   //the azimuth 0 / elevation 1 to a easy to read pointer
@@ -170,8 +204,10 @@ bool DataMatcher::customFilter(int id_, double * azimuth_, double * elevation_, 
 
   //std::vector<double> *azBuf = &azimuth_buffer[channel_][id_];
   //std::vector<double> *elBuf = &elevation_buffer[channel_][id_];
-
-  if(faz->stdDeviationFilter(*azimuth_)){
+  bool dataIsRdy = false;
+  dataIsRdy = faz->stdDeviationFilter(*azimuth_);
+  dataIsRdy = dataIsRdy & fele->stdDeviationFilter(*elevation_);
+  if(dataIsRdy){
     //for both values there are upper and lower boundaries
     bool upperBound_az = (*azimuth_ <= (faz->mean + faz->variance));
     bool lowerBound_az = (*azimuth_ >= (faz->mean - faz->variance));
@@ -181,6 +217,9 @@ bool DataMatcher::customFilter(int id_, double * azimuth_, double * elevation_, 
     //if both values are with a variance range of 1*var
     //we shall consider the as good
     if(upperBound_az && lowerBound_az && upperBound_el && lowerBound_el){
+      //std::cout<<"\n[ID:" << id_ << "/" << channel_ << "]";
+      //std::cout<<"\tMean:" << faz->mean * 180.0/M_PI << "\tVar:" << faz->variance * 180.0/M_PI;
+      //std::cout<<"\tMean:" << fele->mean * 180.0/M_PI << "\tVar:" << fele->variance * 180.0/M_PI;
       return true;
     }
   }

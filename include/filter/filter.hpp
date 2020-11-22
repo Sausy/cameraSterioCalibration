@@ -7,6 +7,9 @@ class filter{
       //max Data defines the amounter of data stored in data Buffer
       filter(uint16_t maxData);
 
+      ~filter();
+
+
       //calculates the Mean and the Standard Deviation and
       //pushes the values to mean and variance
       bool stdDeviationFilter(double inData);
