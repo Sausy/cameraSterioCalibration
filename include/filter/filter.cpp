@@ -34,7 +34,7 @@ bool filter::stdDeviationFilter(double inData){
   }
 
   mean = calcMean(*v);
-  variance = standardDeviation(*v,*retMean);
+  variance = standardDeviation(*v,mean);
 
   return true;
 }

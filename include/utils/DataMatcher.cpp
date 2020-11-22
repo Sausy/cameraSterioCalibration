@@ -171,12 +171,12 @@ bool DataMatcher::customFilter(int id_, double * azimuth_, double * elevation_, 
   //std::vector<double> *azBuf = &azimuth_buffer[channel_][id_];
   //std::vector<double> *elBuf = &elevation_buffer[channel_][id_];
 
-  if(*faz->stdDeviationFilter()){
+  if(faz->stdDeviationFilter(*azimuth_)){
     //for both values there are upper and lower boundaries
-    bool upperBound_az = (*azimuth_ <= (*faz->mean + *faz->variance));
-    bool lowerBound_az = (*azimuth_ >= (*faz->mean - *faz->variance));
-    bool upperBound_el = (*elevation_ <= (*fele->mean + *fele->variance));
-    bool lowerBound_el = (*elevation_ >= (*fele->mean - *fele->variance));
+    bool upperBound_az = (*azimuth_ <= (faz->mean + faz->variance));
+    bool lowerBound_az = (*azimuth_ >= (faz->mean - faz->variance));
+    bool upperBound_el = (*elevation_ <= (fele->mean + fele->variance));
+    bool lowerBound_el = (*elevation_ >= (fele->mean - fele->variance));
 
     //if both values are with a variance range of 1*var
     //we shall consider the as good
