@@ -8,8 +8,12 @@
 
 #include "filter.hpp"
 
-filter::filter(uint16_t maxData_){
+filter::filter(uint16_t maxData_):mean(0.0),variance(0.0),dataCounter(0){
   N = maxData_;
+}
+
+filter::~filter(){
+  dataBuffer.clear();
 }
 
 //calculates the Mean and the Standard Deviation and
@@ -34,7 +38,7 @@ bool filter::stdDeviationFilter(double inData){
   }
 
   mean = calcMean(*v);
-  variance = standardDeviation(*v,*retMean);
+  variance = standardDeviation(*v,mean);
 
   return true;
 }

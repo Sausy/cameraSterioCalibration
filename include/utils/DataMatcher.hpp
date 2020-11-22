@@ -4,10 +4,10 @@
 #include <filter.hpp>
 
 #define MIN_POSITIV_BASE_EVENTS 100
-#define MAX_BASE_AMOUNT 32 //we have 32Polynomes and per base 2 Polynomes are used
+#define MAX_BASE_AMOUNT 16//we have 32Polynomes and per base 2 Polynomes are used
 #define MAX_SENSOR_CNT 30
 
-#define FILTER_HISTORY_LEN 40
+#define FILTER_HISTORY_LEN 200
 
 class DataMatcher{
   public:
@@ -16,6 +16,9 @@ class DataMatcher{
       //if we get a certain amount of data from a base Station
       //it will be added to the list of known Base Stations
       void registNewBaseStation(const std::vector<int> channel);
+
+      //to start a new run matchData has to be properly reseted
+      void reset_matchData();
 
       //match Data returns true if enough valid data was captured
       bool matchData( const std::vector<std::vector<float>> inVec,\

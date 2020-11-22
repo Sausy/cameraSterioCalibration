@@ -61,20 +61,6 @@ const Scalar yellow(0,255,255);
 */
 
 int main(int argc, char const *argv[]) {
-  filter *filt = new filter(20);
-
-  double mean;
-  double Var;
-
-  for (size_t i = 0; i < 23; i++) {
-    double foo_ = 8.3+i;
-    filt->stdDeviationFilter(foo_, &mean, &Var);
-  }
-
-  std::cout<<"\nMean: " << mean;
-  std::cout<<"\tVar: " << Var;
-
-  return 0;
   /*std::cout<<"\nMax: " << MIN_AZIMUTH_ANGLE;
   std::cout<<"\tMax: " << MAX_AZIMUTH_ANGLE;
   std::cout<<"\tMin: " << MIN_AZIMUTH_ANGLE_RAD;
@@ -128,8 +114,8 @@ int main(int argc, char const *argv[]) {
   PnPProblem pnp_registration(params_Lighthouse);
   // PnP parameters
   int pnpMethod = SOLVEPNP_ITERATIVE;
-  int iterationsCount = 500;      // number of Ransac iterations.
-  float reprojectionError = 6.0;  // maximum allowed distance to consider it an inlier.
+  int iterationsCount = 700;      // number of Ransac iterations.
+  float reprojectionError = 4.0;  // maximum allowed distance to consider it an inlier.
   double confidence = 0.99;       // ransac successful confidence.
   cv::Mat inliers_idx;
 
@@ -146,6 +132,12 @@ int main(int argc, char const *argv[]) {
 
   //todo change this to an infinity loop
   uint16_t sucessCnt = 0;
+  std::cout << "\n[STARTING] BASE REGISTRATION] ";
+  std::cout << "\nplease wait, this could take a bit ... ";
+
+  //for debug purposis
+  uint8_t dbg_itCnt = 0;
+
   for(;;){
     std::vector<int> id;
     std::vector<float> azimuth;
@@ -181,9 +173,10 @@ int main(int argc, char const *argv[]) {
         dataRdy = dataM.matchData(model.sensorData_3d,id,azimuth,elevation,channel);
 
         if(dataRdy){
-            std::cout << "\n3d: " << dataM.list_points3d;
-            std::cout << "\n2d: " << dataM.list_points2d;
+            //std::cout << "\n3d: " << dataM.list_points3d;
+            //std::cout << "\n2d: " << dataM.list_points2d;
             //============ PNP Solver============
+            std::cout<<"\n[STARTING] pnp sovler \tAmount of Data: " << dataM.list_points2d.size();
             pnp_registration.estimatePoseRANSAC( dataM.list_points3d, dataM.list_points2d,
                                               pnpMethod, inliers_idx,
                                               iterationsCount, reprojectionError, confidence );
@@ -203,11 +196,16 @@ int main(int argc, char const *argv[]) {
             cout << "\n" << transMatrix;
             cout << "\n";
 
-            return 0;
+            //to start a new run we need to reset the data
+            dataM.reset_matchData();
+
+            dbg_itCnt++;
+            if(dbg_itCnt == 7)
+              return 0;
         }
     }
     //===for debuging
-    if(sucessCnt > 1000)
+    if(sucessCnt > 3000)
       break;
   }
 
