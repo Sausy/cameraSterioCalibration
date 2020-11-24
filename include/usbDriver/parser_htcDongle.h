@@ -1,6 +1,6 @@
 #pragma once
 
-#define MAX_SENSORS 25
+#define MAX_SENSORS 35
 
 typedef struct lightV2{
   uint8_t id;

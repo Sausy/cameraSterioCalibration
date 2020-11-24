@@ -114,8 +114,8 @@ int main(int argc, char const *argv[]) {
   PnPProblem pnp_registration(params_Lighthouse);
   // PnP parameters
   int pnpMethod = SOLVEPNP_ITERATIVE;
-  int iterationsCount = 700;      // number of Ransac iterations.
-  float reprojectionError = 4.0;  // maximum allowed distance to consider it an inlier.
+  int iterationsCount = 800;      // number of Ransac iterations.
+  float reprojectionError = 6.0;  // maximum allowed distance to consider it an inlier.
   double confidence = 0.99;       // ransac successful confidence.
   cv::Mat inliers_idx;
 
@@ -126,7 +126,7 @@ int main(int argc, char const *argv[]) {
 
 
   //============Match Data init ============
-  DataMatcher dataM(params_Lighthouse);
+  DataMatcher dataM(params_Lighthouse, model.sensorData_3d.size());
   //match 2d data with 3d data
 
 
@@ -138,11 +138,16 @@ int main(int argc, char const *argv[]) {
   //for debug purposis
   uint8_t dbg_itCnt = 0;
 
+  std::vector<int> id;
+  std::vector<float> azimuth;
+  std::vector<float> elevation;
+  std::vector<int> channel;
+
   for(;;){
-    std::vector<int> id;
-    std::vector<float> azimuth;
-    std::vector<float> elevation;
-    std::vector<int> channel;
+    id.clear();
+    azimuth.clear();
+    elevation.clear();
+    channel.clear();
 
     //============Poll usb data ============
     bool dataWasTransmitted = driver.pullData(&id,&azimuth,&elevation, &channel);
@@ -151,7 +156,7 @@ int main(int argc, char const *argv[]) {
 
         //if we get a certain amount of data from a base Station
         //it will be added to the list of known Base Stations
-        dataM.registNewBaseStation(channel);
+        int baseN = dataM.registNewBaseStation(channel);
 
         sucessCnt++;
 
@@ -161,34 +166,134 @@ int main(int argc, char const *argv[]) {
         //vector<Point2f> list_points2d;
         bool dataRdy = false;
         dataRdy = dataM.matchData(model.sensorData_3d,id,azimuth,elevation,channel);
+        /*
+        if(dataRdy && (dataM.list_points3d[0].size() > 7)){
+            cout << "\nPNP: " <<  std::flush;
+            cv::Mat transMatrix(3,1,CV_64F);
 
-        if(dataRdy){
-            for (size_t k = 0; k < MAX_SENSOR_CNT; k++) {
-              int data_size = dataM.azimuthHistory[0][k].size();
-              if(data_size > 0){
-                std::cout << "ID:"<< k << "\n";
-                for (size_t l = 0; l < data_size; l++) {
-                  std::cout << dataM.azimuthHistory[0][k][l] << "\t";
-                }
-              }
-            }
-            //std::cout << "\n3d: " << dataM.list_points3d;
-            //std::cout << "\n2d: " << dataM.list_points2d;
-            //============ PNP Solver============
-            std::cout<<"\n[STARTING] pnp sovler \tAmount of Data: " << dataM.list_points2d.size();
-            pnp_registration.estimatePoseRANSAC( dataM.list_points3d, dataM.list_points2d,
+            //std::cout<<"\n[STARTING] pnp sovler \tAmount of Data: " << dataM.list_points2d[].size();
+            pnp_registration.estimatePoseRANSAC( dataM.list_points3d[0], dataM.list_points2d[0],
                                               pnpMethod, inliers_idx,
                                               iterationsCount, reprojectionError, confidence );
 
-            cv::Mat transMatrix(3,1,CV_64F);
+
+            transMatrix = pnp_registration.get_t_matrix();
+            cout << "\nTrans: " << transMatrix.size();
+            cout << "\n" << transMatrix;
+            cout << "\n" << std::flush;
+
+            bool is_correspondence = pnp_registration.estimatePose(dataM.list_points3d[0], dataM.list_points2d[0], SOLVEPNP_ITERATIVE);
+
             transMatrix = pnp_registration.get_t_matrix();
             cout << "\nTrans: " << transMatrix.size();
             cout << "\n" << transMatrix;
             cout << "\n";
+
+            return 0;
+        }
+        */
+
+
+        dataRdy = dataM.twoCameraMatcher();
+        if(dataRdy){
+
+
+
+
+          cv::Mat essentialMatrix,fundamental_matrix;
+          cv::Mat rotMatrix, transMatrix, mask;
+          //cv::Mat K = cv::Mat::eye(3,3,CV_64F);
+          cv::Mat K = cv::Mat::zeros(3,3,CV_64FC1);
+
+          K.at<double>(0, 0) = params_Lighthouse[0];       //      [ fx   0  cx ]
+          K.at<double>(1, 1) = params_Lighthouse[1];       //      [  0  fy  cy ]
+          K.at<double>(0, 2) = params_Lighthouse[2];       //      [  0   0   1 ]
+          K.at<double>(1, 2) = params_Lighthouse[3];
+          K.at<double>(2, 2) = 1;
+
+          cv::Mat K_ = cv::Mat::eye(3,3,CV_64F);
+
+          std::cout << "\n1 data: " << dataM.dataImg1_2D.size() << std::flush;
+          std::cout << "\n2 data: " << dataM.dataImg2_2D.size() << std::flush;
+          //std::cout << "\n2 data: " << dataM.dataImg2_2D[0].pt << std::flush;
+
+
+          ///fundamental_matrix = findFundamentalMat(dataM.dataImg1_2D, dataM.dataImg2_2D, FM_8POINT, 3,0.99);
+          //std::cout << "\nfindFundamentalMat " << essentialMatrix << std::flush;
+
+          //essentialMatrix = cv::findEssentialMat(dataM.dataImg1_2D, dataM.dataImg2_2D, RANSAC, 3, 0.99, mask);
+          //std::cout << "\nessential: " << essentialMatrix << std::flush;
+
+          //essentialMatrix = cv::findEssentialMat(dataM.dataImg1_2D, dataM.dataImg2_2D, 0.1,cv::Point2d(1400.0,1400.0),  RANSAC, 0.99, 1.0, mask);
+          //std::cout << "\nessential: " << essentialMatrix << std::flush;
+
+          //cv::recoverPose(essentialMatrix, dataM.dataImg1_2D, dataM.dataImg2_2D, K, rotMatrix, transMatrix, mask);
+          //std::cout << "\nTransl: " << transMatrix  << std::flush;
+
+
+          essentialMatrix = cv::findEssentialMat(dataM.dataImg1_2D, dataM.dataImg2_2D, 1.0,cv::Point2d(1400.0,1400.0),  RANSAC, 0.99, 1.0, mask);
+          std::cout << "\nessential: " << essentialMatrix << std::flush;
+
+          cv::recoverPose(essentialMatrix, dataM.dataImg1_2D, dataM.dataImg2_2D, K, rotMatrix, transMatrix, mask);
+          std::cout << "\nTransl: " << transMatrix  << std::flush;
+
+          /*
+          essentialMatrix = cv::findEssentialMat(dataM.dataImg1_2D, dataM.dataImg2_2D, 10.0,cv::Point2d(1400.0,1400.0),  RANSAC, 0.99, 1.0, mask);
+          std::cout << "\nessential: " << essentialMatrix << std::flush;
+
+          cv::recoverPose(essentialMatrix, dataM.dataImg1_2D, dataM.dataImg2_2D, K, rotMatrix, transMatrix, mask);
+          std::cout << "\nTransl: " << transMatrix  << std::flush;
+
+          essentialMatrix = cv::findEssentialMat(dataM.dataImg1_2D, dataM.dataImg2_2D, 1000.0,cv::Point2d(1400.0,1400.0),  RANSAC, 0.99, 1.0, mask);
+          std::cout << "\nessential: " << essentialMatrix << std::flush;
+
+          cv::recoverPose(essentialMatrix, dataM.dataImg1_2D, dataM.dataImg2_2D, K, rotMatrix, transMatrix, mask);
+          std::cout << "\nTransl: " << transMatrix  << std::flush;
+
+          */
+          //std::cout << "\nK: " << K;
+          return 0;
+        }
+
+        /*
+        if(dataRdy){
+            std:cout << "\nAmount of base stations " << baseN;
+
+            //for (size_t k = 0; k < MAX_SENSOR_CNT; k++) {
+            //  int data_size = dataM.azimuthHistory[0][k].size();
+            //  if(data_size > 0){
+            //
+            //    std::cout << "\n\nHistory DATA:\nID:"<< k << "\n";
+            //    for (size_t l = 0; l < data_size; l++) {
+            //      std::cout << dataM.azimuthHistory[0][k][l] * 180/M_PI << "\t";
+            //    }
+            //  }
+            //}
+
+
+            //std::cout << "\n3d: " << dataM.list_points3d;
+            //std::cout << "\n2d: " << dataM.list_points2d;
+            //============ PNP Solver============
+            cv::Mat transMatrix(3,1,CV_64F);
+
+            //std::cout<<"\n[STARTING] pnp sovler \tAmount of Data: " << dataM.list_points2d[].size();
+            pnp_registration.estimatePoseRANSAC( dataM.list_points3d[0], dataM.list_points2d[0],
+                                              pnpMethod, inliers_idx,
+                                              iterationsCount, reprojectionError, confidence );
+
+
+            transMatrix = pnp_registration.get_t_matrix();
+            cout << "\nTrans: " << transMatrix.size();
+            cout << "\n" << transMatrix;
+            cout << "\n";
+
+
+
+
             //draw2DPoints(img, list_points2d, green);
             //imshow("MODEL REGISTRATION", img);
 
-            bool is_correspondence = pnp_registration.estimatePose(dataM.list_points3d, dataM.list_points2d, SOLVEPNP_ITERATIVE);
+            bool is_correspondence = pnp_registration.estimatePose(dataM.list_points3d[0], dataM.list_points2d[0], SOLVEPNP_ITERATIVE);
 
             transMatrix = pnp_registration.get_t_matrix();
             cout << "\nTrans: " << transMatrix.size();
@@ -199,12 +304,13 @@ int main(int argc, char const *argv[]) {
             dataM.reset_matchData();
 
             dbg_itCnt++;
-            if(dbg_itCnt == 7)
+            if(dbg_itCnt >= 1)
               return 0;
         }
+        */
     }
     //===for debuging
-    if(sucessCnt > 3000)
+    if(sucessCnt > 30000)
       break;
   }
 
@@ -264,5 +370,6 @@ int main(int argc, char const *argv[]) {
 
 
   //int k = waitKey(0);
+  std::cout << "\n[END PROGRAM]" << std::flush;
   return 0;
 }

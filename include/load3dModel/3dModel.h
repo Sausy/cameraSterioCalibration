@@ -2,7 +2,7 @@
 #define MODEL_H_
 
 //#define YAML_VALUE_SCALE 1000
-#define YAML_VALUE_SCALE 1
+#define YAML_VALUE_SCALE 1000
 
 class Model
 {

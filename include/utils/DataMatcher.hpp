@@ -13,11 +13,11 @@
 
 class DataMatcher{
   public:
-      DataMatcher(double * params_Lighthouse_);
-
+      DataMatcher(double * params_Lighthouse_, int maxSensorAvailable_);
+      int maxSensorAvailable;
       //if we get a certain amount of data from a base Station
       //it will be added to the list of known Base Stations
-      void registNewBaseStation(const std::vector<int> channel);
+      int registNewBaseStation(const std::vector<int> channel);
 
       //to start a new run matchData has to be properly reseted
       void reset_matchData();
@@ -36,11 +36,18 @@ class DataMatcher{
                       const std::vector<int> channel\
                     );
 
+      bool twoCameraMatcher();
 
-      std::vector<cv::Point3f> list_points3d; // container for the model 3D coordinates found in the scene
-      std::vector<cv::Point2f> list_points2d; // container for the model 2D coordinates found in the scene
+
+      std::vector<cv::Point3f> list_points3d[MAX_BASE_AMOUNT]; // container for the model 3D coordinates found in the scene
+      std::vector<cv::Point2f> list_points2d[MAX_BASE_AMOUNT]; // container for the model 2D coordinates found in the scene
+      std::vector<int> list_id[MAX_BASE_AMOUNT];
+
+      std::vector<cv::Point2f> dataImg1_2D;
+      std::vector<cv::Point2f> dataImg2_2D;
 
       bool availableBaseStations[MAX_BASE_AMOUNT];
+      bool dataReady[MAX_BASE_AMOUNT];
 
       std::vector<double> azimuthHistory[MAX_BASE_AMOUNT][MAX_SENSOR_CNT];
       std::vector<double> elevatiHistory[MAX_BASE_AMOUNT][MAX_SENSOR_CNT];
@@ -49,7 +56,9 @@ class DataMatcher{
       double params_Lighthouse[4];
       uint16_t BaseStationsEventCount[MAX_BASE_AMOUNT];
       int goodCount;
-      bool idIsTaken[MAX_SENSOR_CNT][MAX_BASE_AMOUNT];
+
+      bool idIsTaken[MAX_BASE_AMOUNT][MAX_SENSOR_CNT];
+      uint8_t idIsTaken_cnt[MAX_BASE_AMOUNT][MAX_SENSOR_CNT];
 
       std::vector<double> azimuth_buffer[MAX_BASE_AMOUNT][MAX_SENSOR_CNT];
       std::vector<double> elevation_buffer[MAX_BASE_AMOUNT][MAX_SENSOR_CNT];
@@ -59,6 +68,13 @@ class DataMatcher{
       //filter *f;
       //the additional 2 is needed, because of azimuth&elevation
       filter *filterClass[MAX_BASE_AMOUNT][2];
+
+      int returnAmountOfBaseStations;
+
+      bool wasRepos;
+      std::vector<cv::Point2f> dataImg1_2D_buffer;
+      std::vector<cv::Point2f> dataImg2_2D_buffer;
+
 
 };
 

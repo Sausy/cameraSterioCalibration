@@ -158,33 +158,34 @@ bool viveParse::parseLightV2(uint8_t * data_, bool cleanCall){
 
 			//printf("\n[V2][SYNC]%u/ %u | %f .. OOTX:%u | g: %u | %u",channel, upperData, printTime, ootx, g, sensorID);
 		}else{
+      if(sensorID < MAX_SENSORS && channel < 32){
+          le->channel = channel;
+          le->id = sensorID;
 
-      le->channel = channel;
-      le->id = sensorID;
+          bool half_clock_flag = data[9+i] & 0x4u;
+          upperData = upperData >> 3; //shift away the Flag data
+          upperData = upperData & 0xFFFFFFu;
 
-      bool half_clock_flag = data[9+i] & 0x4u;
-			upperData = upperData >> 3; //shift away the Flag data
-			upperData = upperData & 0xFFFFFFu;
-
-      le->TimeStamp = upperData;
+          le->TimeStamp = upperData;
 
 
-			//if(syncData > upperData){
-      if(syncTimePerChannel[channel] > upperData){
-				le->TimeDiv =  0x800000 - syncTimePerChannel[channel];//timeDelta = 0x800000 - syncData;
-        //if(syncTimePerChannel[channel] > 0x800000){
-        //  printf("\n[ERROR] %u", syncTimePerChannel[channel]);
-        //}
-				le->TimeDiv =  upperData + le->TimeDiv;//timeDelta = upperData + timeDelta;
-			}else{
-				le->TimeDiv = upperData - syncTimePerChannel[channel];//timeDelta = upperData - syncData;
-			}
+          //if(syncData > upperData){
+          if(syncTimePerChannel[channel] > upperData){
+            le->TimeDiv =  0x800000 - syncTimePerChannel[channel];//timeDelta = 0x800000 - syncData;
+            //if(syncTimePerChannel[channel] > 0x800000){
+            //  printf("\n[ERROR] %u", syncTimePerChannel[channel]);
+            //}
+            le->TimeDiv =  upperData + le->TimeDiv;//timeDelta = upperData + timeDelta;
+          }else{
+            le->TimeDiv = upperData - syncTimePerChannel[channel];//timeDelta = upperData - syncData;
+          }
 
-      angle = (double)le->TimeDiv/959000.0 * 360.0;
+          angle = (double)le->TimeDiv/959000.0 * 360.0;
 
-      //printf("\n[V2][%u]%u/ %u | %d | %f", sensorID, channel, upperData, le->TimeDiv, angle);
-      pollLength++;
-      le++;
+          //printf("\n[V2][%u]%u/ %u | %d | %f", sensorID, channel, upperData, le->TimeDiv, angle);
+          pollLength++;
+          le++;
+      }
 
 		}
 

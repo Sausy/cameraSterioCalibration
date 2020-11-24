@@ -47,14 +47,15 @@ void getCameraMatrixForLighthouse(double * cameraParamter){
   // cx = u0 = 1400
 
   //const double c = 100.0; //in mm
-  const double width = PIC_WIDTH;
+  const double width = 2800.0;
   const double height = width;
 
-  const double phi_FOV = 140;
-  const double phi = 90-(2*phi_FOV);
+  const double phi_FOV = 140.0;
+  const double phix = 90.0-(phi_FOV/2);
+  const double phiy = (phi_FOV/2);
 
-  const double fx = width/2 * tan(phi);
-  const double fy = height/2 * tan(phi);
+  const double fx = width/2 * tan(phix * M_PI/180.0);
+  const double fy = height/2 * tan(phiy * M_PI/180.0);
 
   const double cx = width/2;
   const double cy = height/2;
@@ -117,6 +118,7 @@ std::vector<double> azimuthTo2D(double azimuth, double elevation, double * camer
 
   vec2D.push_back(u);
   vec2D.push_back(v);
+
 
   return vec2D;
 }
