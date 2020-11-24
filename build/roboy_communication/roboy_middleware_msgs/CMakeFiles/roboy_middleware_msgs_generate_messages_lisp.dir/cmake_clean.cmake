@@ -1,0 +1,42 @@
+file(REMOVE_RECURSE
+  "/home/sausy/Projects/lighthouse/cameraSterioCalibration/devel/share/common-lisp/ros/roboy_middleware_msgs/msg/ADCvalue.lisp"
+  "/home/sausy/Projects/lighthouse/cameraSterioCalibration/devel/share/common-lisp/ros/roboy_middleware_msgs/msg/ArmStatus.lisp"
+  "/home/sausy/Projects/lighthouse/cameraSterioCalibration/devel/share/common-lisp/ros/roboy_middleware_msgs/msg/ArucoPose.lisp"
+  "/home/sausy/Projects/lighthouse/cameraSterioCalibration/devel/share/common-lisp/ros/roboy_middleware_msgs/msg/ControllerState.lisp"
+  "/home/sausy/Projects/lighthouse/cameraSterioCalibration/devel/share/common-lisp/ros/roboy_middleware_msgs/msg/DanceCommand.lisp"
+  "/home/sausy/Projects/lighthouse/cameraSterioCalibration/devel/share/common-lisp/ros/roboy_middleware_msgs/msg/DarkRoom.lisp"
+  "/home/sausy/Projects/lighthouse/cameraSterioCalibration/devel/share/common-lisp/ros/roboy_middleware_msgs/msg/DarkRoomOOTX.lisp"
+  "/home/sausy/Projects/lighthouse/cameraSterioCalibration/devel/share/common-lisp/ros/roboy_middleware_msgs/msg/DarkRoomSensor.lisp"
+  "/home/sausy/Projects/lighthouse/cameraSterioCalibration/devel/share/common-lisp/ros/roboy_middleware_msgs/msg/DarkRoomSensorV2.lisp"
+  "/home/sausy/Projects/lighthouse/cameraSterioCalibration/devel/share/common-lisp/ros/roboy_middleware_msgs/msg/DarkRoomStatistics.lisp"
+  "/home/sausy/Projects/lighthouse/cameraSterioCalibration/devel/share/common-lisp/ros/roboy_middleware_msgs/msg/DarkRoomStatus.lisp"
+  "/home/sausy/Projects/lighthouse/cameraSterioCalibration/devel/share/common-lisp/ros/roboy_middleware_msgs/msg/HandCommand.lisp"
+  "/home/sausy/Projects/lighthouse/cameraSterioCalibration/devel/share/common-lisp/ros/roboy_middleware_msgs/msg/JointStatus.lisp"
+  "/home/sausy/Projects/lighthouse/cameraSterioCalibration/devel/share/common-lisp/ros/roboy_middleware_msgs/msg/LighthousePoseCorrection.lisp"
+  "/home/sausy/Projects/lighthouse/cameraSterioCalibration/devel/share/common-lisp/ros/roboy_middleware_msgs/msg/MagneticSensor.lisp"
+  "/home/sausy/Projects/lighthouse/cameraSterioCalibration/devel/share/common-lisp/ros/roboy_middleware_msgs/msg/MotorAngle.lisp"
+  "/home/sausy/Projects/lighthouse/cameraSterioCalibration/devel/share/common-lisp/ros/roboy_middleware_msgs/msg/MotorCommand.lisp"
+  "/home/sausy/Projects/lighthouse/cameraSterioCalibration/devel/share/common-lisp/ros/roboy_middleware_msgs/msg/MotorConfig.lisp"
+  "/home/sausy/Projects/lighthouse/cameraSterioCalibration/devel/share/common-lisp/ros/roboy_middleware_msgs/msg/MotorStatus.lisp"
+  "/home/sausy/Projects/lighthouse/cameraSterioCalibration/devel/share/common-lisp/ros/roboy_middleware_msgs/srv/ControlMode.lisp"
+  "/home/sausy/Projects/lighthouse/cameraSterioCalibration/devel/share/common-lisp/ros/roboy_middleware_msgs/srv/DanceTrajectory.lisp"
+  "/home/sausy/Projects/lighthouse/cameraSterioCalibration/devel/share/common-lisp/ros/roboy_middleware_msgs/srv/EmergencyStop.lisp"
+  "/home/sausy/Projects/lighthouse/cameraSterioCalibration/devel/share/common-lisp/ros/roboy_middleware_msgs/srv/ForwardKinematics.lisp"
+  "/home/sausy/Projects/lighthouse/cameraSterioCalibration/devel/share/common-lisp/ros/roboy_middleware_msgs/srv/FrameIK.lisp"
+  "/home/sausy/Projects/lighthouse/cameraSterioCalibration/devel/share/common-lisp/ros/roboy_middleware_msgs/srv/InverseKinematics.lisp"
+  "/home/sausy/Projects/lighthouse/cameraSterioCalibration/devel/share/common-lisp/ros/roboy_middleware_msgs/srv/InverseKinematicsMultipleFrames.lisp"
+  "/home/sausy/Projects/lighthouse/cameraSterioCalibration/devel/share/common-lisp/ros/roboy_middleware_msgs/srv/JointController.lisp"
+  "/home/sausy/Projects/lighthouse/cameraSterioCalibration/devel/share/common-lisp/ros/roboy_middleware_msgs/srv/MotorCalibrationService.lisp"
+  "/home/sausy/Projects/lighthouse/cameraSterioCalibration/devel/share/common-lisp/ros/roboy_middleware_msgs/srv/MotorConfigService.lisp"
+  "/home/sausy/Projects/lighthouse/cameraSterioCalibration/devel/share/common-lisp/ros/roboy_middleware_msgs/srv/MyoBrickCalibrationService.lisp"
+  "/home/sausy/Projects/lighthouse/cameraSterioCalibration/devel/share/common-lisp/ros/roboy_middleware_msgs/srv/SetInt16.lisp"
+  "/home/sausy/Projects/lighthouse/cameraSterioCalibration/devel/share/common-lisp/ros/roboy_middleware_msgs/srv/SystemCheck.lisp"
+  "/home/sausy/Projects/lighthouse/cameraSterioCalibration/devel/share/common-lisp/ros/roboy_middleware_msgs/srv/TorqueControl.lisp"
+  "/home/sausy/Projects/lighthouse/cameraSterioCalibration/devel/share/common-lisp/ros/roboy_middleware_msgs/srv/XL320.lisp"
+  "CMakeFiles/roboy_middleware_msgs_generate_messages_lisp"
+)
+
+# Per-language clean rules from dependency scanning.
+foreach(lang )
+  include(CMakeFiles/roboy_middleware_msgs_generate_messages_lisp.dir/cmake_clean_${lang}.cmake OPTIONAL)
+endforeach()

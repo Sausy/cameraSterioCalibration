@@ -1,0 +1,8 @@
+prefix=/home/sausy/Projects/lighthouse/cameraSterioCalibration/install
+
+Name: darkroom_rqt
+Description: Description of darkroom_rqt
+Version: 0.0.0
+Cflags: -I${prefix}/include
+Libs: -L${prefix}/lib -ldarkroom_rqt
+Requires: roscpp rqt_gui_cpp std_msgs roboy_middleware_msgs darkroom common_utilities
