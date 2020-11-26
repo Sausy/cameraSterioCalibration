@@ -164,12 +164,12 @@ struct Definition< ::roboy_middleware_msgs::ForwardKinematicsRequest_<ContainerA
 {
   static const char* value()
   {
-    return "\n"
+    return "# name of the endeffector\n"
 "string endeffector\n"
-"\n"
+"# the frame of the fk target\n"
 "string frame\n"
-"\n"
-"\n"
+"# joint names with corresponding joint angles,\n"
+"# joints that are not defined will be used from the current state of the robot\n"
 "string[] joint_names\n"
 "float64[] angles\n"
 ;

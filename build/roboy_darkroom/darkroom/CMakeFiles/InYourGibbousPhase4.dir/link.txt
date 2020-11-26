@@ -1,1 +1,0 @@
-/usr/bin/c++ -fPIC  -std=c++11 -g -g  -shared -Wl,-soname,libInYourGibbousPhase4.so -o /home/sausy/Projects/lighthouse/cameraSterioCalibration/devel/lib/libInYourGibbousPhase4.so CMakeFiles/InYourGibbousPhase4.dir/src/InYourGibbousPhase4.cpp.o  -L/usr/lib/x86_64-linux-gnu/gazebo-9/plugins 

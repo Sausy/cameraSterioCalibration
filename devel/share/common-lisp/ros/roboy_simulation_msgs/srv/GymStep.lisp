@@ -125,10 +125,10 @@
   "da078c4985541d376efaaa93946e1b7b")
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql '<GymStep-request>)))
   "Returns full string definition for message of type '<GymStep-request>"
-  (cl:format cl:nil "int8 controller~%float64[] set_points~%float64 step_size~%~%~%"))
+  (cl:format cl:nil "int8 controller #position, vel or displacement~%float64[] set_points~%float64 step_size~%~%~%"))
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql 'GymStep-request)))
   "Returns full string definition for message of type 'GymStep-request"
-  (cl:format cl:nil "int8 controller~%float64[] set_points~%float64 step_size~%~%~%"))
+  (cl:format cl:nil "int8 controller #position, vel or displacement~%float64[] set_points~%float64 step_size~%~%~%"))
 (cl:defmethod roslisp-msg-protocol:serialization-length ((msg <GymStep-request>))
   (cl:+ 0
      1

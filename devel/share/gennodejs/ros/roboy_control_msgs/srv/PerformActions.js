@@ -70,7 +70,7 @@ class PerformActionsRequest {
   static messageDefinition() {
     // Returns full string definition for message
     return `
-    string[] actions
+    string[] actions # can be a trajectory name or pause (2_pause will pause for 2 seconds)
     
     `;
   }

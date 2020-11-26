@@ -1,0 +1,1612 @@
+<sdf version="1.6">
+	<model name="exohaptic">
+		<link name="back_plate">
+			<self_collide>false</self_collide>
+			<pose frame="">0.003847989921130747 0.16901449470245794 -0.11191609324975442 0.0 -0.0 0.0</pose>
+			<inertial>
+				<pose frame="">0.0 0.0 0.0 0 0 0</pose>
+				<mass>8.139385049727629</mass>
+				<inertia>
+					<ixx>0.7682234474795213</ixx>
+					<ixy>-0.0069899315534839536</ixy>
+					<ixz>0.004840916713086481</ixz>
+					<iyy>0.4916453272832193</iyy>
+					<iyz>0.21773604360990972</iyz>
+					<izz>0.3440612626087113</izz>
+				</inertia>
+			</inertial>
+			<collision name="back_plate_collision">
+				<geometry>
+					<mesh>
+						<uri>model://exohaptic/meshes/collisions/back_plate.stl</uri>
+						<scale>0.001 0.001 0.001</scale>
+					</mesh>
+				</geometry>
+			</collision>
+			<visual name="back_plate_visual">
+				<geometry>
+					<mesh>
+						<uri>model://exohaptic/meshes/visuals/back_plate.stl</uri>
+						<scale>0.001 0.001 0.001</scale>
+					</mesh>
+				</geometry>
+			</visual>
+		</link>
+		<link name="right_link0">
+			<self_collide>false</self_collide>
+			<pose frame="">-0.07361414803310475 0.23458983532026154 0.09159600310468251 0.0 -0.0 0.0</pose>
+			<inertial>
+				<pose frame="">0.0 0.0 0.0 0 0 0</pose>
+				<mass>0.44679478425959274</mass>
+				<inertia>
+					<ixx>0.02850566718684878</ixx>
+					<ixy>0.007768523969325554</ixy>
+					<ixz>0.0031459771568931793</ixz>
+					<iyy>0.006741743764682452</iyy>
+					<iyz>-0.00961515000858008</iyz>
+					<izz>0.027528731763173563</izz>
+				</inertia>
+			</inertial>
+			<collision name="right_link0_collision">
+				<geometry>
+					<mesh>
+						<uri>model://exohaptic/meshes/collisions/right_link0.stl</uri>
+						<scale>0.001 0.001 0.001</scale>
+					</mesh>
+				</geometry>
+			</collision>
+			<visual name="right_link0_visual">
+				<geometry>
+					<mesh>
+						<uri>model://exohaptic/meshes/visuals/right_link0.stl</uri>
+						<scale>0.001 0.001 0.001</scale>
+					</mesh>
+				</geometry>
+			</visual>
+		</link>
+		<link name="right_link1">
+			<self_collide>false</self_collide>
+			<pose frame="">-0.18271248430152856 0.2502077985784657 0.08280806268269043 0.0 -0.0 0.0</pose>
+			<inertial>
+				<pose frame="">0.0 0.0 0.0 0 0 0</pose>
+				<mass>0.7831254380658086</mass>
+				<inertia>
+					<ixx>0.05462723019125244</ixx>
+					<ixy>0.036143456759153154</ixy>
+					<ixz>0.011773188017332896</ixz>
+					<iyy>0.035350979737987835</iyy>
+					<iyz>-0.016262618054640174</iyz>
+					<izz>0.07907186342199232</izz>
+				</inertia>
+			</inertial>
+			<collision name="right_link1_collision">
+				<geometry>
+					<mesh>
+						<uri>model://exohaptic/meshes/collisions/right_link1.stl</uri>
+						<scale>0.001 0.001 0.001</scale>
+					</mesh>
+				</geometry>
+			</collision>
+			<visual name="right_link1_visual">
+				<geometry>
+					<mesh>
+						<uri>model://exohaptic/meshes/visuals/right_link1.stl</uri>
+						<scale>0.001 0.001 0.001</scale>
+					</mesh>
+				</geometry>
+			</visual>
+		</link>
+		<link name="right_link2">
+			<self_collide>false</self_collide>
+			<pose frame="">-0.2711998661923335 0.2074856617980185 0.08559154734637554 0.0 -0.0 0.0</pose>
+			<inertial>
+				<pose frame="">0.0 0.0 0.0 0 0 0</pose>
+				<mass>0.49727563373908934</mass>
+				<inertia>
+					<ixx>0.025322043900049097</ixx>
+					<ixy>0.027981741443474394</ixy>
+					<ixz>0.011542968518925521</ixz>
+					<iyy>0.040305766981368514</iyy>
+					<iyz>-0.008833668598917741</iyz>
+					<izz>0.058271852822971926</izz>
+				</inertia>
+			</inertial>
+			<collision name="right_link2_collision">
+				<geometry>
+					<mesh>
+						<uri>model://exohaptic/meshes/collisions/right_link2.stl</uri>
+						<scale>0.001 0.001 0.001</scale>
+					</mesh>
+				</geometry>
+			</collision>
+			<visual name="right_link2_visual">
+				<geometry>
+					<mesh>
+						<uri>model://exohaptic/meshes/visuals/right_link2.stl</uri>
+						<scale>0.001 0.001 0.001</scale>
+					</mesh>
+				</geometry>
+			</visual>
+		</link>
+		<link name="right_link3">
+			<self_collide>false</self_collide>
+			<pose frame="">-0.2570129262675905 0.04490974726006116 0.07272489367168249 0.0 -0.0 0.0</pose>
+			<inertial>
+				<pose frame="">0.0 0.0 0.0 0 0 0</pose>
+				<mass>0.5220086555744743</mass>
+				<inertia>
+					<ixx>0.011225574349458483</ixx>
+					<ixy>0.014702565450204173</ixy>
+					<ixz>0.012242705191522832</ixz>
+					<iyy>0.04084955030043474</iyy>
+					<iyz>-0.004944966277485869</iyz>
+					<izz>0.04378453478749949</izz>
+				</inertia>
+			</inertial>
+			<collision name="right_link3_collision">
+				<geometry>
+					<mesh>
+						<uri>model://exohaptic/meshes/collisions/right_link3.stl</uri>
+						<scale>0.001 0.001 0.001</scale>
+					</mesh>
+				</geometry>
+			</collision>
+			<visual name="right_link3_visual">
+				<geometry>
+					<mesh>
+						<uri>model://exohaptic/meshes/visuals/right_link3.stl</uri>
+						<scale>0.001 0.001 0.001</scale>
+					</mesh>
+				</geometry>
+			</visual>
+		</link>
+		<link name="right_link4">
+			<self_collide>false</self_collide>
+			<pose frame="">-0.33164774575521855 0.05467886264065325 0.059087390326160075 0.0 -0.0 0.0</pose>
+			<inertial>
+				<pose frame="">0.0 0.0 0.0 0 0 0</pose>
+				<mass>0.7386523301391769</mass>
+				<inertia>
+					<ixx>0.005909164459017086</ixx>
+					<ixy>0.013354064123330579</ixy>
+					<ixz>0.014280546357188851</ixz>
+					<iyy>0.08518618689003109</iyy>
+					<iyz>-0.0023609091471348265</iyz>
+					<izz>0.0849433545712226</izz>
+				</inertia>
+			</inertial>
+			<collision name="right_link4_collision">
+				<geometry>
+					<mesh>
+						<uri>model://exohaptic/meshes/collisions/right_link4.stl</uri>
+						<scale>0.001 0.001 0.001</scale>
+					</mesh>
+				</geometry>
+			</collision>
+			<visual name="right_link4_visual">
+				<geometry>
+					<mesh>
+						<uri>model://exohaptic/meshes/visuals/right_link4.stl</uri>
+						<scale>0.001 0.001 0.001</scale>
+					</mesh>
+				</geometry>
+			</visual>
+		</link>
+		<link name="right_link6">
+			<self_collide>false</self_collide>
+			<pose frame="">-0.5582498317498892 0.011978794584922578 -0.27733662706213635 0.0 -0.0 0.0</pose>
+			<inertial>
+				<pose frame="">0.0 0.0 0.0 0 0 0</pose>
+				<mass>4.519298291416539</mass>
+				<inertia>
+					<ixx>0.5531165685920428</ixx>
+					<ixy>-0.04264190765597109</ixy>
+					<ixz>-0.9537613205494702</ixz>
+					<iyy>2.240986901983799</iyy>
+					<iyz>-0.026645960737998322</iyz>
+					<izz>1.700117636667368</izz>
+				</inertia>
+			</inertial>
+			<collision name="right_link6_collision">
+				<geometry>
+					<mesh>
+						<uri>model://exohaptic/meshes/collisions/right_link6.stl</uri>
+						<scale>0.001 0.001 0.001</scale>
+					</mesh>
+				</geometry>
+			</collision>
+			<visual name="right_link6_visual">
+				<geometry>
+					<mesh>
+						<uri>model://exohaptic/meshes/visuals/right_link6.stl</uri>
+						<scale>0.001 0.001 0.001</scale>
+					</mesh>
+				</geometry>
+			</visual>
+		</link>
+		<link name="right_link5">
+			<self_collide>false</self_collide>
+			<pose frame="">-0.44528958761635556 0.04241006939239874 -0.025336064366609092 0.0 -0.0 0.0</pose>
+			<inertial>
+				<pose frame="">0.0 0.0 0.0 0 0 0</pose>
+				<mass>2.976447525420231</mass>
+				<inertia>
+					<ixx>0.03780203846189356</ixx>
+					<ixy>0.0846281353344662</ixy>
+					<ixz>-0.07885965046797937</ixz>
+					<iyy>0.5816099688672075</iyy>
+					<iyz>0.010502698324346617</iyz>
+					<izz>0.5762958110272286</izz>
+				</inertia>
+			</inertial>
+			<collision name="right_link5_collision">
+				<geometry>
+					<mesh>
+						<uri>model://exohaptic/meshes/collisions/right_link5.stl</uri>
+						<scale>0.001 0.001 0.001</scale>
+					</mesh>
+				</geometry>
+			</collision>
+			<visual name="right_link5_visual">
+				<geometry>
+					<mesh>
+						<uri>model://exohaptic/meshes/visuals/right_link5.stl</uri>
+						<scale>0.001 0.001 0.001</scale>
+					</mesh>
+				</geometry>
+			</visual>
+		</link>
+		<link name="left_link0">
+			<self_collide>false</self_collide>
+			<pose frame="">0.08381432826790289 0.23458969209216093 0.09159585888078031 0.0 -0.0 0.0</pose>
+			<inertial>
+				<pose frame="">0.0 0.0 0.0 0 0 0</pose>
+				<mass>0.4468024211817555</mass>
+				<inertia>
+					<ixx>0.028506111575001842</ixx>
+					<ixy>-0.008837787410228053</ixy>
+					<ixz>-0.0035634708141912413</ixz>
+					<iyy>0.007459320336472326</iyy>
+					<iyz>-0.009615293668332726</iyz>
+					<izz>0.028246646198803637</izz>
+				</inertia>
+			</inertial>
+			<collision name="left_link0_collision">
+				<geometry>
+					<mesh>
+						<uri>model://exohaptic/meshes/collisions/left_link0.stl</uri>
+						<scale>0.001 0.001 0.001</scale>
+					</mesh>
+				</geometry>
+			</collision>
+			<visual name="left_link0_visual">
+				<geometry>
+					<mesh>
+						<uri>model://exohaptic/meshes/visuals/left_link0.stl</uri>
+						<scale>0.001 0.001 0.001</scale>
+					</mesh>
+				</geometry>
+			</visual>
+		</link>
+		<link name="left_link1">
+			<self_collide>false</self_collide>
+			<pose frame="">0.1929131733181262 0.2502077985784657 0.08280806268269034 0.0 -0.0 0.0</pose>
+			<inertial>
+				<pose frame="">0.0 0.0 0.0 0 0 0</pose>
+				<mass>0.7831254380658126</mass>
+				<inertia>
+					<ixx>0.05462723019125278</ixx>
+					<ixy>-0.03814222150495104</ixy>
+					<ixz>-0.012434693523149807</ixz>
+					<iyy>0.038351634898749556</iyy>
+					<iyz>-0.016262618054640247</iyz>
+					<izz>0.0820725185827542</izz>
+				</inertia>
+			</inertial>
+			<collision name="left_link1_collision">
+				<geometry>
+					<mesh>
+						<uri>model://exohaptic/meshes/collisions/left_link1.stl</uri>
+						<scale>0.001 0.001 0.001</scale>
+					</mesh>
+				</geometry>
+			</collision>
+			<visual name="left_link1_visual">
+				<geometry>
+					<mesh>
+						<uri>model://exohaptic/meshes/visuals/left_link1.stl</uri>
+						<scale>0.001 0.001 0.001</scale>
+					</mesh>
+				</geometry>
+			</visual>
+		</link>
+		<link name="left_link2">
+			<self_collide>false</self_collide>
+			<pose frame="">0.2814005064242451 0.20748562352776564 0.08559134820711088 0.0 -0.0 0.0</pose>
+			<inertial>
+				<pose frame="">0.0 0.0 0.0 0 0 0</pose>
+				<mass>0.4972941507517554</mass>
+				<inertia>
+					<ixx>0.02532296866687878</ixx>
+					<ixy>-0.02903529527316519</ixy>
+					<ixz>-0.011977552362605061</ixz>
+					<iyy>0.04311043644251099</iyy>
+					<iyz>-0.008833975010869185</iyz>
+					<izz>0.06107720679218708</izz>
+				</inertia>
+			</inertial>
+			<collision name="left_link2_collision">
+				<geometry>
+					<mesh>
+						<uri>model://exohaptic/meshes/collisions/left_link2.stl</uri>
+						<scale>0.001 0.001 0.001</scale>
+					</mesh>
+				</geometry>
+			</collision>
+			<visual name="left_link2_visual">
+				<geometry>
+					<mesh>
+						<uri>model://exohaptic/meshes/visuals/left_link2.stl</uri>
+						<scale>0.001 0.001 0.001</scale>
+					</mesh>
+				</geometry>
+			</visual>
+		</link>
+		<link name="left_link3">
+			<self_collide>false</self_collide>
+			<pose frame="">0.2581789164009988 0.046598679223272516 0.0692184247873206 0.0 -0.0 0.0</pose>
+			<inertial>
+				<pose frame="">0.0 0.0 0.0 0 0 0</pose>
+				<mass>0.5220105836901086</mass>
+				<inertia>
+					<ixx>0.011225599659928167</ixx>
+					<ixy>-0.015270359917719151</ixy>
+					<ixz>-0.012713949173721944</ixz>
+					<iyy>0.043725734096818215</iyy>
+					<iyz>-0.004944978657824181</iyz>
+					<izz>0.04666071353605057</izz>
+				</inertia>
+			</inertial>
+			<collision name="left_link3_collision">
+				<geometry>
+					<mesh>
+						<uri>model://exohaptic/meshes/collisions/left_link3.stl</uri>
+						<scale>0.001 0.001 0.001</scale>
+					</mesh>
+				</geometry>
+			</collision>
+			<visual name="left_link3_visual">
+				<geometry>
+					<mesh>
+						<uri>model://exohaptic/meshes/visuals/left_link3.stl</uri>
+						<scale>0.001 0.001 0.001</scale>
+					</mesh>
+				</geometry>
+			</visual>
+		</link>
+		<link name="left_link4">
+			<self_collide>false</self_collide>
+			<pose frame="">0.34185771188185876 0.05467069850765707 0.059081134101225334 0.0 -0.0 0.0</pose>
+			<inertial>
+				<pose frame="">0.0 0.0 0.0 0 0 0</pose>
+				<mass>0.739026205771855</mass>
+				<inertia>
+					<ixx>0.005911116935457145</ixx>
+					<ixy>-0.013771280077442672</ixy>
+					<ixz>-0.014732101505236978</ixz>
+					<iyy>0.0903107684515888</iyy>
+					<iyz>-0.0023615073850101072</iyz>
+					<izz>0.09006750557342583</izz>
+				</inertia>
+			</inertial>
+			<collision name="left_link4_collision">
+				<geometry>
+					<mesh>
+						<uri>model://exohaptic/meshes/collisions/left_link4.stl</uri>
+						<scale>0.001 0.001 0.001</scale>
+					</mesh>
+				</geometry>
+			</collision>
+			<visual name="left_link4_visual">
+				<geometry>
+					<mesh>
+						<uri>model://exohaptic/meshes/visuals/left_link4.stl</uri>
+						<scale>0.001 0.001 0.001</scale>
+					</mesh>
+				</geometry>
+			</visual>
+		</link>
+		<link name="left_link5">
+			<self_collide>false</self_collide>
+			<pose frame="">0.4554902766329535 0.04241006939239877 -0.025336064366609196 0.0 -0.0 0.0</pose>
+			<inertial>
+				<pose frame="">0.0 0.0 0.0 0 0 0</pose>
+				<mass>1.814866465315438</mass>
+				<inertia>
+					<ixx>0.02689944305394046</ixx>
+					<ixy>-0.04998409559980578</ixy>
+					<ixz>0.05414916489234187</ixz>
+					<iyy>0.39004676058048976</iyy>
+					<iyz>0.006088530254351836</iyz>
+					<izz>0.3819898461998349</izz>
+				</inertia>
+			</inertial>
+			<collision name="left_link5_collision">
+				<geometry>
+					<mesh>
+						<uri>model://exohaptic/meshes/collisions/left_link5.stl</uri>
+						<scale>0.001 0.001 0.001</scale>
+					</mesh>
+				</geometry>
+			</collision>
+			<visual name="left_link5_visual">
+				<geometry>
+					<mesh>
+						<uri>model://exohaptic/meshes/visuals/left_link5.stl</uri>
+						<scale>0.001 0.001 0.001</scale>
+					</mesh>
+				</geometry>
+			</visual>
+		</link>
+		<link name="left_link6">
+			<self_collide>false</self_collide>
+			<pose frame="">0.5598745598225539 0.015814678183773943 -0.28197022520063436 0.0 -0.0 0.0</pose>
+			<inertial>
+				<pose frame="">0.0 0.0 0.0 0 0 0</pose>
+				<mass>4.519290523916513</mass>
+				<inertia>
+					<ixx>0.5574374574493587</ixx>
+					<ixy>0.043216403691500434</ixy>
+					<ixz>0.9713028764197281</ixz>
+					<iyy>2.294415625560457</iyy>
+					<iyz>-0.02674870274287185</iyz>
+					<izz>1.7492254630929642</izz>
+				</inertia>
+			</inertial>
+			<collision name="left_link6_collision">
+				<geometry>
+					<mesh>
+						<uri>model://exohaptic/meshes/collisions/left_link6.stl</uri>
+						<scale>0.001 0.001 0.001</scale>
+					</mesh>
+				</geometry>
+			</collision>
+			<visual name="left_link6_visual">
+				<geometry>
+					<mesh>
+						<uri>model://exohaptic/meshes/visuals/left_link6.stl</uri>
+						<scale>0.001 0.001 0.001</scale>
+					</mesh>
+				</geometry>
+			</visual>
+		</link>
+		<link name="neck_link1">
+			<self_collide>false</self_collide>
+			<pose frame="">0.000321248878991336 0.009918004481586177 0.27978091107758557 0.0 -0.0 0.0</pose>
+			<inertial>
+				<pose frame="">0.0 0.0 0.0 0 0 0</pose>
+				<mass>0.06979038134801685</mass>
+				<inertia>
+					<ixx>0.005481519014987607</ixx>
+					<ixy>-2.2236247149655613e-07</ixy>
+					<ixz>-6.272710904723963e-06</ixz>
+					<iyy>0.00547466116002969</iyy>
+					<iyz>-0.0001936591189363321</iyz>
+					<izz>1.8519537482874156e-05</izz>
+				</inertia>
+			</inertial>
+			<collision name="neck_link1_collision">
+				<geometry>
+					<mesh>
+						<uri>model://exohaptic/meshes/collisions/neck_link1.stl</uri>
+						<scale>0.001 0.001 0.001</scale>
+					</mesh>
+				</geometry>
+			</collision>
+			<visual name="neck_link1_visual">
+				<geometry>
+					<mesh>
+						<uri>model://exohaptic/meshes/visuals/neck_link1.stl</uri>
+						<scale>0.001 0.001 0.001</scale>
+					</mesh>
+				</geometry>
+			</visual>
+		</link>
+		<link name="neck_link2">
+			<self_collide>false</self_collide>
+			<pose frame="">0.00032124887899206484 0.009918004419102837 0.27978091098677665 0.0 -0.0 0.0</pose>
+			<inertial>
+				<pose frame="">0.0 0.0 0.0 0 0 0</pose>
+				<mass>0.04678255760927329</mass>
+				<inertia>
+					<ixx>0.0036718783017393366</ixx>
+					<ixy>-1.4905614307421943e-07</ixy>
+					<ixz>-4.204783718098053e-06</ixz>
+					<iyy>0.0036672812787744632</iyy>
+					<iyz>-0.00012981543660553322</iyz>
+					<izz>9.868112492285682e-06</izz>
+				</inertia>
+			</inertial>
+			<collision name="neck_link2_collision">
+				<geometry>
+					<mesh>
+						<uri>model://exohaptic/meshes/collisions/neck_link2.stl</uri>
+						<scale>0.001 0.001 0.001</scale>
+					</mesh>
+				</geometry>
+			</collision>
+			<visual name="neck_link2_visual">
+				<geometry>
+					<mesh>
+						<uri>model://exohaptic/meshes/visuals/neck_link2.stl</uri>
+						<scale>0.001 0.001 0.001</scale>
+					</mesh>
+				</geometry>
+			</visual>
+		</link>
+		<link name="wrist_right_link1">
+			<self_collide>false</self_collide>
+			<pose frame="">-0.5502568166643674 0.007638561714518614 -0.3103946965562385 0.0 -0.0 0.0</pose>
+			<inertial>
+				<pose frame="">0.0 0.0 0.0 0 0 0</pose>
+				<mass>0.06979043874174574</mass>
+				<inertia>
+					<ixx>0.006739669974044372</ixx>
+					<ixy>0.0002933411247103117</ixy>
+					<ixz>-0.011919983442739151</ixz>
+					<iyy>0.027866925885891132</iyy>
+					<iyz>0.0001654709698240953</iyz>
+					<izz>0.021147047401835293</izz>
+				</inertia>
+			</inertial>
+			<collision name="wrist_right_link1_collision">
+				<geometry>
+					<mesh>
+						<uri>model://exohaptic/meshes/collisions/wrist_right_link1.stl</uri>
+						<scale>0.001 0.001 0.001</scale>
+					</mesh>
+				</geometry>
+			</collision>
+			<visual name="wrist_right_link1_visual">
+				<geometry>
+					<mesh>
+						<uri>model://exohaptic/meshes/visuals/wrist_right_link1.stl</uri>
+						<scale>0.001 0.001 0.001</scale>
+					</mesh>
+				</geometry>
+			</visual>
+		</link>
+		<link name="wrist_right_link2">
+			<self_collide>false</self_collide>
+			<pose frame="">-0.5502568124410487 0.007638561542746725 -0.3103946949992252 0.0 -0.0 0.0</pose>
+			<inertial>
+				<pose frame="">0.0 0.0 0.0 0 0 0</pose>
+				<mass>0.04678258965782097</mass>
+				<inertia>
+					<ixx>0.004515253452595208</ixx>
+					<ixy>0.0001966352022809539</ixy>
+					<ixz>-0.007990316397291627</ixz>
+					<iyy>0.018677476047998572</iyy>
+					<iyz>0.00011092006885428488</iyz>
+					<izz>0.014172943334538864</izz>
+				</inertia>
+			</inertial>
+			<collision name="wrist_right_link2_collision">
+				<geometry>
+					<mesh>
+						<uri>model://exohaptic/meshes/collisions/wrist_right_link2.stl</uri>
+						<scale>0.001 0.001 0.001</scale>
+					</mesh>
+				</geometry>
+			</collision>
+			<visual name="wrist_right_link2_visual">
+				<geometry>
+					<mesh>
+						<uri>model://exohaptic/meshes/visuals/wrist_right_link2.stl</uri>
+						<scale>0.001 0.001 0.001</scale>
+					</mesh>
+				</geometry>
+			</visual>
+		</link>
+		<link name="shoulder_left_link1">
+			<self_collide>false</self_collide>
+			<pose frame="">0.1858794401376051 0.044918004481596004 0.06978091107758531 0.0 -0.0 0.0</pose>
+			<inertial>
+				<pose frame="">0.0 0.0 0.0 0 0 0</pose>
+				<mass>0.06979038134801809</mass>
+				<inertia>
+					<ixx>0.0004922938208751043</ixx>
+					<ixy>-0.0005827031707211392</ixy>
+					<ixz>-0.0009052396385368992</ixz>
+					<iyy>0.0027628219240047915</iyy>
+					<iyz>-0.0002187523166124097</iyz>
+					<izz>0.0025637973139706225</izz>
+				</inertia>
+			</inertial>
+			<collision name="shoulder_left_link1_collision">
+				<geometry>
+					<mesh>
+						<uri>model://exohaptic/meshes/collisions/shoulder_left_link1.stl</uri>
+						<scale>0.001 0.001 0.001</scale>
+					</mesh>
+				</geometry>
+			</collision>
+			<visual name="shoulder_left_link1_visual">
+				<geometry>
+					<mesh>
+						<uri>model://exohaptic/meshes/visuals/shoulder_left_link1.stl</uri>
+						<scale>0.001 0.001 0.001</scale>
+					</mesh>
+				</geometry>
+			</visual>
+		</link>
+		<link name="shoulder_left_link2">
+			<self_collide>false</self_collide>
+			<pose frame="">0.1858794401376041 0.04491800448159582 0.0697809110775842 0.0 -0.0 0.0</pose>
+			<inertial>
+				<pose frame="">0.0 0.0 0.0 0 0 0</pose>
+				<mass>0.0467825583571303</mass>
+				<inertia>
+					<ixx>0.00032745303819112833</ixx>
+					<ixy>-0.000390603182882886</ixy>
+					<ixz>-0.0006068089240816529</ixz>
+					<iyy>0.0018494552315375648</iyy>
+					<iyz>-0.00014663615271917282</iyz>
+					<izz>0.0017160431444621501</izz>
+				</inertia>
+			</inertial>
+			<collision name="shoulder_left_link2_collision">
+				<geometry>
+					<mesh>
+						<uri>model://exohaptic/meshes/collisions/shoulder_left_link2.stl</uri>
+						<scale>0.001 0.001 0.001</scale>
+					</mesh>
+				</geometry>
+			</collision>
+			<visual name="shoulder_left_link2_visual">
+				<geometry>
+					<mesh>
+						<uri>model://exohaptic/meshes/visuals/shoulder_left_link2.stl</uri>
+						<scale>0.001 0.001 0.001</scale>
+					</mesh>
+				</geometry>
+			</visual>
+		</link>
+		<link name="elbow_right_link1">
+			<self_collide>false</self_collide>
+			<pose frame="">-0.3632954356528413 0.07091800448159785 -0.12271301911642679 0.0 -0.0 0.0</pose>
+			<inertial>
+				<pose frame="">0.0 0.0 0.0 0 0 0</pose>
+				<mass>0.06979038134801685</mass>
+				<inertia>
+					<ixx>0.0014135858793880062</ixx>
+					<ixy>0.0017980924591457104</ixy>
+					<ixz>-0.0031113305559733496</ixz>
+					<iyy>0.01027376862343843</iyy>
+					<iyz>0.0006073551513680421</iyz>
+					<izz>0.009573832395338811</izz>
+				</inertia>
+			</inertial>
+			<collision name="elbow_right_link1_collision">
+				<geometry>
+					<mesh>
+						<uri>model://exohaptic/meshes/collisions/elbow_right_link1.stl</uri>
+						<scale>0.001 0.001 0.001</scale>
+					</mesh>
+				</geometry>
+			</collision>
+			<visual name="elbow_right_link1_visual">
+				<geometry>
+					<mesh>
+						<uri>model://exohaptic/meshes/visuals/elbow_right_link1.stl</uri>
+						<scale>0.001 0.001 0.001</scale>
+					</mesh>
+				</geometry>
+			</visual>
+		</link>
+		<link name="elbow_right_link2">
+			<self_collide>false</self_collide>
+			<pose frame="">-0.36329543565284345 0.07091800448159781 -0.12271301911642571 0.0 -0.0 0.0</pose>
+			<inertial>
+				<pose frame="">0.0 0.0 0.0 0 0 0</pose>
+				<mass>0.0467825583571303</mass>
+				<inertia>
+					<ixx>0.0009450223745215333</ixx>
+					<ixy>0.0012053145974662445</ixy>
+					<ixz>-0.002085616964568737</ixz>
+					<iyy>0.006884265122192254</iyy>
+					<iyz>0.00040712813518945347</iyz>
+					<izz>0.006415077150943697</izz>
+				</inertia>
+			</inertial>
+			<collision name="elbow_right_link2_collision">
+				<geometry>
+					<mesh>
+						<uri>model://exohaptic/meshes/collisions/elbow_right_link2.stl</uri>
+						<scale>0.001 0.001 0.001</scale>
+					</mesh>
+				</geometry>
+			</collision>
+			<visual name="elbow_right_link2_visual">
+				<geometry>
+					<mesh>
+						<uri>model://exohaptic/meshes/visuals/elbow_right_link2.stl</uri>
+						<scale>0.001 0.001 0.001</scale>
+					</mesh>
+				</geometry>
+			</visual>
+		</link>
+		<link name="shoulder_right_link1">
+			<self_collide>false</self_collide>
+			<pose frame="">-0.1796787511210075 0.04491800448159561 0.06978091107758501 0.0 -0.0 0.0</pose>
+			<inertial>
+				<pose frame="">0.0 0.0 0.0 0 0 0</pose>
+				<mass>0.06979038134801559</mass>
+				<inertia>
+					<ixx>0.0004922938208750811</ixx>
+					<ixy>0.0005632649738557028</ixy>
+					<ixz>0.0008750420573524725</ixz>
+					<iyy>0.0026046271829547013</iyy>
+					<iyz>-0.00021875231661239844</iyz>
+					<izz>0.0024056025729205397</izz>
+				</inertia>
+			</inertial>
+			<collision name="shoulder_right_link1_collision">
+				<geometry>
+					<mesh>
+						<uri>model://exohaptic/meshes/collisions/shoulder_right_link1.stl</uri>
+						<scale>0.001 0.001 0.001</scale>
+					</mesh>
+				</geometry>
+			</collision>
+			<visual name="shoulder_right_link1_visual">
+				<geometry>
+					<mesh>
+						<uri>model://exohaptic/meshes/visuals/shoulder_right_link1.stl</uri>
+						<scale>0.001 0.001 0.001</scale>
+					</mesh>
+				</geometry>
+			</visual>
+		</link>
+		<link name="shoulder_right_link2">
+			<self_collide>false</self_collide>
+			<pose frame="">-0.17967875112100656 0.044918004481595795 0.06978091107758419 0.0 -0.0 0.0</pose>
+			<inertial>
+				<pose frame="">0.0 0.0 0.0 0 0 0</pose>
+				<mass>0.04678255835713031</mass>
+				<inertia>
+					<ixx>0.0003274530381911284</ixx>
+					<ixy>0.00037757318416889706</ixy>
+					<ixz>0.000586566591589469</ixz>
+					<iyy>0.0017434126141737554</iyy>
+					<iyz>-0.00014663615271917282</iyz>
+					<izz>0.001610000527098341</izz>
+				</inertia>
+			</inertial>
+			<collision name="shoulder_right_link2_collision">
+				<geometry>
+					<mesh>
+						<uri>model://exohaptic/meshes/collisions/shoulder_right_link2.stl</uri>
+						<scale>0.001 0.001 0.001</scale>
+					</mesh>
+				</geometry>
+			</collision>
+			<visual name="shoulder_right_link2_visual">
+				<geometry>
+					<mesh>
+						<uri>model://exohaptic/meshes/visuals/shoulder_right_link2.stl</uri>
+						<scale>0.001 0.001 0.001</scale>
+					</mesh>
+				</geometry>
+			</visual>
+		</link>
+		<link name="elbow_left_link1">
+			<self_collide>false</self_collide>
+			<pose frame="">0.3694961246694391 0.0709180044815979 -0.12271301911642674 0.0 -0.0 0.0</pose>
+			<inertial>
+				<pose frame="">0.0 0.0 0.0 0 0 0</pose>
+				<mass>0.06979038134801685</mass>
+				<inertia>
+					<ixx>0.0014135858793880066</ixx>
+					<ixy>-0.0018287821157394338</ixy>
+					<ixz>0.0031644344249244162</ixz>
+					<iyy>0.01059088303613886</iyy>
+					<iyz>0.0006073551513680426</iyz>
+					<izz>0.009890946808039243</izz>
+				</inertia>
+			</inertial>
+			<collision name="elbow_left_link1_collision">
+				<geometry>
+					<mesh>
+						<uri>model://exohaptic/meshes/collisions/elbow_left_link1.stl</uri>
+						<scale>0.001 0.001 0.001</scale>
+					</mesh>
+				</geometry>
+			</collision>
+			<visual name="elbow_left_link1_visual">
+				<geometry>
+					<mesh>
+						<uri>model://exohaptic/meshes/visuals/elbow_left_link1.stl</uri>
+						<scale>0.001 0.001 0.001</scale>
+					</mesh>
+				</geometry>
+			</visual>
+		</link>
+		<link name="elbow_left_link2">
+			<self_collide>false</self_collide>
+			<pose frame="">0.3694961246694408 0.07091800448159791 -0.12271301911642575 0.0 -0.0 0.0</pose>
+			<inertial>
+				<pose frame="">0.0 0.0 0.0 0 0 0</pose>
+				<mass>0.04678255835713027</mass>
+				<inertia>
+					<ixx>0.0009450223745215336</ixx>
+					<ixy>-0.0012258867826703415</ixy>
+					<ixz>0.0021212140597587463</ixz>
+					<iyy>0.007096836299358708</iyy>
+					<iyz>0.00040712813518945374</iyz>
+					<izz>0.006627648328110149</izz>
+				</inertia>
+			</inertial>
+			<collision name="elbow_left_link2_collision">
+				<geometry>
+					<mesh>
+						<uri>model://exohaptic/meshes/collisions/elbow_left_link2.stl</uri>
+						<scale>0.001 0.001 0.001</scale>
+					</mesh>
+				</geometry>
+			</collision>
+			<visual name="elbow_left_link2_visual">
+				<geometry>
+					<mesh>
+						<uri>model://exohaptic/meshes/visuals/elbow_left_link2.stl</uri>
+						<scale>0.001 0.001 0.001</scale>
+					</mesh>
+				</geometry>
+			</visual>
+		</link>
+		<link name="wrist_left_link1">
+			<self_collide>false</self_collide>
+			<pose frame="">0.556457474092651 0.007638561874608349 -0.31039469655623575 0.0 -0.0 0.0</pose>
+			<inertial>
+				<pose frame="">0.0 0.0 0.0 0 0 0</pose>
+				<mass>0.06979043874174999</mass>
+				<inertia>
+					<ixx>0.0067396699742153475</ixx>
+					<ixy>-0.00029664669108493805</ixy>
+					<ixz>0.012054305693079708</ixz>
+					<iyy>0.02834585273505329</iyy>
+					<iyz>0.00016547097350152774</iyz>
+					<izz>0.02162597425116785</izz>
+				</inertia>
+			</inertial>
+			<collision name="wrist_left_link1_collision">
+				<geometry>
+					<mesh>
+						<uri>model://exohaptic/meshes/collisions/wrist_left_link1.stl</uri>
+						<scale>0.001 0.001 0.001</scale>
+					</mesh>
+				</geometry>
+			</collision>
+			<visual name="wrist_left_link1_visual">
+				<geometry>
+					<mesh>
+						<uri>model://exohaptic/meshes/visuals/wrist_left_link1.stl</uri>
+						<scale>0.001 0.001 0.001</scale>
+					</mesh>
+				</geometry>
+			</visual>
+		</link>
+		<link name="wrist_left_link2">
+			<self_collide>false</self_collide>
+			<pose frame="">0.5564574783160706 0.0076385616570824304 -0.3103946949992225 0.0 -0.0 0.0</pose>
+			<inertial>
+				<pose frame="">0.0 0.0 0.0 0 0 0</pose>
+				<mass>0.04678258965791873</mass>
+				<inertia>
+					<ixx>0.004515253452686274</ixx>
+					<ixy>-0.00019885102310030766</ixy>
+					<ixz>0.00808035668594299</ixz>
+					<iyy>0.01899851527899539</iyy>
+					<iyz>0.00011092007059922487</iyz>
+					<izz>0.01449398256560806</izz>
+				</inertia>
+			</inertial>
+			<collision name="wrist_left_link2_collision">
+				<geometry>
+					<mesh>
+						<uri>model://exohaptic/meshes/collisions/wrist_left_link2.stl</uri>
+						<scale>0.001 0.001 0.001</scale>
+					</mesh>
+				</geometry>
+			</collision>
+			<visual name="wrist_left_link2_visual">
+				<geometry>
+					<mesh>
+						<uri>model://exohaptic/meshes/visuals/wrist_left_link2.stl</uri>
+						<scale>0.001 0.001 0.001</scale>
+					</mesh>
+				</geometry>
+			</visual>
+		</link>
+		<link name="upper_arm_right">
+			<self_collide>false</self_collide>
+			<pose frame="">-0.3361103306150769 0.06722468484151577 -0.09589428693199573 0.0 -0.0 0.0</pose>
+			<inertial>
+				<pose frame="">0.0 0.0 0.0 0 0 0</pose>
+				<mass>0.11563848144937117</mass>
+				<inertia>
+					<ixx>0.0021107709126205873</ixx>
+					<ixy>0.002683716362356854</ixy>
+					<ixz>-0.004234132555808361</ixz>
+					<iyy>0.015166476936975306</iyy>
+					<iyz>0.0008141106363726831</iyz>
+					<izz>0.014142972810009594</izz>
+				</inertia>
+			</inertial>
+			<collision name="upper_arm_right_collision">
+				<geometry>
+					<mesh>
+						<uri>model://exohaptic/meshes/collisions/upper_arm_right.stl</uri>
+						<scale>0.001 0.001 0.001</scale>
+					</mesh>
+				</geometry>
+			</collision>
+			<visual name="upper_arm_right_visual">
+				<geometry>
+					<mesh>
+						<uri>model://exohaptic/meshes/visuals/upper_arm_right.stl</uri>
+						<scale>0.001 0.001 0.001</scale>
+					</mesh>
+				</geometry>
+			</visual>
+		</link>
+		<link name="lower_arm_right">
+			<self_collide>false</self_collide>
+			<pose frame="">-0.5225939875870678 0.016697876302604577 -0.2842642322927002 0.0 -0.0 0.0</pose>
+			<inertial>
+				<pose frame="">0.0 0.0 0.0 0 0 0</pose>
+				<mass>0.11563008205468756</mass>
+				<inertia>
+					<ixx>0.009922651692350456</ixx>
+					<ixy>0.0008338538527175686</ixy>
+					<ixz>-0.017679892970197418</ixz>
+					<iyy>0.041955431625722434</iyy>
+					<iyz>0.000386204386548335</iyz>
+					<izz>0.03223345398953438</izz>
+				</inertia>
+			</inertial>
+			<collision name="lower_arm_right_collision">
+				<geometry>
+					<mesh>
+						<uri>model://exohaptic/meshes/collisions/lower_arm_right.stl</uri>
+						<scale>0.001 0.001 0.001</scale>
+					</mesh>
+				</geometry>
+			</collision>
+			<visual name="lower_arm_right_visual">
+				<geometry>
+					<mesh>
+						<uri>model://exohaptic/meshes/visuals/lower_arm_right.stl</uri>
+						<scale>0.001 0.001 0.001</scale>
+					</mesh>
+				</geometry>
+			</visual>
+		</link>
+		<link name="hand_right">
+			<self_collide>false</self_collide>
+			<pose frame="">-0.5418553981581097 0.00763887176218802 -0.3162772018719575 0.0 -0.0 0.0</pose>
+			<inertial>
+				<pose frame="">0.0 0.0 0.0 0 0 0</pose>
+				<mass>0.016515273339096467</mass>
+				<inertia>
+					<ixx>0.0016534238486402267</ixx>
+					<ixy>6.835939833730018e-05</ixy>
+					<ixz>-0.0028301211049870005</ixz>
+					<iyy>0.006501762546052183</iyy>
+					<iyz>3.9900968330131303e-05</iyz>
+					<izz>0.004850536513151817</izz>
+				</inertia>
+			</inertial>
+			<collision name="hand_right_collision">
+				<geometry>
+					<mesh>
+						<uri>model://exohaptic/meshes/collisions/hand_right.stl</uri>
+						<scale>0.001 0.001 0.001</scale>
+					</mesh>
+				</geometry>
+			</collision>
+			<visual name="hand_right_visual">
+				<geometry>
+					<mesh>
+						<uri>model://exohaptic/meshes/visuals/hand_right.stl</uri>
+						<scale>0.001 0.001 0.001</scale>
+					</mesh>
+				</geometry>
+			</visual>
+		</link>
+		<link name="upper_arm_left">
+			<self_collide>false</self_collide>
+			<pose frame="">0.3442331144292949 0.06718472863269101 -0.09454795732050916 0.0 -0.0 0.0</pose>
+			<inertial>
+				<pose frame="">0.0 0.0 0.0 0 0 0</pose>
+				<mass>0.1156368930837189</mass>
+				<inertia>
+					<ixx>0.0021466919713594742</ixx>
+					<ixy>-0.0027387246858641486</ixy>
+					<ixz>0.004254852219478025</ixz>
+					<iyy>0.015751674188330404</iyy>
+					<iyz>0.0008075464044543287</iyz>
+					<izz>0.014690924713790623</izz>
+				</inertia>
+			</inertial>
+			<collision name="upper_arm_left_collision">
+				<geometry>
+					<mesh>
+						<uri>model://exohaptic/meshes/collisions/upper_arm_left.stl</uri>
+						<scale>0.001 0.001 0.001</scale>
+					</mesh>
+				</geometry>
+			</collision>
+			<visual name="upper_arm_left_visual">
+				<geometry>
+					<mesh>
+						<uri>model://exohaptic/meshes/visuals/upper_arm_left.stl</uri>
+						<scale>0.001 0.001 0.001</scale>
+					</mesh>
+				</geometry>
+			</visual>
+		</link>
+		<link name="lower_arm_left">
+			<self_collide>false</self_collide>
+			<pose frame="">0.5307144957260437 0.016656635488541967 -0.28291395907018624 0.0 -0.0 0.0</pose>
+			<inertial>
+				<pose frame="">0.0 0.0 0.0 0 0 0</pose>
+				<mass>0.11563544441687167</mass>
+				<inertia>
+					<ixx>0.009899017989415898</ixx>
+					<ixy>-0.0008624783278342999</ixy>
+					<ixz>0.017850777866129465</ixz>
+					<iyy>0.042830496731885374</iyy>
+					<iyz>0.00037126411939893014</iyz>
+					<izz>0.03313201411642468</izz>
+				</inertia>
+			</inertial>
+			<collision name="lower_arm_left_collision">
+				<geometry>
+					<mesh>
+						<uri>model://exohaptic/meshes/collisions/lower_arm_left.stl</uri>
+						<scale>0.001 0.001 0.001</scale>
+					</mesh>
+				</geometry>
+			</collision>
+			<visual name="lower_arm_left_visual">
+				<geometry>
+					<mesh>
+						<uri>model://exohaptic/meshes/visuals/lower_arm_left.stl</uri>
+						<scale>0.001 0.001 0.001</scale>
+					</mesh>
+				</geometry>
+			</visual>
+		</link>
+		<link name="hand_left">
+			<self_collide>false</self_collide>
+			<pose frame="">0.5648586360459984 0.007638329237733076 -0.304511813709779 0.0 -0.0 0.0</pose>
+			<inertial>
+				<pose frame="">0.0 0.0 0.0 0 0 0</pose>
+				<mass>0.01651527333909648</mass>
+				<inertia>
+					<ixx>0.0015327991331023471</ixx>
+					<ixy>-7.125639563819237e-05</ixy>
+					<ixz>0.0028405194049690727</ixz>
+					<iyy>0.006801583834447733</iyy>
+					<iyz>3.841394022298204e-05</iyz>
+					<izz>0.005270982237926619</izz>
+				</inertia>
+			</inertial>
+			<collision name="hand_left_collision">
+				<geometry>
+					<mesh>
+						<uri>model://exohaptic/meshes/collisions/hand_left.stl</uri>
+						<scale>0.001 0.001 0.001</scale>
+					</mesh>
+				</geometry>
+			</collision>
+			<visual name="hand_left_visual">
+				<geometry>
+					<mesh>
+						<uri>model://exohaptic/meshes/visuals/hand_left.stl</uri>
+						<scale>0.001 0.001 0.001</scale>
+					</mesh>
+				</geometry>
+			</visual>
+		</link>
+		<link name="head">
+			<self_collide>false</self_collide>
+			<pose frame="">-2.674613258781954e-05 -0.0032920339822762367 0.3239908295495952 0.0 -0.0 0.0</pose>
+			<inertial>
+				<pose frame="">0.0 0.0 0.0 0 0 0</pose>
+				<mass>35.90636554635465</mass>
+				<inertia>
+					<ixx>3.9669573405821867</ixx>
+					<ixy>-6.550264394606747e-05</ixy>
+					<ixz>0.0001133674418310343</ixz>
+					<iyy>3.913517829871493</iyy>
+					<iyz>0.010231568309373216</iyz>
+					<izz>0.15736346673179366</izz>
+				</inertia>
+			</inertial>
+			<collision name="head_collision">
+				<geometry>
+					<mesh>
+						<uri>model://exohaptic/meshes/collisions/head.stl</uri>
+						<scale>0.001 0.001 0.001</scale>
+					</mesh>
+				</geometry>
+			</collision>
+			<visual name="head_visual">
+				<geometry>
+					<mesh>
+						<uri>model://exohaptic/meshes/visuals/head.stl</uri>
+						<scale>0.001 0.001 0.001</scale>
+					</mesh>
+				</geometry>
+			</visual>
+		</link>
+		<joint name="right_joint0" type="revolute">
+			<parent>back_plate</parent>
+			<child>right_link0</child>
+			<pose frame="">0.033714492541403615 -0.019579765928769356 -0.006833996110088289 0 0 0</pose>
+			<axis>
+				<xyz>-2.8621512099231673e-19 1.0000000000000002 1.3877787807813983e-16</xyz>
+				<limit>
+					<lower>-1.5707963267948966</lower>
+					<upper>0.0</upper>
+				</limit>
+				<use_parent_model_frame>0</use_parent_model_frame>
+			</axis>
+		</joint>
+		<joint name="left_joint0" type="revolute">
+			<parent>back_plate</parent>
+			<child>left_link0</child>
+			<pose frame="">-0.03371398375960403 -0.019579622700668757 -0.006833851886186082 0 0 0</pose>
+			<axis>
+				<xyz>-2.8621512099231673e-19 1.0000000000000002 1.3877787807813983e-16</xyz>
+				<limit>
+					<lower>-3.141592653589793</lower>
+					<upper>3.141592653589793</upper>
+				</limit>
+				<use_parent_model_frame>0</use_parent_model_frame>
+			</axis>
+		</joint>
+		<joint name="right_joint1" type="revolute">
+			<parent>right_link0</parent>
+			<child>right_link1</child>
+			<pose frame="">0.10281282880982566 -0.015447729186972837 -0.014246055688096676 0 0 0</pose>
+			<axis>
+				<xyz>-1.942890293094024e-16 -6.106226635438361e-16 -1.0000000000000004</xyz>
+				<limit>
+					<lower>-1.5707963267948966</lower>
+					<upper>0.0</upper>
+				</limit>
+				<use_parent_model_frame>0</use_parent_model_frame>
+			</axis>
+		</joint>
+		<joint name="right_joint2" type="revolute">
+			<parent>right_link1</parent>
+			<child>right_link2</child>
+			<pose frame="">-2.7962820681182165e-08 0.022274407594091807 -0.017429540351753252 0 0 0</pose>
+			<axis>
+				<xyz>4.2065895836107536e-08 -1.2212453270876722e-14 0.9999999999999994</xyz>
+				<limit>
+					<lower>-3.141592653589793</lower>
+					<upper>3.141592653589793</upper>
+				</limit>
+				<use_parent_model_frame>0</use_parent_model_frame>
+			</axis>
+		</joint>
+		<joint name="right_joint3" type="revolute">
+			<parent>right_link2</parent>
+			<child>right_link3</child>
+			<pose frame="">-0.014186967225026983 0.13085032213204983 0.011187032331791419 0 0 0</pose>
+			<axis>
+				<xyz>-3.441096356306795e-14 1.0000000000000002 -3.8174273444027825e-15</xyz>
+				<limit>
+					<lower>0.0</lower>
+					<upper>0.0</upper>
+				</limit>
+				<use_parent_model_frame>0</use_parent_model_frame>
+			</axis>
+		</joint>
+		<joint name="right_joint4" type="revolute">
+			<parent>right_link3</parent>
+			<child>right_link4</child>
+			<pose frame="">0.0506544229312026 -0.0019187932485478587 0.015031107169849412 0 0 0</pose>
+			<axis>
+				<xyz>0.7071068109316283 3.450777846521667e-14 0.7071067514414655</xyz>
+				<limit>
+					<lower>0.0</lower>
+					<upper>0.0</upper>
+				</limit>
+				<use_parent_model_frame>0</use_parent_model_frame>
+			</axis>
+		</joint>
+		<joint name="right_joint5" type="revolute">
+			<parent>right_link4</parent>
+			<child>right_link5</child>
+			<pose frame="">0.1331835643974659 0.010349999999704984 0.05137130205071697 0 0 0</pose>
+			<axis>
+				<xyz>0.7071067514414655 4.2808724188042874e-14 -0.7071068109316293</xyz>
+				<limit>
+					<lower>0.0</lower>
+					<upper>0.0</upper>
+				</limit>
+				<use_parent_model_frame>0</use_parent_model_frame>
+			</axis>
+		</joint>
+		<joint name="right_joint6" type="revolute">
+			<parent>right_link5</parent>
+			<child>right_link6</child>
+			<pose frame="">0.045679027602138336 0.04078127480823986 0.10219999393140207 0 0 0</pose>
+			<axis>
+				<xyz>0.7071067514414662 4.3183424458853865e-14 -0.7071068109316285</xyz>
+				<limit>
+					<lower>0.0</lower>
+					<upper>0.0</upper>
+				</limit>
+				<use_parent_model_frame>0</use_parent_model_frame>
+			</axis>
+		</joint>
+		<joint name="left_joint1" type="revolute">
+			<parent>left_link0</parent>
+			<child>left_link1</child>
+			<pose frame="">-0.10281282880982572 -0.015447729186972908 -0.01424605568809655 0 0 0</pose>
+			<axis>
+				<xyz>-1.942890293094024e-16 6.106226635438361e-16 1.0000000000000004</xyz>
+				<limit>
+					<lower>0.0</lower>
+					<upper>0.0</upper>
+				</limit>
+				<use_parent_model_frame>0</use_parent_model_frame>
+			</axis>
+		</joint>
+		<joint name="left_joint2" type="revolute">
+			<parent>left_link1</parent>
+			<child>left_link2</child>
+			<pose frame="">7.674750701625044e-08 0.02227444586434462 -0.01742934121248867 0 0 0</pose>
+			<axis>
+				<xyz>4.206589569732966e-08 1.2212453270876722e-14 -0.9999999999999996</xyz>
+				<limit>
+					<lower>0.0</lower>
+					<upper>0.0</upper>
+				</limit>
+				<use_parent_model_frame>0</use_parent_model_frame>
+			</axis>
+		</joint>
+		<joint name="left_joint3" type="revolute">
+			<parent>left_link2</parent>
+			<child>left_link3</child>
+			<pose frame="">0.02322166610821611 0.12916139016883846 0.014693501216153298 0 0 0</pose>
+			<axis>
+				<xyz>-3.4549687231038074e-14 -1.0000000000000002 3.817427344402786e-15</xyz>
+				<limit>
+					<lower>0.0</lower>
+					<upper>0.0</upper>
+				</limit>
+				<use_parent_model_frame>0</use_parent_model_frame>
+			</axis>
+		</joint>
+		<joint name="left_joint4" type="revolute">
+			<parent>left_link3</parent>
+			<child>left_link4</child>
+			<pose frame="">-0.050663700041245326 -0.001910629115551661 0.015037363394784196 0 0 0</pose>
+			<axis>
+				<xyz>0.7071068109316283 -3.448811397632009e-14 -0.7071067514414657</xyz>
+				<limit>
+					<lower>0.0</lower>
+					<upper>0.0</upper>
+				</limit>
+				<use_parent_model_frame>0</use_parent_model_frame>
+			</axis>
+		</joint>
+		<joint name="left_joint5" type="revolute">
+			<parent>left_link4</parent>
+			<child>left_link5</child>
+			<pose frame="">-0.1303551373917003 0.010349999999704788 0.05419972929444363 0 0 0</pose>
+			<axis>
+				<xyz>-0.7071067514414655 4.27890597008007e-14 -0.7071068109316291</xyz>
+				<limit>
+					<lower>0.0</lower>
+					<upper>0.0</upper>
+				</limit>
+				<use_parent_model_frame>0</use_parent_model_frame>
+			</axis>
+		</joint>
+		<joint name="left_joint6" type="revolute">
+			<parent>left_link5</parent>
+			<child>left_link6</child>
+			<pose frame="">-0.03710306665820532 0.036945391209388605 0.10683359206990009 0 0 0</pose>
+			<axis>
+				<xyz>0.7071067514414662 -4.3163759971611686e-14 0.7071068109316283</xyz>
+				<limit>
+					<lower>0.0</lower>
+					<upper>0.0</upper>
+				</limit>
+				<use_parent_model_frame>0</use_parent_model_frame>
+			</axis>
+		</joint>
+		<joint name="shoulder_right_axis0" type="revolute">
+			<parent>back_plate</parent>
+			<child>shoulder_right_link1</child>
+			<pose frame="">-3.801403636316536e-15 1.0658141036401502e-16 -1.0658141036401502e-16 0 0 0</pose>
+			<axis>
+				<xyz>-2.4813787113981e-13 -1.3247887345886963e-14 1.000000000000005</xyz>
+				<limit>
+					<lower>-3.141592653589793</lower>
+					<upper>3.141592653589793</upper>
+				</limit>
+				<use_parent_model_frame>0</use_parent_model_frame>
+			</axis>
+		</joint>
+		<joint name="shoulder_right_axis2" type="revolute">
+			<parent>shoulder_right_link2</parent>
+			<child>upper_arm_right</child>
+			<pose frame="">0.15643157949407044 -0.022306680359919947 0.16567519800958067 0 0 0</pose>
+			<axis>
+				<xyz>0.8191520442891348 8.090533897899756e-15 -0.5735764363508407</xyz>
+				<limit>
+					<lower>-3.141592653589793</lower>
+					<upper>3.141592653589793</upper>
+				</limit>
+				<use_parent_model_frame>0</use_parent_model_frame>
+			</axis>
+		</joint>
+		<joint name="shoulder_right_axis1" type="revolute">
+			<parent>shoulder_right_link1</parent>
+			<child>shoulder_right_link2</child>
+			<pose frame="">-3.552713678800501e-17 8.881784197001253e-18 7.993605777301127e-16 0 0 0</pose>
+			<axis>
+				<xyz>-1.607862201697598e-17 1.0000000000000018 1.3901420472644638e-14</xyz>
+				<limit>
+					<lower>-3.141592653589793</lower>
+					<upper>3.141592653589793</upper>
+				</limit>
+				<use_parent_model_frame>0</use_parent_model_frame>
+			</axis>
+		</joint>
+		<joint name="elbow_right_axis0" type="revolute">
+			<parent>upper_arm_right</parent>
+			<child>elbow_right_link1</child>
+			<pose frame="">-3.552713678800501e-15 0.0 1.3145040611561853e-15 0 0 0</pose>
+			<axis>
+				<xyz>0.573576436350846 -1.052667370819778e-14 0.8191520442891392</xyz>
+				<limit>
+					<lower>-3.141592653589793</lower>
+					<upper>3.141592653589793</upper>
+				</limit>
+				<use_parent_model_frame>0</use_parent_model_frame>
+			</axis>
+		</joint>
+		<joint name="elbow_right_axis2" type="revolute">
+			<parent>elbow_right_link2</parent>
+			<child>lower_arm_right</child>
+			<pose frame="">0.159298551934224 0.05422012817899318 0.1615512131762742 0 0 0</pose>
+			<axis>
+				<xyz>0.819152044289134 8.076656110155473e-15 -0.5735764363508402</xyz>
+				<limit>
+					<lower>-3.141592653589793</lower>
+					<upper>3.141592653589793</upper>
+				</limit>
+				<use_parent_model_frame>0</use_parent_model_frame>
+			</axis>
+		</joint>
+		<joint name="elbow_right_axis1" type="revolute">
+			<parent>elbow_right_link1</parent>
+			<child>elbow_right_link2</child>
+			<pose frame="">2.913225216616411e-15 4.4408920985006264e-17 -1.865174681370263e-15 0 0 0</pose>
+			<axis>
+				<xyz>-8.277650733411176e-17 0.9999999999999996 1.380144233857418e-14</xyz>
+				<limit>
+					<lower>-3.141592653589793</lower>
+					<upper>3.141592653589793</upper>
+				</limit>
+				<use_parent_model_frame>0</use_parent_model_frame>
+			</axis>
+		</joint>
+		<joint name="wrist_right_axis0" type="revolute">
+			<parent>lower_arm_right</parent>
+			<child>wrist_right_link1</child>
+			<pose frame="">1.5793842749189936e-08 -6.488616455246898e-10 5.5671679177748955e-09 0 0 0</pose>
+			<axis>
+				<xyz>0.5648625214634267 0.17364817766692062 0.8067072841117462</xyz>
+				<limit>
+					<lower>-3.141592653589793</lower>
+					<upper>3.141592653589793</upper>
+				</limit>
+				<use_parent_model_frame>0</use_parent_model_frame>
+			</axis>
+		</joint>
+		<joint name="wrist_right_axis2" type="revolute">
+			<parent>wrist_right_link2</parent>
+			<child>hand_right</child>
+			<pose frame="">-0.00840140271241431 -3.1069653117388185e-07 0.005882510882886365 0 0 0</pose>
+			<axis>
+				<xyz>0.819152044289134 7.90728978717857e-15 -0.5735764363508405</xyz>
+				<limit>
+					<lower>-3.141592653589793</lower>
+					<upper>3.141592653589793</upper>
+				</limit>
+				<use_parent_model_frame>0</use_parent_model_frame>
+			</axis>
+		</joint>
+		<joint name="wrist_right_axis1" type="revolute">
+			<parent>wrist_right_link1</parent>
+			<child>wrist_right_link2</child>
+			<pose frame="">1.1570526226023503e-08 -4.770901784745263e-10 4.01015029183327e-09 0 0 0</pose>
+			<axis>
+				<xyz>-0.09960050292501532 0.9848077530122098 -0.14224425972293503</xyz>
+				<limit>
+					<lower>-3.141592653589793</lower>
+					<upper>3.141592653589793</upper>
+				</limit>
+				<use_parent_model_frame>0</use_parent_model_frame>
+			</axis>
+		</joint>
+		<joint name="shoulder_left_axis0" type="revolute">
+			<parent>back_plate</parent>
+			<child>shoulder_left_link1</child>
+			<pose frame="">2.7355895326763858e-15 -2.220446049250313e-16 1.2967404927621828e-15 0 0 0</pose>
+			<axis>
+				<xyz>-2.531278244784482e-13 1.3414420799580753e-14 -1.000000000000005</xyz>
+				<limit>
+					<lower>-3.141592653589793</lower>
+					<upper>3.141592653589793</upper>
+				</limit>
+				<use_parent_model_frame>0</use_parent_model_frame>
+			</axis>
+		</joint>
+		<joint name="shoulder_left_axis2" type="revolute">
+			<parent>shoulder_left_link2</parent>
+			<child>upper_arm_left</child>
+			<pose frame="">-0.1583536742916909 -0.02226672415109518 0.1643288683980941 0 0 0</pose>
+			<axis>
+				<xyz>0.8191520442891349 -8.067518469450734e-15 0.5735764363508409</xyz>
+				<limit>
+					<lower>-3.141592653589793</lower>
+					<upper>3.141592653589793</upper>
+				</limit>
+				<use_parent_model_frame>0</use_parent_model_frame>
+			</axis>
+		</joint>
+		<joint name="shoulder_left_axis1" type="revolute">
+			<parent>shoulder_left_link1</parent>
+			<child>shoulder_left_link2</child>
+			<pose frame="">7.105427357601002e-17 1.7763568394002505e-17 7.815970093361102e-16 0 0 0</pose>
+			<axis>
+				<xyz>-1.548022899870896e-16 -1.0000000000000018 -1.3901420472644815e-14</xyz>
+				<limit>
+					<lower>-3.141592653589793</lower>
+					<upper>3.141592653589793</upper>
+				</limit>
+				<use_parent_model_frame>0</use_parent_model_frame>
+			</axis>
+		</joint>
+		<joint name="elbow_left_axis0" type="revolute">
+			<parent>upper_arm_left</parent>
+			<child>elbow_left_link1</child>
+			<pose frame="">1.7053025658242404e-15 -4.4408920985006264e-17 5.151434834260726e-16 0 0 0</pose>
+			<axis>
+				<xyz>0.5735764363508419 1.0709355376031545e-14 -0.8191520442891416</xyz>
+				<limit>
+					<lower>-3.141592653589793</lower>
+					<upper>3.141592653589793</upper>
+				</limit>
+				<use_parent_model_frame>0</use_parent_model_frame>
+			</axis>
+		</joint>
+		<joint name="elbow_left_axis2" type="revolute">
+			<parent>elbow_left_link2</parent>
+			<child>lower_arm_left</child>
+			<pose frame="">-0.1612183710566027 0.054261368993055864 0.16020093995376025 0 0 0</pose>
+			<axis>
+				<xyz>0.8191520442891344 -8.053640681706452e-15 0.5735764363508404</xyz>
+				<limit>
+					<lower>-3.141592653589793</lower>
+					<upper>3.141592653589793</upper>
+				</limit>
+				<use_parent_model_frame>0</use_parent_model_frame>
+			</axis>
+		</joint>
+		<joint name="elbow_left_axis1" type="revolute">
+			<parent>elbow_left_link1</parent>
+			<child>elbow_left_link2</child>
+			<pose frame="">-2.3447910280083307e-15 8.881784197001253e-18 -1.6697754290362355e-15 0 0 0</pose>
+			<axis>
+				<xyz>-2.211945906449224e-16 -0.9999999999999999 -1.3801469073767804e-14</xyz>
+				<limit>
+					<lower>-3.141592653589793</lower>
+					<upper>3.141592653589793</upper>
+				</limit>
+				<use_parent_model_frame>0</use_parent_model_frame>
+			</axis>
+		</joint>
+		<joint name="wrist_left_axis0" type="revolute">
+			<parent>lower_arm_left</parent>
+			<child>wrist_left_link1</child>
+			<pose frame="">1.5794464474083727e-08 -8.089519154541591e-10 5.5671654308753205e-09 0 0 0</pose>
+			<axis>
+				<xyz>0.564862521463422 -0.17364817766692411 -0.8067072841117483</xyz>
+				<limit>
+					<lower>-3.141592653589793</lower>
+					<upper>3.141592653589793</upper>
+				</limit>
+				<use_parent_model_frame>0</use_parent_model_frame>
+			</axis>
+		</joint>
+		<joint name="wrist_left_axis2" type="revolute">
+			<parent>wrist_left_link2</parent>
+			<child>hand_left</child>
+			<pose frame="">-0.008401146158883606 2.3182792354581317e-07 -0.00588287727929071 0 0 0</pose>
+			<axis>
+				<xyz>0.8191520442891345 -8.057873271731255e-15 0.5735764363508403</xyz>
+				<limit>
+					<lower>-3.141592653589793</lower>
+					<upper>3.141592653589793</upper>
+				</limit>
+				<use_parent_model_frame>0</use_parent_model_frame>
+			</axis>
+		</joint>
+		<joint name="wrist_left_axis1" type="revolute">
+			<parent>wrist_left_link1</parent>
+			<child>wrist_left_link2</child>
+			<pose frame="">1.1571043287972316e-08 -5.914261369532881e-10 4.010148728639251e-09 0 0 0</pose>
+			<axis>
+				<xyz>-0.09960050292501774 -0.9848077530122094 0.14224425972293814</xyz>
+				<limit>
+					<lower>-3.141592653589793</lower>
+					<upper>3.141592653589793</upper>
+				</limit>
+				<use_parent_model_frame>0</use_parent_model_frame>
+			</axis>
+		</joint>
+		<joint name="neck_axis0" type="revolute">
+			<parent>back_plate</parent>
+			<child>neck_link1</child>
+			<pose frame="">-1.8436641102681506e-16 1.4432899320127036e-17 2.948752353404416e-15 0 0 0</pose>
+			<axis>
+				<xyz>1.000000000000004 6.875940297692465e-16 -2.175300523268094e-15</xyz>
+				<limit>
+					<lower>-3.141592653589793</lower>
+					<upper>3.141592653589793</upper>
+				</limit>
+				<use_parent_model_frame>0</use_parent_model_frame>
+			</axis>
+		</joint>
+		<joint name="neck_axis2" type="revolute">
+			<parent>neck_link2</parent>
+			<child>head</child>
+			<pose frame="">0.0003479950115802368 0.013210038463862551 -0.04420991847200916 0 0 0</pose>
+			<axis>
+				<xyz>1.3664765293499789e-16 -1.0201451138534087e-14 -0.9999999999999998</xyz>
+				<limit>
+					<lower>-3.141592653589793</lower>
+					<upper>3.141592653589793</upper>
+				</limit>
+				<use_parent_model_frame>0</use_parent_model_frame>
+			</axis>
+		</joint>
+		<joint name="neck_axis1" type="revolute">
+			<parent>neck_link1</parent>
+			<child>neck_link2</child>
+			<pose frame="">-9.026807079592914e-16 6.248334072367357e-11 9.080903140556984e-11 0 0 0</pose>
+			<axis>
+				<xyz>7.67619373293833e-17 1.0000000000000013 -1.0325074129013959e-14</xyz>
+				<limit>
+					<lower>-3.141592653589793</lower>
+					<upper>3.141592653589793</upper>
+				</limit>
+				<use_parent_model_frame>0</use_parent_model_frame>
+			</axis>
+		</joint>
+		<plugin filename="libcardsflow_gazebo_plugin.so" name="cardsflow_gazebo_plugin" />
+	</model>
+</sdf>

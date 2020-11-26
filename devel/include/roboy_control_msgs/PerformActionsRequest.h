@@ -146,7 +146,7 @@ struct Definition< ::roboy_control_msgs::PerformActionsRequest_<ContainerAllocat
 {
   static const char* value()
   {
-    return "string[] actions\n"
+    return "string[] actions # can be a trajectory name or pause (2_pause will pause for 2 seconds)\n"
 ;
   }
 

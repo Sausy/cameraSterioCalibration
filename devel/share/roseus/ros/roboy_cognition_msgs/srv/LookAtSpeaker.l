@@ -98,7 +98,7 @@
 (setf (get roboy_cognition_msgs::LookAtSpeakerRequest :datatype-) "roboy_cognition_msgs/LookAtSpeakerRequest")
 (setf (get roboy_cognition_msgs::LookAtSpeakerRequest :definition-)
       "---
-
+#was the move succesful?
 bool turned
 
 ")
@@ -107,7 +107,7 @@ bool turned
 (setf (get roboy_cognition_msgs::LookAtSpeakerResponse :datatype-) "roboy_cognition_msgs/LookAtSpeakerResponse")
 (setf (get roboy_cognition_msgs::LookAtSpeakerResponse :definition-)
       "---
-
+#was the move succesful?
 bool turned
 
 ")

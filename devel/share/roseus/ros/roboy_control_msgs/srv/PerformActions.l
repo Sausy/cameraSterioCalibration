@@ -115,7 +115,7 @@
 (setf (get roboy_control_msgs::PerformActionsRequest :md5sum-) "4c7ae25d13777401a5c311c271b76cf4")
 (setf (get roboy_control_msgs::PerformActionsRequest :datatype-) "roboy_control_msgs/PerformActionsRequest")
 (setf (get roboy_control_msgs::PerformActionsRequest :definition-)
-      "string[] actions
+      "string[] actions # can be a trajectory name or pause (2_pause will pause for 2 seconds)
 ---
 bool success
 ")
@@ -123,7 +123,7 @@ bool success
 (setf (get roboy_control_msgs::PerformActionsResponse :md5sum-) "4c7ae25d13777401a5c311c271b76cf4")
 (setf (get roboy_control_msgs::PerformActionsResponse :datatype-) "roboy_control_msgs/PerformActionsResponse")
 (setf (get roboy_control_msgs::PerformActionsResponse :definition-)
-      "string[] actions
+      "string[] actions # can be a trajectory name or pause (2_pause will pause for 2 seconds)
 ---
 bool success
 ")

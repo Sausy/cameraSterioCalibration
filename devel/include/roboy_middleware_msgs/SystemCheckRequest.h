@@ -146,7 +146,7 @@ struct Definition< ::roboy_middleware_msgs::SystemCheckRequest_<ContainerAllocat
 {
   static const char* value()
   {
-    return "\n"
+    return "# if empty check all motors, otherwise only the requested\n"
 "uint8[] motorids\n"
 ;
   }

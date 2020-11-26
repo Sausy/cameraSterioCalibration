@@ -165,13 +165,13 @@ struct Definition< ::roboy_middleware_msgs::InverseKinematicsRequest_<ContainerA
 {
   static const char* value()
   {
-    return "\n"
+    return "# name of the endeffector\n"
 "string endeffector\n"
-"\n"
+"# 0: position and orientation 1: position only 2: orientation only\n"
 "int8 type\n"
-"\n"
+"# the frame of the ik target\n"
 "string target_frame\n"
-"\n"
+"# target position/orientation for frame in world coordinates (if applicable)\n"
 "geometry_msgs/Pose pose\n"
 "\n"
 "================================================================================\n"

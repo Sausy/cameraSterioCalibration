@@ -67,14 +67,14 @@ set(common_utilities_CONFIG_INCLUDED TRUE)
 
 # set variables for source/devel/install prefixes
 if("TRUE" STREQUAL "TRUE")
-  set(common_utilities_SOURCE_PREFIX /home/sausy/Projects/lighthouse/cameraSterioCalibration/src/common_utilities)
-  set(common_utilities_DEVEL_PREFIX /home/sausy/Projects/lighthouse/cameraSterioCalibration/devel)
+  set(common_utilities_SOURCE_PREFIX /home/userdev/Projects/lighthouse/cameraSterioCalibration/src/common_utilities)
+  set(common_utilities_DEVEL_PREFIX /home/userdev/Projects/lighthouse/cameraSterioCalibration/devel)
   set(common_utilities_INSTALL_PREFIX "")
   set(common_utilities_PREFIX ${common_utilities_DEVEL_PREFIX})
 else()
   set(common_utilities_SOURCE_PREFIX "")
   set(common_utilities_DEVEL_PREFIX "")
-  set(common_utilities_INSTALL_PREFIX /home/sausy/Projects/lighthouse/cameraSterioCalibration/install)
+  set(common_utilities_INSTALL_PREFIX /home/userdev/Projects/lighthouse/cameraSterioCalibration/install)
   set(common_utilities_PREFIX ${common_utilities_INSTALL_PREFIX})
 endif()
 
@@ -91,9 +91,9 @@ endif()
 # flag project as catkin-based to distinguish if a find_package()-ed project is a catkin project
 set(common_utilities_FOUND_CATKIN_PROJECT TRUE)
 
-if(NOT "/home/sausy/Projects/lighthouse/cameraSterioCalibration/src/common_utilities/include " STREQUAL " ")
+if(NOT "/home/userdev/Projects/lighthouse/cameraSterioCalibration/src/common_utilities/include " STREQUAL " ")
   set(common_utilities_INCLUDE_DIRS "")
-  set(_include_dirs "/home/sausy/Projects/lighthouse/cameraSterioCalibration/src/common_utilities/include")
+  set(_include_dirs "/home/userdev/Projects/lighthouse/cameraSterioCalibration/src/common_utilities/include")
   if(NOT " " STREQUAL " ")
     set(_report "Check the issue tracker '' and consider creating a ticket if the problem has not been reported yet.")
   elseif(NOT " " STREQUAL " ")
@@ -110,7 +110,7 @@ if(NOT "/home/sausy/Projects/lighthouse/cameraSterioCalibration/src/common_utili
         message(FATAL_ERROR "Project 'common_utilities' specifies '${idir}' as an include dir, which is not found.  It does not exist in '${include}'.  ${_report}")
       endif()
     else()
-      message(FATAL_ERROR "Project 'common_utilities' specifies '${idir}' as an include dir, which is not found.  It does neither exist as an absolute directory nor in '/home/sausy/Projects/lighthouse/cameraSterioCalibration/src/common_utilities/${idir}'.  ${_report}")
+      message(FATAL_ERROR "Project 'common_utilities' specifies '${idir}' as an include dir, which is not found.  It does neither exist as an absolute directory nor in '/home/userdev/Projects/lighthouse/cameraSterioCalibration/src/common_utilities/${idir}'.  ${_report}")
     endif()
     _list_append_unique(common_utilities_INCLUDE_DIRS ${include})
   endforeach()
@@ -154,7 +154,7 @@ foreach(library ${libraries})
     set(lib_path "")
     set(lib "${library}-NOTFOUND")
     # since the path where the library is found is returned we have to iterate over the paths manually
-    foreach(path /home/sausy/Projects/lighthouse/cameraSterioCalibration/devel/lib;/opt/ros/melodic/lib)
+    foreach(path /home/userdev/Projects/lighthouse/cameraSterioCalibration/devel/lib;/opt/ros/melodic/lib)
       find_library(lib ${library}
         PATHS ${path}
         NO_DEFAULT_PATH NO_CMAKE_FIND_ROOT_PATH)

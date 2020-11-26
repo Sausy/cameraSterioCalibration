@@ -1,0 +1,931 @@
+<robot name="exohaptic">
+  <joint name="right_joint0" type="revolute">
+    <parent link="back_plate" />
+    <child link="right_link0" />
+    <origin rpy="0  0  0" xyz="-0.0399   0.21501  0.08476" />
+    <axis xyz="0  1  0" />
+    <limit effort="0.0" lower="-1.57079632679" upper="0.0" velocity="0.0" />
+  </joint>
+  <joint name="left_joint0" type="revolute">
+    <parent link="back_plate" />
+    <child link="left_link0" />
+    <origin rpy="0  0  0" xyz="0.0501   0.21501  0.08476" />
+    <axis xyz="0  1  0" />
+    <limit effort="0.0" lower="-3.14159265359" upper="3.14159265359" velocity="0.0" />
+  </joint>
+  <joint name="right_joint1" type="revolute">
+    <parent link="right_link0" />
+    <child link="right_link1" />
+    <origin rpy="0  0  0" xyz="-0.04     0.01975 -0.0162" />
+    <axis xyz="0  0 -1" />
+    <limit effort="0.0" lower="-1.57079632679" upper="0.0" velocity="0.0" />
+  </joint>
+  <joint name="right_joint2" type="revolute">
+    <parent link="right_link1" />
+    <child link="right_link2" />
+    <origin rpy="0  0  0" xyz="-0.1913 -0.005  -0.0004" />
+    <axis xyz="0  0  1" />
+    <limit effort="0.0" lower="-3.14159265359" upper="3.14159265359" velocity="0.0" />
+  </joint>
+  <joint name="right_joint3" type="revolute">
+    <parent link="right_link2" />
+    <child link="right_link3" />
+    <origin rpy="0  0  0" xyz="0      -0.054    0.01575" />
+    <axis xyz="0  1  0" />
+    <limit effort="0.0" lower="-3.14159265359" upper="3.14159265359" velocity="0.0" />
+  </joint>
+  <joint name="right_joint4" type="revolute">
+    <parent link="right_link3" />
+    <child link="right_link4" />
+    <origin rpy="0  0  0" xyz="-0.00979 -0.123   -0.00979" />
+    <axis xyz="0.7071  0      0.7071" />
+    <limit effort="0.0" lower="-3.14159265359" upper="3.14159265359" velocity="0.0" />
+  </joint>
+  <joint name="right_joint5" type="revolute">
+    <parent link="right_link4" />
+    <child link="right_link5" />
+    <origin rpy="0  0  0" xyz="-0.03111  0      -0.04808" />
+    <axis xyz="0.7071  0     -0.7071" />
+    <limit effort="0.0" lower="-3.14159265359" upper="3.14159265359" velocity="0.0" />
+  </joint>
+  <joint name="right_joint6" type="revolute">
+    <parent link="right_link5" />
+    <child link="right_link6" />
+    <origin rpy="0  0  0" xyz="-0.20046  0      -0.20117" />
+    <axis xyz="0.7071  0     -0.7071" />
+    <limit effort="0.0" lower="-3.14159265359" upper="3.14159265359" velocity="0.0" />
+  </joint>
+  <joint name="left_joint1" type="revolute">
+    <parent link="left_link0" />
+    <child link="left_link1" />
+    <origin rpy="0  0  0" xyz="0.04     0.01975 -0.0162" />
+    <axis xyz="0  0  1" />
+    <limit effort="0.0" lower="-3.14159265359" upper="3.14159265359" velocity="0.0" />
+  </joint>
+  <joint name="left_joint2" type="revolute">
+    <parent link="left_link1" />
+    <child link="left_link2" />
+    <origin rpy="0  0  0" xyz="0.1913 -0.005  -0.0004" />
+    <axis xyz="0  0 -1" />
+    <limit effort="0.0" lower="-3.14159265359" upper="3.14159265359" velocity="0.0" />
+  </joint>
+  <joint name="left_joint3" type="revolute">
+    <parent link="left_link2" />
+    <child link="left_link3" />
+    <origin rpy="0  0  0" xyz="0      -0.054    0.01575" />
+    <axis xyz="0 -1  0" />
+    <limit effort="0.0" lower="-3.14159265359" upper="3.14159265359" velocity="0.0" />
+  </joint>
+  <joint name="left_joint4" type="revolute">
+    <parent link="left_link3" />
+    <child link="left_link4" />
+    <origin rpy="0  0  0" xyz="0.00979 -0.123   -0.00979" />
+    <axis xyz="0.7071  0     -0.7071" />
+    <limit effort="0.0" lower="-3.14159265359" upper="3.14159265359" velocity="0.0" />
+  </joint>
+  <joint name="left_joint5" type="revolute">
+    <parent link="left_link4" />
+    <child link="left_link5" />
+    <origin rpy="0  0  0" xyz="0.03394  0      -0.04525" />
+    <axis xyz="-0.7071  0     -0.7071" />
+    <limit effort="0.0" lower="-3.14159265359" upper="3.14159265359" velocity="0.0" />
+  </joint>
+  <joint name="left_joint6" type="revolute">
+    <parent link="left_link5" />
+    <child link="left_link6" />
+    <origin rpy="0  0  0" xyz="0.19763  0      -0.204" />
+    <axis xyz="0.7071  0      0.7071" />
+    <limit effort="0.0" lower="-3.14159265359" upper="3.14159265359" velocity="0.0" />
+  </joint>
+  <joint name="shoulder_right_axis0" type="revolute">
+    <parent link="back_plate" />
+    <child link="shoulder_right_link1" />
+    <origin rpy="0  0  0" xyz="-0.17967  0.04491  0.06978" />
+    <axis xyz="0  0  1" />
+    <limit effort="0.0" lower="-3.14159265359" upper="3.14159265359" velocity="0.0" />
+  </joint>
+  <joint name="shoulder_right_axis2" type="revolute">
+    <parent link="shoulder_right_link2" />
+    <child link="upper_arm_right" />
+    <origin rpy="0  0  0" xyz="0  0  0" />
+    <axis xyz="0.81915  0      -0.57357" />
+    <limit effort="0.0" lower="-3.14159265359" upper="3.14159265359" velocity="0.0" />
+  </joint>
+  <joint name="shoulder_right_axis1" type="revolute">
+    <parent link="shoulder_right_link1" />
+    <child link="shoulder_right_link2" />
+    <origin rpy="0  0  0" xyz="0  0  0" />
+    <axis xyz="0  1  0" />
+    <limit effort="0.0" lower="-3.14159265359" upper="3.14159265359" velocity="0.0" />
+  </joint>
+  <joint name="elbow_right_axis0" type="revolute">
+    <parent link="upper_arm_right" />
+    <child link="elbow_right_link1" />
+    <origin rpy="0  0  0" xyz="-0.18361  0.026   -0.19249" />
+    <axis xyz="0.57357  0       0.81915" />
+    <limit effort="0.0" lower="-3.14159265359" upper="3.14159265359" velocity="0.0" />
+  </joint>
+  <joint name="elbow_right_axis2" type="revolute">
+    <parent link="elbow_right_link2" />
+    <child link="lower_arm_right" />
+    <origin rpy="0  0  0" xyz="0  0  0" />
+    <axis xyz="0.81915  0      -0.57357" />
+    <limit effort="0.0" lower="-3.14159265359" upper="3.14159265359" velocity="0.0" />
+  </joint>
+  <joint name="elbow_right_axis1" type="revolute">
+    <parent link="elbow_right_link1" />
+    <child link="elbow_right_link2" />
+    <origin rpy="0  0  0" xyz="0  0  0" />
+    <axis xyz="0  1  0" />
+    <limit effort="0.0" lower="-3.14159265359" upper="3.14159265359" velocity="0.0" />
+  </joint>
+  <joint name="wrist_right_axis0" type="revolute">
+    <parent link="lower_arm_right" />
+    <child link="wrist_right_link1" />
+    <origin rpy="0  0  0" xyz="-0.18696 -0.06327 -0.18768" />
+    <axis xyz="0.56486  0.17364  0.8067" />
+    <limit effort="0.0" lower="-3.14159265359" upper="3.14159265359" velocity="0.0" />
+  </joint>
+  <joint name="wrist_right_axis2" type="revolute">
+    <parent link="wrist_right_link2" />
+    <child link="hand_right" />
+    <origin rpy="0  0  0" xyz="0  0  0" />
+    <axis xyz="0.81915  0      -0.57357" />
+    <limit effort="0.0" lower="-3.14159265359" upper="3.14159265359" velocity="0.0" />
+  </joint>
+  <joint name="wrist_right_axis1" type="revolute">
+    <parent link="wrist_right_link1" />
+    <child link="wrist_right_link2" />
+    <origin rpy="0  0  0" xyz="0  0  0" />
+    <axis xyz="-0.0996   0.9848  -0.14224" />
+    <limit effort="0.0" lower="-3.14159265359" upper="3.14159265359" velocity="0.0" />
+  </joint>
+  <joint name="shoulder_left_axis0" type="revolute">
+    <parent link="back_plate" />
+    <child link="shoulder_left_link1" />
+    <origin rpy="0  0  0" xyz="0.18587  0.04491  0.06978" />
+    <axis xyz="0  0 -1" />
+    <limit effort="0.0" lower="-3.14159265359" upper="3.14159265359" velocity="0.0" />
+  </joint>
+  <joint name="shoulder_left_axis2" type="revolute">
+    <parent link="shoulder_left_link2" />
+    <child link="upper_arm_left" />
+    <origin rpy="0  0  0" xyz="0  0  0" />
+    <axis xyz="0.81915  0       0.57357" />
+    <limit effort="0.0" lower="-3.14159265359" upper="3.14159265359" velocity="0.0" />
+  </joint>
+  <joint name="shoulder_left_axis1" type="revolute">
+    <parent link="shoulder_left_link1" />
+    <child link="shoulder_left_link2" />
+    <origin rpy="0  0  0" xyz="0  0  0" />
+    <axis xyz="0 -1  0" />
+    <limit effort="0.0" lower="-3.14159265359" upper="3.14159265359" velocity="0.0" />
+  </joint>
+  <joint name="elbow_left_axis0" type="revolute">
+    <parent link="upper_arm_left" />
+    <child link="elbow_left_link1" />
+    <origin rpy="0  0  0" xyz="0.18361  0.026   -0.19249" />
+    <axis xyz="0.57357  0      -0.81915" />
+    <limit effort="0.0" lower="-3.14159265359" upper="3.14159265359" velocity="0.0" />
+  </joint>
+  <joint name="elbow_left_axis2" type="revolute">
+    <parent link="elbow_left_link2" />
+    <child link="lower_arm_left" />
+    <origin rpy="0  0  0" xyz="0  0  0" />
+    <axis xyz="0.81915  0       0.57357" />
+    <limit effort="0.0" lower="-3.14159265359" upper="3.14159265359" velocity="0.0" />
+  </joint>
+  <joint name="elbow_left_axis1" type="revolute">
+    <parent link="elbow_left_link1" />
+    <child link="elbow_left_link2" />
+    <origin rpy="0  0  0" xyz="0  0  0" />
+    <axis xyz="0 -1  0" />
+    <limit effort="0.0" lower="-3.14159265359" upper="3.14159265359" velocity="0.0" />
+  </joint>
+  <joint name="wrist_left_axis0" type="revolute">
+    <parent link="lower_arm_left" />
+    <child link="wrist_left_link1" />
+    <origin rpy="0  0  0" xyz="0.18696 -0.06327 -0.18768" />
+    <axis xyz="0.56486 -0.17364 -0.8067" />
+    <limit effort="0.0" lower="-3.14159265359" upper="3.14159265359" velocity="0.0" />
+  </joint>
+  <joint name="wrist_left_axis2" type="revolute">
+    <parent link="wrist_left_link2" />
+    <child link="hand_left" />
+    <origin rpy="0  0  0" xyz="0  0  0" />
+    <axis xyz="0.81915  0       0.57357" />
+    <limit effort="0.0" lower="-3.14159265359" upper="3.14159265359" velocity="0.0" />
+  </joint>
+  <joint name="wrist_left_axis1" type="revolute">
+    <parent link="wrist_left_link1" />
+    <child link="wrist_left_link2" />
+    <origin rpy="0  0  0" xyz="0  0  0" />
+    <axis xyz="-0.0996  -0.9848   0.14224" />
+    <limit effort="0.0" lower="-3.14159265359" upper="3.14159265359" velocity="0.0" />
+  </joint>
+  <joint name="neck_axis0" type="revolute">
+    <parent link="back_plate" />
+    <child link="neck_link1" />
+    <origin rpy="0  0  0" xyz="0.00032  0.00991  0.27978" />
+    <axis xyz="1  0  0" />
+    <limit effort="0.0" lower="-3.14159265359" upper="3.14159265359" velocity="0.0" />
+  </joint>
+  <joint name="neck_axis2" type="revolute">
+    <parent link="neck_link2" />
+    <child link="head" />
+    <origin rpy="0  0  0" xyz="0  0  0" />
+    <axis xyz="0  0 -1" />
+    <limit effort="0.0" lower="-3.14159265359" upper="3.14159265359" velocity="0.0" />
+  </joint>
+  <joint name="neck_axis1" type="revolute">
+    <parent link="neck_link1" />
+    <child link="neck_link2" />
+    <origin rpy="0  0  0" xyz="0  0  0" />
+    <axis xyz="0  1  0" />
+    <limit effort="0.0" lower="-3.14159265359" upper="3.14159265359" velocity="0.0" />
+  </joint>
+  <link name="back_plate">
+    <inertial>
+      <mass value="8.139385049727629" />
+      <origin rpy="0  0  0" xyz="0.00384  0.16901 -0.11191" />
+      <inertia ixx="0.7682234474795213" ixy="-0.0069899315534839536" ixz="0.004840916713086481" iyy="0.4916453272832193" iyz="0.21773604360990972" izz="0.3440612626087113" />
+    </inertial>
+    <collision name="back_plate_collision">
+      <origin rpy="0  0  0" xyz="0.00384  0.16901 -0.11191" />
+      <geometry>
+        <mesh filename="package://robots/exohaptic/meshes/collisions/back_plate.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </collision>
+    <visual name="back_plate_visual">
+      <origin rpy="0  0  0" xyz="0.00384  0.16901 -0.11191" />
+      <geometry>
+        <mesh filename="package://robots/exohaptic/meshes/visuals/back_plate.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </visual>
+  </link>
+  <link name="right_link0">
+    <inertial>
+      <mass value="0.44679478425959274" />
+      <origin rpy="0  0  0" xyz="-0.03371  0.01958  0.00683" />
+      <inertia ixx="0.02850566718684878" ixy="0.007768523969325554" ixz="0.0031459771568931793" iyy="0.006741743764682452" iyz="-0.00961515000858008" izz="0.027528731763173563" />
+    </inertial>
+    <collision name="right_link0_collision">
+      <origin rpy="0  0  0" xyz="-0.03371  0.01958  0.00683" />
+      <geometry>
+        <mesh filename="package://robots/exohaptic/meshes/collisions/right_link0.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </collision>
+    <visual name="right_link0_visual">
+      <origin rpy="0  0  0" xyz="-0.03371  0.01958  0.00683" />
+      <geometry>
+        <mesh filename="package://robots/exohaptic/meshes/visuals/right_link0.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </visual>
+  </link>
+  <link name="right_link1">
+    <inertial>
+      <mass value="0.7831254380658086" />
+      <origin rpy="0  0  0" xyz="-0.10281  0.01544  0.01424" />
+      <inertia ixx="0.05462723019125244" ixy="0.036143456759153154" ixz="0.011773188017332896" iyy="0.035350979737987835" iyz="-0.016262618054640174" izz="0.07907186342199232" />
+    </inertial>
+    <collision name="right_link1_collision">
+      <origin rpy="0  0  0" xyz="-0.10281  0.01544  0.01424" />
+      <geometry>
+        <mesh filename="package://robots/exohaptic/meshes/collisions/right_link1.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </collision>
+    <visual name="right_link1_visual">
+      <origin rpy="0  0  0" xyz="-0.10281  0.01544  0.01424" />
+      <geometry>
+        <mesh filename="package://robots/exohaptic/meshes/visuals/right_link1.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </visual>
+  </link>
+  <link name="right_link2">
+    <inertial>
+      <mass value="0.49727563373908934" />
+      <origin rpy="0  0  0" xyz="0      -0.02227  0.01743" />
+      <inertia ixx="0.025322043900049097" ixy="0.027981741443474394" ixz="0.011542968518925521" iyy="0.040305766981368514" iyz="-0.008833668598917741" izz="0.058271852822971926" />
+    </inertial>
+    <collision name="right_link2_collision">
+      <origin rpy="0  0  0" xyz="0      -0.02227  0.01743" />
+      <geometry>
+        <mesh filename="package://robots/exohaptic/meshes/collisions/right_link2.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </collision>
+    <visual name="right_link2_visual">
+      <origin rpy="0  0  0" xyz="0      -0.02227  0.01743" />
+      <geometry>
+        <mesh filename="package://robots/exohaptic/meshes/visuals/right_link2.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </visual>
+  </link>
+  <link name="right_link3">
+    <inertial>
+      <mass value="0.5220086555744743" />
+      <origin rpy="0  0  0" xyz="0.01418 -0.13085 -0.01118" />
+      <inertia ixx="0.011225574349458483" ixy="0.014702565450204173" ixz="0.012242705191522832" iyy="0.04084955030043474" iyz="-0.004944966277485869" izz="0.04378453478749949" />
+    </inertial>
+    <collision name="right_link3_collision">
+      <origin rpy="0  0  0" xyz="0.01418 -0.13085 -0.01118" />
+      <geometry>
+        <mesh filename="package://robots/exohaptic/meshes/collisions/right_link3.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </collision>
+    <visual name="right_link3_visual">
+      <origin rpy="0  0  0" xyz="0.01418 -0.13085 -0.01118" />
+      <geometry>
+        <mesh filename="package://robots/exohaptic/meshes/visuals/right_link3.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </visual>
+  </link>
+  <link name="right_link4">
+    <inertial>
+      <mass value="0.7386523301391769" />
+      <origin rpy="0  0  0" xyz="-0.05065  0.00191 -0.01503" />
+      <inertia ixx="0.005909164459017086" ixy="0.013354064123330579" ixz="0.014280546357188851" iyy="0.08518618689003109" iyz="-0.0023609091471348265" izz="0.0849433545712226" />
+    </inertial>
+    <collision name="right_link4_collision">
+      <origin rpy="0  0  0" xyz="-0.05065  0.00191 -0.01503" />
+      <geometry>
+        <mesh filename="package://robots/exohaptic/meshes/collisions/right_link4.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </collision>
+    <visual name="right_link4_visual">
+      <origin rpy="0  0  0" xyz="-0.05065  0.00191 -0.01503" />
+      <geometry>
+        <mesh filename="package://robots/exohaptic/meshes/visuals/right_link4.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </visual>
+  </link>
+  <link name="right_link6">
+    <inertial>
+      <mass value="4.519298291416539" />
+      <origin rpy="0  0  0" xyz="-0.04567 -0.04078 -0.1022" />
+      <inertia ixx="0.5531165685920428" ixy="-0.04264190765597109" ixz="-0.9537613205494702" iyy="2.240986901983799" iyz="-0.026645960737998322" izz="1.700117636667368" />
+    </inertial>
+    <collision name="right_link6_collision">
+      <origin rpy="0  0  0" xyz="-0.04567 -0.04078 -0.1022" />
+      <geometry>
+        <mesh filename="package://robots/exohaptic/meshes/collisions/right_link6.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </collision>
+    <visual name="right_link6_visual">
+      <origin rpy="0  0  0" xyz="-0.04567 -0.04078 -0.1022" />
+      <geometry>
+        <mesh filename="package://robots/exohaptic/meshes/visuals/right_link6.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </visual>
+  </link>
+  <link name="right_link5">
+    <inertial>
+      <mass value="2.976447525420231" />
+      <origin rpy="0  0  0" xyz="-0.13318 -0.01035 -0.05137" />
+      <inertia ixx="0.03780203846189356" ixy="0.0846281353344662" ixz="-0.07885965046797937" iyy="0.5816099688672075" iyz="0.010502698324346617" izz="0.5762958110272286" />
+    </inertial>
+    <collision name="right_link5_collision">
+      <origin rpy="0  0  0" xyz="-0.13318 -0.01035 -0.05137" />
+      <geometry>
+        <mesh filename="package://robots/exohaptic/meshes/collisions/right_link5.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </collision>
+    <visual name="right_link5_visual">
+      <origin rpy="0  0  0" xyz="-0.13318 -0.01035 -0.05137" />
+      <geometry>
+        <mesh filename="package://robots/exohaptic/meshes/visuals/right_link5.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </visual>
+  </link>
+  <link name="left_link0">
+    <inertial>
+      <mass value="0.4468024211817555" />
+      <origin rpy="0  0  0" xyz="0.03371  0.01958  0.00683" />
+      <inertia ixx="0.028506111575001842" ixy="-0.008837787410228053" ixz="-0.0035634708141912413" iyy="0.007459320336472326" iyz="-0.009615293668332726" izz="0.028246646198803637" />
+    </inertial>
+    <collision name="left_link0_collision">
+      <origin rpy="0  0  0" xyz="0.03371  0.01958  0.00683" />
+      <geometry>
+        <mesh filename="package://robots/exohaptic/meshes/collisions/left_link0.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </collision>
+    <visual name="left_link0_visual">
+      <origin rpy="0  0  0" xyz="0.03371  0.01958  0.00683" />
+      <geometry>
+        <mesh filename="package://robots/exohaptic/meshes/visuals/left_link0.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </visual>
+  </link>
+  <link name="left_link1">
+    <inertial>
+      <mass value="0.7831254380658126" />
+      <origin rpy="0  0  0" xyz="0.10281  0.01544  0.01424" />
+      <inertia ixx="0.05462723019125278" ixy="-0.03814222150495104" ixz="-0.012434693523149807" iyy="0.038351634898749556" iyz="-0.016262618054640247" izz="0.0820725185827542" />
+    </inertial>
+    <collision name="left_link1_collision">
+      <origin rpy="0  0  0" xyz="0.10281  0.01544  0.01424" />
+      <geometry>
+        <mesh filename="package://robots/exohaptic/meshes/collisions/left_link1.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </collision>
+    <visual name="left_link1_visual">
+      <origin rpy="0  0  0" xyz="0.10281  0.01544  0.01424" />
+      <geometry>
+        <mesh filename="package://robots/exohaptic/meshes/visuals/left_link1.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </visual>
+  </link>
+  <link name="left_link2">
+    <inertial>
+      <mass value="0.4972941507517554" />
+      <origin rpy="0  0  0" xyz="0      -0.02227  0.01742" />
+      <inertia ixx="0.02532296866687878" ixy="-0.02903529527316519" ixz="-0.011977552362605061" iyy="0.04311043644251099" iyz="-0.008833975010869185" izz="0.06107720679218708" />
+    </inertial>
+    <collision name="left_link2_collision">
+      <origin rpy="0  0  0" xyz="0      -0.02227  0.01742" />
+      <geometry>
+        <mesh filename="package://robots/exohaptic/meshes/collisions/left_link2.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </collision>
+    <visual name="left_link2_visual">
+      <origin rpy="0  0  0" xyz="0      -0.02227  0.01742" />
+      <geometry>
+        <mesh filename="package://robots/exohaptic/meshes/visuals/left_link2.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </visual>
+  </link>
+  <link name="left_link3">
+    <inertial>
+      <mass value="0.5220105836901086" />
+      <origin rpy="0  0  0" xyz="-0.02322 -0.12916 -0.01469" />
+      <inertia ixx="0.011225599659928167" ixy="-0.015270359917719151" ixz="-0.012713949173721944" iyy="0.043725734096818215" iyz="-0.004944978657824181" izz="0.04666071353605057" />
+    </inertial>
+    <collision name="left_link3_collision">
+      <origin rpy="0  0  0" xyz="-0.02322 -0.12916 -0.01469" />
+      <geometry>
+        <mesh filename="package://robots/exohaptic/meshes/collisions/left_link3.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </collision>
+    <visual name="left_link3_visual">
+      <origin rpy="0  0  0" xyz="-0.02322 -0.12916 -0.01469" />
+      <geometry>
+        <mesh filename="package://robots/exohaptic/meshes/visuals/left_link3.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </visual>
+  </link>
+  <link name="left_link4">
+    <inertial>
+      <mass value="0.739026205771855" />
+      <origin rpy="0  0  0" xyz="0.05066  0.00191 -0.01503" />
+      <inertia ixx="0.005911116935457145" ixy="-0.013771280077442672" ixz="-0.014732101505236978" iyy="0.0903107684515888" iyz="-0.0023615073850101072" izz="0.09006750557342583" />
+    </inertial>
+    <collision name="left_link4_collision">
+      <origin rpy="0  0  0" xyz="0.05066  0.00191 -0.01503" />
+      <geometry>
+        <mesh filename="package://robots/exohaptic/meshes/collisions/left_link4.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </collision>
+    <visual name="left_link4_visual">
+      <origin rpy="0  0  0" xyz="0.05066  0.00191 -0.01503" />
+      <geometry>
+        <mesh filename="package://robots/exohaptic/meshes/visuals/left_link4.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </visual>
+  </link>
+  <link name="left_link5">
+    <inertial>
+      <mass value="1.814866465315438" />
+      <origin rpy="0  0  0" xyz="0.13035 -0.01035 -0.0542" />
+      <inertia ixx="0.02689944305394046" ixy="-0.04998409559980578" ixz="0.05414916489234187" iyy="0.39004676058048976" iyz="0.006088530254351836" izz="0.3819898461998349" />
+    </inertial>
+    <collision name="left_link5_collision">
+      <origin rpy="0  0  0" xyz="0.13035 -0.01035 -0.0542" />
+      <geometry>
+        <mesh filename="package://robots/exohaptic/meshes/collisions/left_link5.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </collision>
+    <visual name="left_link5_visual">
+      <origin rpy="0  0  0" xyz="0.13035 -0.01035 -0.0542" />
+      <geometry>
+        <mesh filename="package://robots/exohaptic/meshes/visuals/left_link5.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </visual>
+  </link>
+  <link name="left_link6">
+    <inertial>
+      <mass value="4.519290523916513" />
+      <origin rpy="0  0  0" xyz="0.0371  -0.03694 -0.10683" />
+      <inertia ixx="0.5574374574493587" ixy="0.043216403691500434" ixz="0.9713028764197281" iyy="2.294415625560457" iyz="-0.02674870274287185" izz="1.7492254630929642" />
+    </inertial>
+    <collision name="left_link6_collision">
+      <origin rpy="0  0  0" xyz="0.0371  -0.03694 -0.10683" />
+      <geometry>
+        <mesh filename="package://robots/exohaptic/meshes/collisions/left_link6.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </collision>
+    <visual name="left_link6_visual">
+      <origin rpy="0  0  0" xyz="0.0371  -0.03694 -0.10683" />
+      <geometry>
+        <mesh filename="package://robots/exohaptic/meshes/visuals/left_link6.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </visual>
+  </link>
+  <link name="neck_link1">
+    <inertial>
+      <mass value="0.06979038134801685" />
+      <origin rpy="0  0  0" xyz="0  0  0" />
+      <inertia ixx="0.005481519014987607" ixy="-2.2236247149655613e-07" ixz="-6.272710904723963e-06" iyy="0.00547466116002969" iyz="-0.0001936591189363321" izz="1.8519537482874156e-05" />
+    </inertial>
+    <collision name="neck_link1_collision">
+      <origin rpy="0  0  0" xyz="0  0  0" />
+      <geometry>
+        <mesh filename="package://robots/exohaptic/meshes/collisions/neck_link1.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </collision>
+    <visual name="neck_link1_visual">
+      <origin rpy="0  0  0" xyz="0  0  0" />
+      <geometry>
+        <mesh filename="package://robots/exohaptic/meshes/visuals/neck_link1.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </visual>
+  </link>
+  <link name="neck_link2">
+    <inertial>
+      <mass value="0.04678255760927329" />
+      <origin rpy="0  0  0" xyz="0  0  0" />
+      <inertia ixx="0.0036718783017393366" ixy="-1.4905614307421943e-07" ixz="-4.204783718098053e-06" iyy="0.0036672812787744632" iyz="-0.00012981543660553322" izz="9.868112492285682e-06" />
+    </inertial>
+    <collision name="neck_link2_collision">
+      <origin rpy="0  0  0" xyz="0  0  0" />
+      <geometry>
+        <mesh filename="package://robots/exohaptic/meshes/collisions/neck_link2.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </collision>
+    <visual name="neck_link2_visual">
+      <origin rpy="0  0  0" xyz="0  0  0" />
+      <geometry>
+        <mesh filename="package://robots/exohaptic/meshes/visuals/neck_link2.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </visual>
+  </link>
+  <link name="wrist_right_link1">
+    <inertial>
+      <mass value="0.06979043874174574" />
+      <origin rpy="0  0  0" xyz="0  0  0" />
+      <inertia ixx="0.006739669974044372" ixy="0.0002933411247103117" ixz="-0.011919983442739151" iyy="0.027866925885891132" iyz="0.0001654709698240953" izz="0.021147047401835293" />
+    </inertial>
+    <collision name="wrist_right_link1_collision">
+      <origin rpy="0  0  0" xyz="0  0  0" />
+      <geometry>
+        <mesh filename="package://robots/exohaptic/meshes/collisions/wrist_right_link1.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </collision>
+    <visual name="wrist_right_link1_visual">
+      <origin rpy="0  0  0" xyz="0  0  0" />
+      <geometry>
+        <mesh filename="package://robots/exohaptic/meshes/visuals/wrist_right_link1.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </visual>
+  </link>
+  <link name="wrist_right_link2">
+    <inertial>
+      <mass value="0.04678258965782097" />
+      <origin rpy="0  0  0" xyz="0  0  0" />
+      <inertia ixx="0.004515253452595208" ixy="0.0001966352022809539" ixz="-0.007990316397291627" iyy="0.018677476047998572" iyz="0.00011092006885428488" izz="0.014172943334538864" />
+    </inertial>
+    <collision name="wrist_right_link2_collision">
+      <origin rpy="0  0  0" xyz="0  0  0" />
+      <geometry>
+        <mesh filename="package://robots/exohaptic/meshes/collisions/wrist_right_link2.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </collision>
+    <visual name="wrist_right_link2_visual">
+      <origin rpy="0  0  0" xyz="0  0  0" />
+      <geometry>
+        <mesh filename="package://robots/exohaptic/meshes/visuals/wrist_right_link2.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </visual>
+  </link>
+  <link name="shoulder_left_link1">
+    <inertial>
+      <mass value="0.06979038134801809" />
+      <origin rpy="0  0  0" xyz="0  0  0" />
+      <inertia ixx="0.0004922938208751043" ixy="-0.0005827031707211392" ixz="-0.0009052396385368992" iyy="0.0027628219240047915" iyz="-0.0002187523166124097" izz="0.0025637973139706225" />
+    </inertial>
+    <collision name="shoulder_left_link1_collision">
+      <origin rpy="0  0  0" xyz="0  0  0" />
+      <geometry>
+        <mesh filename="package://robots/exohaptic/meshes/collisions/shoulder_left_link1.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </collision>
+    <visual name="shoulder_left_link1_visual">
+      <origin rpy="0  0  0" xyz="0  0  0" />
+      <geometry>
+        <mesh filename="package://robots/exohaptic/meshes/visuals/shoulder_left_link1.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </visual>
+  </link>
+  <link name="shoulder_left_link2">
+    <inertial>
+      <mass value="0.0467825583571303" />
+      <origin rpy="0  0  0" xyz="0  0  0" />
+      <inertia ixx="0.00032745303819112833" ixy="-0.000390603182882886" ixz="-0.0006068089240816529" iyy="0.0018494552315375648" iyz="-0.00014663615271917282" izz="0.0017160431444621501" />
+    </inertial>
+    <collision name="shoulder_left_link2_collision">
+      <origin rpy="0  0  0" xyz="0  0  0" />
+      <geometry>
+        <mesh filename="package://robots/exohaptic/meshes/collisions/shoulder_left_link2.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </collision>
+    <visual name="shoulder_left_link2_visual">
+      <origin rpy="0  0  0" xyz="0  0  0" />
+      <geometry>
+        <mesh filename="package://robots/exohaptic/meshes/visuals/shoulder_left_link2.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </visual>
+  </link>
+  <link name="elbow_right_link1">
+    <inertial>
+      <mass value="0.06979038134801685" />
+      <origin rpy="0  0  0" xyz="0  0  0" />
+      <inertia ixx="0.0014135858793880062" ixy="0.0017980924591457104" ixz="-0.0031113305559733496" iyy="0.01027376862343843" iyz="0.0006073551513680421" izz="0.009573832395338811" />
+    </inertial>
+    <collision name="elbow_right_link1_collision">
+      <origin rpy="0  0  0" xyz="0  0  0" />
+      <geometry>
+        <mesh filename="package://robots/exohaptic/meshes/collisions/elbow_right_link1.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </collision>
+    <visual name="elbow_right_link1_visual">
+      <origin rpy="0  0  0" xyz="0  0  0" />
+      <geometry>
+        <mesh filename="package://robots/exohaptic/meshes/visuals/elbow_right_link1.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </visual>
+  </link>
+  <link name="elbow_right_link2">
+    <inertial>
+      <mass value="0.0467825583571303" />
+      <origin rpy="0  0  0" xyz="0  0  0" />
+      <inertia ixx="0.0009450223745215333" ixy="0.0012053145974662445" ixz="-0.002085616964568737" iyy="0.006884265122192254" iyz="0.00040712813518945347" izz="0.006415077150943697" />
+    </inertial>
+    <collision name="elbow_right_link2_collision">
+      <origin rpy="0  0  0" xyz="0  0  0" />
+      <geometry>
+        <mesh filename="package://robots/exohaptic/meshes/collisions/elbow_right_link2.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </collision>
+    <visual name="elbow_right_link2_visual">
+      <origin rpy="0  0  0" xyz="0  0  0" />
+      <geometry>
+        <mesh filename="package://robots/exohaptic/meshes/visuals/elbow_right_link2.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </visual>
+  </link>
+  <link name="shoulder_right_link1">
+    <inertial>
+      <mass value="0.06979038134801559" />
+      <origin rpy="0  0  0" xyz="0  0  0" />
+      <inertia ixx="0.0004922938208750811" ixy="0.0005632649738557028" ixz="0.0008750420573524725" iyy="0.0026046271829547013" iyz="-0.00021875231661239844" izz="0.0024056025729205397" />
+    </inertial>
+    <collision name="shoulder_right_link1_collision">
+      <origin rpy="0  0  0" xyz="0  0  0" />
+      <geometry>
+        <mesh filename="package://robots/exohaptic/meshes/collisions/shoulder_right_link1.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </collision>
+    <visual name="shoulder_right_link1_visual">
+      <origin rpy="0  0  0" xyz="0  0  0" />
+      <geometry>
+        <mesh filename="package://robots/exohaptic/meshes/visuals/shoulder_right_link1.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </visual>
+  </link>
+  <link name="shoulder_right_link2">
+    <inertial>
+      <mass value="0.04678255835713031" />
+      <origin rpy="0  0  0" xyz="0  0  0" />
+      <inertia ixx="0.0003274530381911284" ixy="0.00037757318416889706" ixz="0.000586566591589469" iyy="0.0017434126141737554" iyz="-0.00014663615271917282" izz="0.001610000527098341" />
+    </inertial>
+    <collision name="shoulder_right_link2_collision">
+      <origin rpy="0  0  0" xyz="0  0  0" />
+      <geometry>
+        <mesh filename="package://robots/exohaptic/meshes/collisions/shoulder_right_link2.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </collision>
+    <visual name="shoulder_right_link2_visual">
+      <origin rpy="0  0  0" xyz="0  0  0" />
+      <geometry>
+        <mesh filename="package://robots/exohaptic/meshes/visuals/shoulder_right_link2.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </visual>
+  </link>
+  <link name="elbow_left_link1">
+    <inertial>
+      <mass value="0.06979038134801685" />
+      <origin rpy="0  0  0" xyz="0  0  0" />
+      <inertia ixx="0.0014135858793880066" ixy="-0.0018287821157394338" ixz="0.0031644344249244162" iyy="0.01059088303613886" iyz="0.0006073551513680426" izz="0.009890946808039243" />
+    </inertial>
+    <collision name="elbow_left_link1_collision">
+      <origin rpy="0  0  0" xyz="0  0  0" />
+      <geometry>
+        <mesh filename="package://robots/exohaptic/meshes/collisions/elbow_left_link1.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </collision>
+    <visual name="elbow_left_link1_visual">
+      <origin rpy="0  0  0" xyz="0  0  0" />
+      <geometry>
+        <mesh filename="package://robots/exohaptic/meshes/visuals/elbow_left_link1.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </visual>
+  </link>
+  <link name="elbow_left_link2">
+    <inertial>
+      <mass value="0.04678255835713027" />
+      <origin rpy="0  0  0" xyz="0  0  0" />
+      <inertia ixx="0.0009450223745215336" ixy="-0.0012258867826703415" ixz="0.0021212140597587463" iyy="0.007096836299358708" iyz="0.00040712813518945374" izz="0.006627648328110149" />
+    </inertial>
+    <collision name="elbow_left_link2_collision">
+      <origin rpy="0  0  0" xyz="0  0  0" />
+      <geometry>
+        <mesh filename="package://robots/exohaptic/meshes/collisions/elbow_left_link2.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </collision>
+    <visual name="elbow_left_link2_visual">
+      <origin rpy="0  0  0" xyz="0  0  0" />
+      <geometry>
+        <mesh filename="package://robots/exohaptic/meshes/visuals/elbow_left_link2.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </visual>
+  </link>
+  <link name="wrist_left_link1">
+    <inertial>
+      <mass value="0.06979043874174999" />
+      <origin rpy="0  0  0" xyz="0  0  0" />
+      <inertia ixx="0.0067396699742153475" ixy="-0.00029664669108493805" ixz="0.012054305693079708" iyy="0.02834585273505329" iyz="0.00016547097350152774" izz="0.02162597425116785" />
+    </inertial>
+    <collision name="wrist_left_link1_collision">
+      <origin rpy="0  0  0" xyz="0  0  0" />
+      <geometry>
+        <mesh filename="package://robots/exohaptic/meshes/collisions/wrist_left_link1.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </collision>
+    <visual name="wrist_left_link1_visual">
+      <origin rpy="0  0  0" xyz="0  0  0" />
+      <geometry>
+        <mesh filename="package://robots/exohaptic/meshes/visuals/wrist_left_link1.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </visual>
+  </link>
+  <link name="wrist_left_link2">
+    <inertial>
+      <mass value="0.04678258965791873" />
+      <origin rpy="0  0  0" xyz="0  0  0" />
+      <inertia ixx="0.004515253452686274" ixy="-0.00019885102310030766" ixz="0.00808035668594299" iyy="0.01899851527899539" iyz="0.00011092007059922487" izz="0.01449398256560806" />
+    </inertial>
+    <collision name="wrist_left_link2_collision">
+      <origin rpy="0  0  0" xyz="0  0  0" />
+      <geometry>
+        <mesh filename="package://robots/exohaptic/meshes/collisions/wrist_left_link2.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </collision>
+    <visual name="wrist_left_link2_visual">
+      <origin rpy="0  0  0" xyz="0  0  0" />
+      <geometry>
+        <mesh filename="package://robots/exohaptic/meshes/visuals/wrist_left_link2.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </visual>
+  </link>
+  <link name="upper_arm_right">
+    <inertial>
+      <mass value="0.11563848144937117" />
+      <origin rpy="0  0  0" xyz="-0.15643  0.0223  -0.16567" />
+      <inertia ixx="0.0021107709126205873" ixy="0.002683716362356854" ixz="-0.004234132555808361" iyy="0.015166476936975306" iyz="0.0008141106363726831" izz="0.014142972810009594" />
+    </inertial>
+    <collision name="upper_arm_right_collision">
+      <origin rpy="0  0  0" xyz="-0.15643  0.0223  -0.16567" />
+      <geometry>
+        <mesh filename="package://robots/exohaptic/meshes/collisions/upper_arm_right.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </collision>
+    <visual name="upper_arm_right_visual">
+      <origin rpy="0  0  0" xyz="-0.15643  0.0223  -0.16567" />
+      <geometry>
+        <mesh filename="package://robots/exohaptic/meshes/visuals/upper_arm_right.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </visual>
+  </link>
+  <link name="lower_arm_right">
+    <inertial>
+      <mass value="0.11563008205468756" />
+      <origin rpy="0  0  0" xyz="-0.15929 -0.05422 -0.16155" />
+      <inertia ixx="0.009922651692350456" ixy="0.0008338538527175686" ixz="-0.017679892970197418" iyy="0.041955431625722434" iyz="0.000386204386548335" izz="0.03223345398953438" />
+    </inertial>
+    <collision name="lower_arm_right_collision">
+      <origin rpy="0  0  0" xyz="-0.15929 -0.05422 -0.16155" />
+      <geometry>
+        <mesh filename="package://robots/exohaptic/meshes/collisions/lower_arm_right.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </collision>
+    <visual name="lower_arm_right_visual">
+      <origin rpy="0  0  0" xyz="-0.15929 -0.05422 -0.16155" />
+      <geometry>
+        <mesh filename="package://robots/exohaptic/meshes/visuals/lower_arm_right.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </visual>
+  </link>
+  <link name="hand_right">
+    <inertial>
+      <mass value="0.016515273339096467" />
+      <origin rpy="0  0  0" xyz="0.0084   0      -0.00588" />
+      <inertia ixx="0.0016534238486402267" ixy="6.835939833730018e-05" ixz="-0.0028301211049870005" iyy="0.006501762546052183" iyz="3.9900968330131303e-05" izz="0.004850536513151817" />
+    </inertial>
+    <collision name="hand_right_collision">
+      <origin rpy="0  0  0" xyz="0.0084   0      -0.00588" />
+      <geometry>
+        <mesh filename="package://robots/exohaptic/meshes/collisions/hand_right.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </collision>
+    <visual name="hand_right_visual">
+      <origin rpy="0  0  0" xyz="0.0084   0      -0.00588" />
+      <geometry>
+        <mesh filename="package://robots/exohaptic/meshes/visuals/hand_right.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </visual>
+  </link>
+  <link name="upper_arm_left">
+    <inertial>
+      <mass value="0.1156368930837189" />
+      <origin rpy="0  0  0" xyz="0.15835  0.02226 -0.16432" />
+      <inertia ixx="0.0021466919713594742" ixy="-0.0027387246858641486" ixz="0.004254852219478025" iyy="0.015751674188330404" iyz="0.0008075464044543287" izz="0.014690924713790623" />
+    </inertial>
+    <collision name="upper_arm_left_collision">
+      <origin rpy="0  0  0" xyz="0.15835  0.02226 -0.16432" />
+      <geometry>
+        <mesh filename="package://robots/exohaptic/meshes/collisions/upper_arm_left.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </collision>
+    <visual name="upper_arm_left_visual">
+      <origin rpy="0  0  0" xyz="0.15835  0.02226 -0.16432" />
+      <geometry>
+        <mesh filename="package://robots/exohaptic/meshes/visuals/upper_arm_left.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </visual>
+  </link>
+  <link name="lower_arm_left">
+    <inertial>
+      <mass value="0.11563544441687167" />
+      <origin rpy="0  0  0" xyz="0.16121 -0.05426 -0.1602" />
+      <inertia ixx="0.009899017989415898" ixy="-0.0008624783278342999" ixz="0.017850777866129465" iyy="0.042830496731885374" iyz="0.00037126411939893014" izz="0.03313201411642468" />
+    </inertial>
+    <collision name="lower_arm_left_collision">
+      <origin rpy="0  0  0" xyz="0.16121 -0.05426 -0.1602" />
+      <geometry>
+        <mesh filename="package://robots/exohaptic/meshes/collisions/lower_arm_left.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </collision>
+    <visual name="lower_arm_left_visual">
+      <origin rpy="0  0  0" xyz="0.16121 -0.05426 -0.1602" />
+      <geometry>
+        <mesh filename="package://robots/exohaptic/meshes/visuals/lower_arm_left.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </visual>
+  </link>
+  <link name="hand_left">
+    <inertial>
+      <mass value="0.01651527333909648" />
+      <origin rpy="0  0  0" xyz="0.0084   0       0.00588" />
+      <inertia ixx="0.0015327991331023471" ixy="-7.125639563819237e-05" ixz="0.0028405194049690727" iyy="0.006801583834447733" iyz="3.841394022298204e-05" izz="0.005270982237926619" />
+    </inertial>
+    <collision name="hand_left_collision">
+      <origin rpy="0  0  0" xyz="0.0084   0       0.00588" />
+      <geometry>
+        <mesh filename="package://robots/exohaptic/meshes/collisions/hand_left.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </collision>
+    <visual name="hand_left_visual">
+      <origin rpy="0  0  0" xyz="0.0084   0       0.00588" />
+      <geometry>
+        <mesh filename="package://robots/exohaptic/meshes/visuals/hand_left.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </visual>
+  </link>
+  <link name="head">
+    <inertial>
+      <mass value="35.90636554635465" />
+      <origin rpy="0  0  0" xyz="-0.00034 -0.01321  0.04421" />
+      <inertia ixx="3.9669573405821867" ixy="-6.550264394606747e-05" ixz="0.0001133674418310343" iyy="3.913517829871493" iyz="0.010231568309373216" izz="0.15736346673179366" />
+    </inertial>
+    <collision name="head_collision">
+      <origin rpy="0  0  0" xyz="-0.00034 -0.01321  0.04421" />
+      <geometry>
+        <mesh filename="package://robots/exohaptic/meshes/collisions/head.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </collision>
+    <visual name="head_visual">
+      <origin rpy="0  0  0" xyz="-0.00034 -0.01321  0.04421" />
+      <geometry>
+        <mesh filename="package://robots/exohaptic/meshes/visuals/head.stl" scale="0.001 0.001 0.001" />
+      </geometry>
+    </visual>
+  </link>
+</robot>

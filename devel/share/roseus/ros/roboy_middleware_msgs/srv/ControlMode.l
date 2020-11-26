@@ -127,9 +127,9 @@
 (setf (get roboy_middleware_msgs::ControlModeRequest :md5sum-) "3bf3f3c500bf7df65355716be531bee1")
 (setf (get roboy_middleware_msgs::ControlModeRequest :datatype-) "roboy_middleware_msgs/ControlModeRequest")
 (setf (get roboy_middleware_msgs::ControlModeRequest :definition-)
-      "int32 control_mode
+      "int32 control_mode # 0: position, 1: velocity, 2: displacement
 int32 set_point
-
+# if left empty, all motors will be changed to the requested control mode
 uint16[] motor_id
 ---
 
@@ -138,9 +138,9 @@ uint16[] motor_id
 (setf (get roboy_middleware_msgs::ControlModeResponse :md5sum-) "3bf3f3c500bf7df65355716be531bee1")
 (setf (get roboy_middleware_msgs::ControlModeResponse :datatype-) "roboy_middleware_msgs/ControlModeResponse")
 (setf (get roboy_middleware_msgs::ControlModeResponse :definition-)
-      "int32 control_mode
+      "int32 control_mode # 0: position, 1: velocity, 2: displacement
 int32 set_point
-
+# if left empty, all motors will be changed to the requested control mode
 uint16[] motor_id
 ---
 

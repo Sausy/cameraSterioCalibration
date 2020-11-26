@@ -63,10 +63,10 @@
   "d2bdc9a40e1feeae452cdda757d15ee0")
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql '<SystemCheck-request>)))
   "Returns full string definition for message of type '<SystemCheck-request>"
-  (cl:format cl:nil "~%uint8[] motorids~%~%~%"))
+  (cl:format cl:nil "# if empty check all motors, otherwise only the requested~%uint8[] motorids~%~%~%"))
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql 'SystemCheck-request)))
   "Returns full string definition for message of type 'SystemCheck-request"
-  (cl:format cl:nil "~%uint8[] motorids~%~%~%"))
+  (cl:format cl:nil "# if empty check all motors, otherwise only the requested~%uint8[] motorids~%~%~%"))
 (cl:defmethod roslisp-msg-protocol:serialization-length ((msg <SystemCheck-request>))
   (cl:+ 0
      4 (cl:reduce #'cl:+ (cl:slot-value msg 'motorids) :key #'(cl:lambda (ele) (cl:declare (cl:ignorable ele)) (cl:+ 1)))
@@ -161,10 +161,10 @@
   "d2bdc9a40e1feeae452cdda757d15ee0")
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql '<SystemCheck-response>)))
   "Returns full string definition for message of type '<SystemCheck-response>"
-  (cl:format cl:nil "~%bool[] position~%bool[] displacement~%~%~%"))
+  (cl:format cl:nil "# returns which control modes are functional~%bool[] position~%bool[] displacement~%~%~%"))
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql 'SystemCheck-response)))
   "Returns full string definition for message of type 'SystemCheck-response"
-  (cl:format cl:nil "~%bool[] position~%bool[] displacement~%~%~%"))
+  (cl:format cl:nil "# returns which control modes are functional~%bool[] position~%bool[] displacement~%~%~%"))
 (cl:defmethod roslisp-msg-protocol:serialization-length ((msg <SystemCheck-response>))
   (cl:+ 0
      4 (cl:reduce #'cl:+ (cl:slot-value msg 'position) :key #'(cl:lambda (ele) (cl:declare (cl:ignorable ele)) (cl:+ 1)))

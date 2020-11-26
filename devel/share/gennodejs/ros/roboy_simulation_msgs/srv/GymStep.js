@@ -90,7 +90,7 @@ class GymStepRequest {
   static messageDefinition() {
     // Returns full string definition for message
     return `
-    int8 controller
+    int8 controller #position, vel or displacement
     float64[] set_points
     float64 step_size
     

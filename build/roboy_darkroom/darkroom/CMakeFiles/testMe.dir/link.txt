@@ -1,1 +1,0 @@
-/usr/bin/c++   -std=c++11 -g -g  -rdynamic CMakeFiles/testMe.dir/src/testMe.cpp.o  -o /home/sausy/Projects/lighthouse/cameraSterioCalibration/devel/lib/darkroom/testMe  -L/usr/lib/x86_64-linux-gnu/gazebo-9/plugins -Wl,-rpath,/usr/lib/x86_64-linux-gnu/gazebo-9/plugins -lalglib 

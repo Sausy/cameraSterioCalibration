@@ -137,10 +137,10 @@
 (setf (get roboy_middleware_msgs::SystemCheckRequest :md5sum-) "d2bdc9a40e1feeae452cdda757d15ee0")
 (setf (get roboy_middleware_msgs::SystemCheckRequest :datatype-) "roboy_middleware_msgs/SystemCheckRequest")
 (setf (get roboy_middleware_msgs::SystemCheckRequest :definition-)
-      "
+      "# if empty check all motors, otherwise only the requested
 uint8[] motorids
 ---
-
+# returns which control modes are functional
 bool[] position
 bool[] displacement
 ")
@@ -148,10 +148,10 @@ bool[] displacement
 (setf (get roboy_middleware_msgs::SystemCheckResponse :md5sum-) "d2bdc9a40e1feeae452cdda757d15ee0")
 (setf (get roboy_middleware_msgs::SystemCheckResponse :datatype-) "roboy_middleware_msgs/SystemCheckResponse")
 (setf (get roboy_middleware_msgs::SystemCheckResponse :definition-)
-      "
+      "# if empty check all motors, otherwise only the requested
 uint8[] motorids
 ---
-
+# returns which control modes are functional
 bool[] position
 bool[] displacement
 ")

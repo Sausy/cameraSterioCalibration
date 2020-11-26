@@ -68,7 +68,7 @@ class ListItemsRequest {
   static messageDefinition() {
     // Returns full string definition for message
     return `
-    string name
+    string name # e.g. folder path on FPGA
     
     `;
   }

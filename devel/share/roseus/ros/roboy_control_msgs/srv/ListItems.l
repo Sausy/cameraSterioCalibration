@@ -115,7 +115,7 @@
 (setf (get roboy_control_msgs::ListItemsRequest :md5sum-) "f59feb99c2158f8692d1c10f10534d0b")
 (setf (get roboy_control_msgs::ListItemsRequest :datatype-) "roboy_control_msgs/ListItemsRequest")
 (setf (get roboy_control_msgs::ListItemsRequest :definition-)
-      "string name
+      "string name # e.g. folder path on FPGA
 ---
 string[] items
 ")
@@ -123,7 +123,7 @@ string[] items
 (setf (get roboy_control_msgs::ListItemsResponse :md5sum-) "f59feb99c2158f8692d1c10f10534d0b")
 (setf (get roboy_control_msgs::ListItemsResponse :datatype-) "roboy_control_msgs/ListItemsResponse")
 (setf (get roboy_control_msgs::ListItemsResponse :definition-)
-      "string name
+      "string name # e.g. folder path on FPGA
 ---
 string[] items
 ")

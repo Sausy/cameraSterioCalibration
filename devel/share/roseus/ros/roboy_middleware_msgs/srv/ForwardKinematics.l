@@ -162,12 +162,12 @@
 (setf (get roboy_middleware_msgs::ForwardKinematicsRequest :md5sum-) "149f3e2da33d6bf7881371447411f783")
 (setf (get roboy_middleware_msgs::ForwardKinematicsRequest :datatype-) "roboy_middleware_msgs/ForwardKinematicsRequest")
 (setf (get roboy_middleware_msgs::ForwardKinematicsRequest :definition-)
-      "
+      "# name of the endeffector
 string endeffector
-
+# the frame of the fk target
 string frame
-
-
+# joint names with corresponding joint angles,
+# joints that are not defined will be used from the current state of the robot
 string[] joint_names
 float64[] angles
 ---
@@ -199,12 +199,12 @@ float64 w
 (setf (get roboy_middleware_msgs::ForwardKinematicsResponse :md5sum-) "149f3e2da33d6bf7881371447411f783")
 (setf (get roboy_middleware_msgs::ForwardKinematicsResponse :datatype-) "roboy_middleware_msgs/ForwardKinematicsResponse")
 (setf (get roboy_middleware_msgs::ForwardKinematicsResponse :definition-)
-      "
+      "# name of the endeffector
 string endeffector
-
+# the frame of the fk target
 string frame
-
-
+# joint names with corresponding joint angles,
+# joints that are not defined will be used from the current state of the robot
 string[] joint_names
 float64[] angles
 ---

@@ -120,10 +120,10 @@
   "7f86144326f6014074f85b3e9d900ff5")
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql '<DescribeScene-response>)))
   "Returns full string definition for message of type '<DescribeScene-response>"
-  (cl:format cl:nil "~%string[] objects_detected~%~%~%"))
+  (cl:format cl:nil "#objects found from left to right~%string[] objects_detected~%~%~%"))
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql 'DescribeScene-response)))
   "Returns full string definition for message of type 'DescribeScene-response"
-  (cl:format cl:nil "~%string[] objects_detected~%~%~%"))
+  (cl:format cl:nil "#objects found from left to right~%string[] objects_detected~%~%~%"))
 (cl:defmethod roslisp-msg-protocol:serialization-length ((msg <DescribeScene-response>))
   (cl:+ 0
      4 (cl:reduce #'cl:+ (cl:slot-value msg 'objects_detected) :key #'(cl:lambda (ele) (cl:declare (cl:ignorable ele)) (cl:+ 4 (cl:length ele))))

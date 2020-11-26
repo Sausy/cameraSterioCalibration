@@ -127,15 +127,15 @@ class InverseKinematicsMultipleFramesRequest {
   static messageDefinition() {
     // Returns full string definition for message
     return `
-    
+    # names of the endeffectors
     string endeffector
-    
+    # 0: position and orientation 1: position only 2: orientation only
     int8 type
-    
+    # the frames of the ik targets
     string[] target_frames
-    
+    # target position/orientation for frame in world coordinates (if applicable)
     geometry_msgs/Pose[] poses
-    
+    # position weights of the ik targets (1.0 is the highest weight)
     float64[] weights
     
     
@@ -277,9 +277,9 @@ class InverseKinematicsMultipleFramesResponse {
   static messageDefinition() {
     // Returns full string definition for message
     return `
-    
+    # joint names
     string[] joint_names
-    
+    # these are the resulting joint angles from inverse kinematics in radians
     float64[] angles
     
     

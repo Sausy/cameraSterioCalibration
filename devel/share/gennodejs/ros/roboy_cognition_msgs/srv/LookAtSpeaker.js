@@ -118,7 +118,7 @@ class LookAtSpeakerResponse {
   static messageDefinition() {
     // Returns full string definition for message
     return `
-    
+    #was the move succesful?
     bool turned
     
     

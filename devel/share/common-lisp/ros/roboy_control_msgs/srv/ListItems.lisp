@@ -61,10 +61,10 @@
   "f59feb99c2158f8692d1c10f10534d0b")
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql '<ListItems-request>)))
   "Returns full string definition for message of type '<ListItems-request>"
-  (cl:format cl:nil "string name~%~%~%"))
+  (cl:format cl:nil "string name # e.g. folder path on FPGA~%~%~%"))
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql 'ListItems-request)))
   "Returns full string definition for message of type 'ListItems-request"
-  (cl:format cl:nil "string name~%~%~%"))
+  (cl:format cl:nil "string name # e.g. folder path on FPGA~%~%~%"))
 (cl:defmethod roslisp-msg-protocol:serialization-length ((msg <ListItems-request>))
   (cl:+ 0
      4 (cl:length (cl:slot-value msg 'name))

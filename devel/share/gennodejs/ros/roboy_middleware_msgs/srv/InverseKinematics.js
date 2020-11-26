@@ -103,13 +103,13 @@ class InverseKinematicsRequest {
   static messageDefinition() {
     // Returns full string definition for message
     return `
-    
+    # name of the endeffector
     string endeffector
-    
+    # 0: position and orientation 1: position only 2: orientation only
     int8 type
-    
+    # the frame of the ik target
     string target_frame
-    
+    # target position/orientation for frame in world coordinates (if applicable)
     geometry_msgs/Pose pose
     
     ================================================================================
@@ -240,9 +240,9 @@ class InverseKinematicsResponse {
   static messageDefinition() {
     // Returns full string definition for message
     return `
-    
+    # joint names
     string[] joint_names
-    
+    # these are the resulting joint angles from inverse kinematics in radians
     float64[] angles
     
     

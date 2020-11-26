@@ -1,0 +1,28 @@
+joint_names: [
+  'right_joint0','right_joint1','right_joint2','right_joint3','right_joint4','right_joint5','right_joint6',
+  'left_joint0','left_joint1','left_joint2','left_joint3','left_joint4','left_joint5','left_joint6',
+  'neck_axis0','neck_axis1','neck_axis2',
+  'shoulder_right_axis0','shoulder_right_axis1','shoulder_right_axis2',
+  'elbow_right_axis0','elbow_right_axis1','elbow_right_axis2',
+  'wrist_right_axis0','wrist_right_axis1','wrist_right_axis2',
+  'shoulder_left_axis0','shoulder_left_axis1','shoulder_left_axis2',
+  'elbow_left_axis0','elbow_left_axis1','elbow_left_axis2',
+  'wrist_left_axis0','wrist_left_axis1','wrist_left_axis2'
+]
+endeffectors: ['right_link6','left_link6','hand_right','hand_left']
+right_link6:
+  base_link: 'back_plate'
+  joints: ['right_joint0','right_joint1','right_joint2','right_joint3','right_joint4','right_joint5','right_joint6']
+left_link6:
+  base_link: 'back_plate'
+  joints: ['left_joint0','left_joint1','left_joint2','left_joint3','left_joint4','left_joint5','left_joint6']
+hand_right:
+  base_link: 'back_plate'
+  joints: ['shoulder_right_axis0','shoulder_right_axis1','shoulder_right_axis2',
+           'elbow_right_axis0','elbow_right_axis1','elbow_right_axis2',
+           'wrist_right_axis0','wrist_right_axis1','wrist_right_axis2']
+hand_left:
+  base_link: 'back_plate'
+  joints: ['shoulder_left_axis0','shoulder_left_axis1','shoulder_left_axis2',
+           'elbow_left_axis0','elbow_left_axis1','elbow_left_axis2',
+           'wrist_left_axis0','wrist_left_axis1','wrist_left_axis2']

@@ -146,7 +146,7 @@ struct Definition< ::roboy_cognition_msgs::DriveToLocationRequest_<ContainerAllo
 {
   static const char* value()
   {
-    return "string destination\n"
+    return "string destination \n"
 ;
   }
 

@@ -68,7 +68,7 @@ class SystemCheckRequest {
   static messageDefinition() {
     // Returns full string definition for message
     return `
-    
+    # if empty check all motors, otherwise only the requested
     uint8[] motorids
     
     `;
@@ -154,7 +154,7 @@ class SystemCheckResponse {
   static messageDefinition() {
     // Returns full string definition for message
     return `
-    
+    # returns which control modes are functional
     bool[] position
     bool[] displacement
     

@@ -68,7 +68,7 @@ class DriveToLocationRequest {
   static messageDefinition() {
     // Returns full string definition for message
     return `
-    string destination
+    string destination 
     
     `;
   }

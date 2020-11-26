@@ -106,7 +106,7 @@
 (setf (get roboy_cognition_msgs::DescribeSceneRequest :datatype-) "roboy_cognition_msgs/DescribeSceneRequest")
 (setf (get roboy_cognition_msgs::DescribeSceneRequest :definition-)
       "---
-
+#objects found from left to right
 string[] objects_detected
 ")
 
@@ -114,7 +114,7 @@ string[] objects_detected
 (setf (get roboy_cognition_msgs::DescribeSceneResponse :datatype-) "roboy_cognition_msgs/DescribeSceneResponse")
 (setf (get roboy_cognition_msgs::DescribeSceneResponse :definition-)
       "---
-
+#objects found from left to right
 string[] objects_detected
 ")
 

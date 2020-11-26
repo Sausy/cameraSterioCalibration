@@ -176,7 +176,7 @@
 (setf (get roboy_simulation_msgs::GymStepRequest :md5sum-) "da078c4985541d376efaaa93946e1b7b")
 (setf (get roboy_simulation_msgs::GymStepRequest :datatype-) "roboy_simulation_msgs/GymStepRequest")
 (setf (get roboy_simulation_msgs::GymStepRequest :definition-)
-      "int8 controller
+      "int8 controller #position, vel or displacement
 float64[] set_points
 float64 step_size
 ---
@@ -189,7 +189,7 @@ bool feasible
 (setf (get roboy_simulation_msgs::GymStepResponse :md5sum-) "da078c4985541d376efaaa93946e1b7b")
 (setf (get roboy_simulation_msgs::GymStepResponse :datatype-) "roboy_simulation_msgs/GymStepResponse")
 (setf (get roboy_simulation_msgs::GymStepResponse :definition-)
-      "int8 controller
+      "int8 controller #position, vel or displacement
 float64[] set_points
 float64 step_size
 ---

@@ -122,7 +122,7 @@ class DescribeSceneResponse {
   static messageDefinition() {
     // Returns full string definition for message
     return `
-    
+    #objects found from left to right
     string[] objects_detected
     
     `;

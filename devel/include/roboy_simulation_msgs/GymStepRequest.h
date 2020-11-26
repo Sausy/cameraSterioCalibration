@@ -158,7 +158,7 @@ struct Definition< ::roboy_simulation_msgs::GymStepRequest_<ContainerAllocator> 
 {
   static const char* value()
   {
-    return "int8 controller\n"
+    return "int8 controller #position, vel or displacement\n"
 "float64[] set_points\n"
 "float64 step_size\n"
 ;

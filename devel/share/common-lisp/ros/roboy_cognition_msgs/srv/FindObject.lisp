@@ -61,10 +61,10 @@
   "8bce2c9439fff72b8d9c35fa63d8c24a")
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql '<FindObject-request>)))
   "Returns full string definition for message of type '<FindObject-request>"
-  (cl:format cl:nil "~%string type~%~%~%"))
+  (cl:format cl:nil "#type of looked for object~%string type~%~%~%"))
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql 'FindObject-request)))
   "Returns full string definition for message of type 'FindObject-request"
-  (cl:format cl:nil "~%string type~%~%~%"))
+  (cl:format cl:nil "#type of looked for object~%string type~%~%~%"))
 (cl:defmethod roslisp-msg-protocol:serialization-length ((msg <FindObject-request>))
   (cl:+ 0
      4 (cl:length (cl:slot-value msg 'type))
@@ -182,10 +182,10 @@
   "8bce2c9439fff72b8d9c35fa63d8c24a")
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql '<FindObject-response>)))
   "Returns full string definition for message of type '<FindObject-response>"
-  (cl:format cl:nil "~%bool found~%~%float32 x~%float32 y~%float32 z~%~%~%"))
+  (cl:format cl:nil "#was the object found?~%bool found~%#3D position of found object in transformed global coordinates~%float32 x~%float32 y~%float32 z~%~%~%"))
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql 'FindObject-response)))
   "Returns full string definition for message of type 'FindObject-response"
-  (cl:format cl:nil "~%bool found~%~%float32 x~%float32 y~%float32 z~%~%~%"))
+  (cl:format cl:nil "#was the object found?~%bool found~%#3D position of found object in transformed global coordinates~%float32 x~%float32 y~%float32 z~%~%~%"))
 (cl:defmethod roslisp-msg-protocol:serialization-length ((msg <FindObject-response>))
   (cl:+ 0
      1

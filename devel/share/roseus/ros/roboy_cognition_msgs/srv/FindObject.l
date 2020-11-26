@@ -140,12 +140,12 @@
 (setf (get roboy_cognition_msgs::FindObjectRequest :md5sum-) "8bce2c9439fff72b8d9c35fa63d8c24a")
 (setf (get roboy_cognition_msgs::FindObjectRequest :datatype-) "roboy_cognition_msgs/FindObjectRequest")
 (setf (get roboy_cognition_msgs::FindObjectRequest :definition-)
-      "
+      "#type of looked for object
 string type
 ---
-
+#was the object found?
 bool found
-
+#3D position of found object in transformed global coordinates
 float32 x
 float32 y
 float32 z
@@ -154,12 +154,12 @@ float32 z
 (setf (get roboy_cognition_msgs::FindObjectResponse :md5sum-) "8bce2c9439fff72b8d9c35fa63d8c24a")
 (setf (get roboy_cognition_msgs::FindObjectResponse :datatype-) "roboy_cognition_msgs/FindObjectResponse")
 (setf (get roboy_cognition_msgs::FindObjectResponse :definition-)
-      "
+      "#type of looked for object
 string type
 ---
-
+#was the object found?
 bool found
-
+#3D position of found object in transformed global coordinates
 float32 x
 float32 y
 float32 z

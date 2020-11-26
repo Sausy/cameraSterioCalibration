@@ -1,2 +1,0 @@
-set(roboy_simulation_msgs_MESSAGE_FILES "msg/Abortion.msg;msg/BodyPart.msg;msg/COM.msg;msg/ControllerParameters.msg;msg/ControllerType.msg;msg/ExternalForce.msg;msg/ForceTorque.msg;msg/IMU.msg;msg/Input.msg;msg/Joint.msg;msg/JointState.msg;msg/LegState.msg;msg/Model.msg;msg/MotorControl.msg;msg/RecordingControl.msg;msg/Tendon.msg;msg/TendonInitialization.msg;msg/TendonUpdate.msg;msg/VisualizationControl.msg")
-set(roboy_simulation_msgs_SERVICE_FILES "srv/UpdateControllerParameters.srv;srv/Energies.srv;srv/GymStep.srv;srv/GymReset.srv;srv/GymGoal.srv")

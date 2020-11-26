@@ -1,8 +1,0 @@
-prefix=/home/sausy/Projects/lighthouse/cameraSterioCalibration/install
-
-Name: common_utilities
-Description: Description of common_utilities
-Version: 0.0.0
-Cflags: -I${prefix}/include
-Libs: -L${prefix}/lib -lrviz_visualization -lUDPSocket -lMotorConfig
-Requires: message_runtime roslib

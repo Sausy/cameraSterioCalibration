@@ -164,9 +164,9 @@ struct Definition< ::roboy_cognition_msgs::FindObjectResponse_<ContainerAllocato
 {
   static const char* value()
   {
-    return "\n"
+    return "#was the object found?\n"
 "bool found\n"
-"\n"
+"#3D position of found object in transformed global coordinates\n"
 "float32 x\n"
 "float32 y\n"
 "float32 z\n"

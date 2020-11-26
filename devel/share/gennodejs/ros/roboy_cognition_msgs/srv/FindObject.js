@@ -68,7 +68,7 @@ class FindObjectRequest {
   static messageDefinition() {
     // Returns full string definition for message
     return `
-    
+    #type of looked for object
     string type
     
     `;
@@ -173,9 +173,9 @@ class FindObjectResponse {
   static messageDefinition() {
     // Returns full string definition for message
     return `
-    
+    #was the object found?
     bool found
-    
+    #3D position of found object in transformed global coordinates
     float32 x
     float32 y
     float32 z

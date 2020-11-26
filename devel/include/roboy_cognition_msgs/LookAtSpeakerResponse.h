@@ -146,7 +146,7 @@ struct Definition< ::roboy_cognition_msgs::LookAtSpeakerResponse_<ContainerAlloc
 {
   static const char* value()
   {
-    return "\n"
+    return "#was the move succesful?\n"
 "bool turned\n"
 "\n"
 ;

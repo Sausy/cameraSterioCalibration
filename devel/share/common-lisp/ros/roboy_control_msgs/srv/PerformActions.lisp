@@ -75,10 +75,10 @@
   "4c7ae25d13777401a5c311c271b76cf4")
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql '<PerformActions-request>)))
   "Returns full string definition for message of type '<PerformActions-request>"
-  (cl:format cl:nil "string[] actions~%~%~%"))
+  (cl:format cl:nil "string[] actions # can be a trajectory name or pause (2_pause will pause for 2 seconds)~%~%~%"))
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql 'PerformActions-request)))
   "Returns full string definition for message of type 'PerformActions-request"
-  (cl:format cl:nil "string[] actions~%~%~%"))
+  (cl:format cl:nil "string[] actions # can be a trajectory name or pause (2_pause will pause for 2 seconds)~%~%~%"))
 (cl:defmethod roslisp-msg-protocol:serialization-length ((msg <PerformActions-request>))
   (cl:+ 0
      4 (cl:reduce #'cl:+ (cl:slot-value msg 'actions) :key #'(cl:lambda (ele) (cl:declare (cl:ignorable ele)) (cl:+ 4 (cl:length ele))))

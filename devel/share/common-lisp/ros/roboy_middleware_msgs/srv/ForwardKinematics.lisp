@@ -166,10 +166,10 @@
   "149f3e2da33d6bf7881371447411f783")
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql '<ForwardKinematics-request>)))
   "Returns full string definition for message of type '<ForwardKinematics-request>"
-  (cl:format cl:nil "~%string endeffector~%~%string frame~%~%~%string[] joint_names~%float64[] angles~%~%~%"))
+  (cl:format cl:nil "# name of the endeffector~%string endeffector~%# the frame of the fk target~%string frame~%# joint names with corresponding joint angles,~%# joints that are not defined will be used from the current state of the robot~%string[] joint_names~%float64[] angles~%~%~%"))
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql 'ForwardKinematics-request)))
   "Returns full string definition for message of type 'ForwardKinematics-request"
-  (cl:format cl:nil "~%string endeffector~%~%string frame~%~%~%string[] joint_names~%float64[] angles~%~%~%"))
+  (cl:format cl:nil "# name of the endeffector~%string endeffector~%# the frame of the fk target~%string frame~%# joint names with corresponding joint angles,~%# joints that are not defined will be used from the current state of the robot~%string[] joint_names~%float64[] angles~%~%~%"))
 (cl:defmethod roslisp-msg-protocol:serialization-length ((msg <ForwardKinematics-request>))
   (cl:+ 0
      4 (cl:length (cl:slot-value msg 'endeffector))

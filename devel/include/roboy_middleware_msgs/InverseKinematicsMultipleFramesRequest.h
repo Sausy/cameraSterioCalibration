@@ -171,15 +171,15 @@ struct Definition< ::roboy_middleware_msgs::InverseKinematicsMultipleFramesReque
 {
   static const char* value()
   {
-    return "\n"
+    return "# names of the endeffectors\n"
 "string endeffector\n"
-"\n"
+"# 0: position and orientation 1: position only 2: orientation only\n"
 "int8 type\n"
-"\n"
+"# the frames of the ik targets\n"
 "string[] target_frames\n"
-"\n"
+"# target position/orientation for frame in world coordinates (if applicable)\n"
 "geometry_msgs/Pose[] poses\n"
-"\n"
+"# position weights of the ik targets (1.0 is the highest weight)\n"
 "float64[] weights\n"
 "\n"
 "\n"

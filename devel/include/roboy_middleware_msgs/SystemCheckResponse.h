@@ -152,7 +152,7 @@ struct Definition< ::roboy_middleware_msgs::SystemCheckResponse_<ContainerAlloca
 {
   static const char* value()
   {
-    return "\n"
+    return "# returns which control modes are functional\n"
 "bool[] position\n"
 "bool[] displacement\n"
 ;

@@ -1,8 +1,8 @@
-prefix=/home/sausy/Projects/lighthouse/cameraSterioCalibration/devel
+prefix=/home/userdev/Projects/lighthouse/cameraSterioCalibration/devel
 
 Name: common_utilities
 Description: Description of common_utilities
 Version: 0.0.0
-Cflags: -I/home/sausy/Projects/lighthouse/cameraSterioCalibration/src/common_utilities/include
+Cflags: -I/home/userdev/Projects/lighthouse/cameraSterioCalibration/src/common_utilities/include
 Libs: -L${prefix}/lib -lrviz_visualization -lUDPSocket -lMotorConfig
 Requires: message_runtime roslib

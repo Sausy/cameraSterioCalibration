@@ -1,8 +1,0 @@
-prefix=/home/sausy/Projects/lighthouse/cameraSterioCalibration/install
-
-Name: camerasterio
-Description: Description of camerasterio
-Version: 0.0.0
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: message_runtime roboy_middleware_msgs roboy_control_msgs darkroom common_utilities

@@ -146,7 +146,7 @@ struct Definition< ::roboy_cognition_msgs::FindObjectRequest_<ContainerAllocator
 {
   static const char* value()
   {
-    return "\n"
+    return "#type of looked for object\n"
 "string type\n"
 ;
   }

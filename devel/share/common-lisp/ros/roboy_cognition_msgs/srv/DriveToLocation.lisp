@@ -61,10 +61,10 @@
   "7577d7b5d3f8964faf8902041a36d0b1")
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql '<DriveToLocation-request>)))
   "Returns full string definition for message of type '<DriveToLocation-request>"
-  (cl:format cl:nil "string destination~%~%~%"))
+  (cl:format cl:nil "string destination ~%~%~%"))
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql 'DriveToLocation-request)))
   "Returns full string definition for message of type 'DriveToLocation-request"
-  (cl:format cl:nil "string destination~%~%~%"))
+  (cl:format cl:nil "string destination ~%~%~%"))
 (cl:defmethod roslisp-msg-protocol:serialization-length ((msg <DriveToLocation-request>))
   (cl:+ 0
      4 (cl:length (cl:slot-value msg 'destination))

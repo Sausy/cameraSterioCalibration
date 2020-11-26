@@ -94,10 +94,10 @@
   "15a9db50325f4812c0499779cd2dc36e")
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql '<LookAtSpeaker-response>)))
   "Returns full string definition for message of type '<LookAtSpeaker-response>"
-  (cl:format cl:nil "~%bool turned~%~%~%~%"))
+  (cl:format cl:nil "#was the move succesful?~%bool turned~%~%~%~%"))
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql 'LookAtSpeaker-response)))
   "Returns full string definition for message of type 'LookAtSpeaker-response"
-  (cl:format cl:nil "~%bool turned~%~%~%~%"))
+  (cl:format cl:nil "#was the move succesful?~%bool turned~%~%~%~%"))
 (cl:defmethod roslisp-msg-protocol:serialization-length ((msg <LookAtSpeaker-response>))
   (cl:+ 0
      1

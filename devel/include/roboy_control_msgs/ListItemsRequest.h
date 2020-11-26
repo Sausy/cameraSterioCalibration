@@ -146,7 +146,7 @@ struct Definition< ::roboy_control_msgs::ListItemsRequest_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "string name\n"
+    return "string name # e.g. folder path on FPGA\n"
 ;
   }
 

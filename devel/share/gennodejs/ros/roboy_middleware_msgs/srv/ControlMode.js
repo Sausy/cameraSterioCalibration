@@ -90,9 +90,9 @@ class ControlModeRequest {
   static messageDefinition() {
     // Returns full string definition for message
     return `
-    int32 control_mode
+    int32 control_mode # 0: position, 1: velocity, 2: displacement
     int32 set_point
-    
+    # if left empty, all motors will be changed to the requested control mode
     uint16[] motor_id
     
     `;

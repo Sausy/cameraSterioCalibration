@@ -109,10 +109,10 @@
   "3bf3f3c500bf7df65355716be531bee1")
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql '<ControlMode-request>)))
   "Returns full string definition for message of type '<ControlMode-request>"
-  (cl:format cl:nil "int32 control_mode~%int32 set_point~%~%uint16[] motor_id~%~%~%"))
+  (cl:format cl:nil "int32 control_mode # 0: position, 1: velocity, 2: displacement~%int32 set_point~%# if left empty, all motors will be changed to the requested control mode~%uint16[] motor_id~%~%~%"))
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql 'ControlMode-request)))
   "Returns full string definition for message of type 'ControlMode-request"
-  (cl:format cl:nil "int32 control_mode~%int32 set_point~%~%uint16[] motor_id~%~%~%"))
+  (cl:format cl:nil "int32 control_mode # 0: position, 1: velocity, 2: displacement~%int32 set_point~%# if left empty, all motors will be changed to the requested control mode~%uint16[] motor_id~%~%~%"))
 (cl:defmethod roslisp-msg-protocol:serialization-length ((msg <ControlMode-request>))
   (cl:+ 0
      4

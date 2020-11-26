@@ -129,7 +129,7 @@
 (setf (get roboy_cognition_msgs::DriveToLocationRequest :md5sum-) "7577d7b5d3f8964faf8902041a36d0b1")
 (setf (get roboy_cognition_msgs::DriveToLocationRequest :datatype-) "roboy_cognition_msgs/DriveToLocationRequest")
 (setf (get roboy_cognition_msgs::DriveToLocationRequest :definition-)
-      "string destination
+      "string destination 
 ---
 int16 eta
 bool path_found
@@ -140,7 +140,7 @@ string error_message
 (setf (get roboy_cognition_msgs::DriveToLocationResponse :md5sum-) "7577d7b5d3f8964faf8902041a36d0b1")
 (setf (get roboy_cognition_msgs::DriveToLocationResponse :datatype-) "roboy_cognition_msgs/DriveToLocationResponse")
 (setf (get roboy_cognition_msgs::DriveToLocationResponse :definition-)
-      "string destination
+      "string destination 
 ---
 int16 eta
 bool path_found

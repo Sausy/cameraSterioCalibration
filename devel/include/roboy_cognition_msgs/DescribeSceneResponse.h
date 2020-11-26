@@ -146,7 +146,7 @@ struct Definition< ::roboy_cognition_msgs::DescribeSceneResponse_<ContainerAlloc
 {
   static const char* value()
   {
-    return "\n"
+    return "#objects found from left to right\n"
 "string[] objects_detected\n"
 ;
   }

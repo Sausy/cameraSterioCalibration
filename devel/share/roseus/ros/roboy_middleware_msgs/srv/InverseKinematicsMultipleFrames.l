@@ -209,15 +209,15 @@
 (setf (get roboy_middleware_msgs::InverseKinematicsMultipleFramesRequest :md5sum-) "3e81df32da3e064d9e3358005de175c1")
 (setf (get roboy_middleware_msgs::InverseKinematicsMultipleFramesRequest :datatype-) "roboy_middleware_msgs/InverseKinematicsMultipleFramesRequest")
 (setf (get roboy_middleware_msgs::InverseKinematicsMultipleFramesRequest :definition-)
-      "
+      "# names of the endeffectors
 string endeffector
-
+# 0: position and orientation 1: position only 2: orientation only
 int8 type
-
+# the frames of the ik targets
 string[] target_frames
-
+# target position/orientation for frame in world coordinates (if applicable)
 geometry_msgs/Pose[] poses
-
+# position weights of the ik targets (1.0 is the highest weight)
 float64[] weights
 
 
@@ -243,9 +243,9 @@ float64 y
 float64 z
 float64 w
 ---
-
+# joint names
 string[] joint_names
-
+# these are the resulting joint angles from inverse kinematics in radians
 float64[] angles
 
 ")
@@ -253,15 +253,15 @@ float64[] angles
 (setf (get roboy_middleware_msgs::InverseKinematicsMultipleFramesResponse :md5sum-) "3e81df32da3e064d9e3358005de175c1")
 (setf (get roboy_middleware_msgs::InverseKinematicsMultipleFramesResponse :datatype-) "roboy_middleware_msgs/InverseKinematicsMultipleFramesResponse")
 (setf (get roboy_middleware_msgs::InverseKinematicsMultipleFramesResponse :definition-)
-      "
+      "# names of the endeffectors
 string endeffector
-
+# 0: position and orientation 1: position only 2: orientation only
 int8 type
-
+# the frames of the ik targets
 string[] target_frames
-
+# target position/orientation for frame in world coordinates (if applicable)
 geometry_msgs/Pose[] poses
-
+# position weights of the ik targets (1.0 is the highest weight)
 float64[] weights
 
 
@@ -287,9 +287,9 @@ float64 y
 float64 z
 float64 w
 ---
-
+# joint names
 string[] joint_names
-
+# these are the resulting joint angles from inverse kinematics in radians
 float64[] angles
 
 ")

@@ -1,4 +1,4 @@
-prefix=/home/sausy/Projects/lighthouse/cameraSterioCalibration/devel
+prefix=/home/userdev/Projects/lighthouse/cameraSterioCalibration/devel
 
 Name: camerasterio
 Description: Description of camerasterio

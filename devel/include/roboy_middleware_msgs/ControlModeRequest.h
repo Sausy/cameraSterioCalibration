@@ -158,9 +158,9 @@ struct Definition< ::roboy_middleware_msgs::ControlModeRequest_<ContainerAllocat
 {
   static const char* value()
   {
-    return "int32 control_mode\n"
+    return "int32 control_mode # 0: position, 1: velocity, 2: displacement\n"
 "int32 set_point\n"
-"\n"
+"# if left empty, all motors will be changed to the requested control mode\n"
 "uint16[] motor_id\n"
 ;
   }

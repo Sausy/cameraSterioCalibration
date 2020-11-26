@@ -152,9 +152,9 @@ struct Definition< ::roboy_middleware_msgs::InverseKinematicsResponse_<Container
 {
   static const char* value()
   {
-    return "\n"
+    return "# joint names\n"
 "string[] joint_names\n"
-"\n"
+"# these are the resulting joint angles from inverse kinematics in radians\n"
 "float64[] angles\n"
 "\n"
 ;
