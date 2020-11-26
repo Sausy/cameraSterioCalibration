@@ -7,7 +7,7 @@ typedef struct lightV2{
   uint8_t channel;
 
   uint32_t TimeStamp;
-  uint32_t TimeDiv;
+  int32_t TimeDiv;
 }lightV2;
 
 

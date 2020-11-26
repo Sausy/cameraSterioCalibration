@@ -1,0 +1,2 @@
+cameraCalibration:common_utilities:roboy_communication/roboy_cognition_msgs:roboy_communication/roboy_control_msgs:roboy_communication/roboy_middleware_msgs:roboy_communication/roboy_simulation_msgs:roboy_darkroom/darkroom:roboy_darkroom/darkroom_rqt:roboy_darkroom/vive_ros
+-DCATKIN_DEVEL_PREFIX=/home/sausy/Projects/lighthouse/cameraSterioCalibration/devel -DCMAKE_INSTALL_PREFIX=/home/sausy/Projects/lighthouse/cameraSterioCalibration/install -G Unix Makefiles

@@ -1,0 +1,8 @@
+prefix=/home/sausy/Projects/lighthouse/cameraSterioCalibration/install
+
+Name: darkroom
+Description: Description of darkroom
+Version: 0.0.0
+Cflags: -I${prefix}/include
+Libs: -L${prefix}/lib -lPoseEstimatorSensorCloud -lTransform -lTriangulate -lLighthouseEstimator -lLighthouseSimulator -lSensor -lTrackedObject
+Requires: message_runtime roboy_middleware_msgs common_utilities robot_localization xmlrpcpp pcl_ros

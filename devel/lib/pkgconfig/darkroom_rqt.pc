@@ -1,8 +1,8 @@
-prefix=/home/userdev/Projects/lighthouse/cameraSterioCalibration/devel
+prefix=/home/sausy/Projects/lighthouse/cameraSterioCalibration/devel
 
 Name: darkroom_rqt
 Description: Description of darkroom_rqt
 Version: 0.0.0
-Cflags: -I/home/userdev/Projects/lighthouse/cameraSterioCalibration/src/roboy_darkroom/darkroom_rqt/include
+Cflags: -I/home/sausy/Projects/lighthouse/cameraSterioCalibration/src/roboy_darkroom/darkroom_rqt/include
 Libs: -L${prefix}/lib -ldarkroom_rqt
 Requires: roscpp rqt_gui_cpp std_msgs roboy_middleware_msgs darkroom common_utilities

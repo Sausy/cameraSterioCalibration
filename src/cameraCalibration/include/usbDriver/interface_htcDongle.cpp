@@ -12,7 +12,7 @@ driverHtcDongle::driverHtcDongle(){
     //TODO:BIG TODO
     //automate the path search for the htc usb device
     //this shouldn't be hardcoded .. could lead to huge fuck ups
-    (void)HID_init("/dev/hidraw1");
+    (void)HID_init("/dev/hidraw0");
     (void)HID_send_config();
 }
 
@@ -67,36 +67,40 @@ bool driverHtcDongle::pullData(std::vector<int> *id, std::vector<float> *azimuth
           lightV2 * le = &dataParser.lightData[0];
 
           for (uint8_t i = 0; i < dataParser.pollLength; i++) {
-              //TODO: sometimes the timeDiv values are way to big
-              //TODO:959000 needs to be chosen acording to the current channel
-              double angle_buffer = (double)le->TimeDiv/PERIODS[le->channel]; //959000.0;
-              double angle_rad = angle_buffer * 2 * M_PI;
-              double angle  = angle_buffer * 360.0;
+            //check if data is valid
+            if(le->TimeDiv < 1000000){
+                double angle_buffer = (double)le->TimeDiv/PERIODS[le->channel]; //959000.0;
+                double angle_rad = angle_buffer * 2 * M_PI;
+                double angle  = angle_buffer * 360.0;
 
-              //TODO:
-              // angle 180 is not sofisticated enough ... because both angle can be under 180
-              if(angle > 180){
-                ray_calculation(angle_rad, first_phi[le->id][le->channel], &ray);
-                //std::cout<< "\n " << angle_rad << "+" << first_phi[le->id][le->channel] ;
-                //std::cout<< "| " << ray[1][0];
-                //std::cout<< " " << ray[1][1];
-                //std::cout<< " " << ray[1][2];
-                vec2azimuth(&ray, &az_, &ele_);
+                //TODO:
+                // angle 180 is not sofisticated enough ... because both angle can be under 180
+                if(angle > 180){
+                  ray_calculation(angle_rad, first_phi[le->id][le->channel], &ray);
+                  //std::cout<< "\n " << angle_rad << "+" << first_phi[le->id][le->channel] ;
+                  //std::cout<< "| " << ray[1][0];
+                  //std::cout<< " " << ray[1][1];
+                  //std::cout<< " " << ray[1][2];
+                  vec2azimuth(&ray, &az_, &ele_);
 
-                //filter out obvious wrong data
-                if((az_ < MAX_AZIMUTH_ANGLE_RAD) && (az_ > MIN_AZIMUTH_ANGLE_RAD) && (ele_ < MAX_ELEVATION_ANGLE_RAD) && (ele_ > MIN_ELEVATION_ANGLE_RAD)){
-                  id->push_back(le->id);
-                  azimuth->push_back((float)az_);
-                  elevation->push_back((float)ele_);
-                  channel->push_back(le->channel);
+                  //filter out obvious wrong data
+                  if((az_ < MAX_AZIMUTH_ANGLE_RAD) && (az_ > MIN_AZIMUTH_ANGLE_RAD) && (ele_ < MAX_ELEVATION_ANGLE_RAD) && (ele_ > MIN_ELEVATION_ANGLE_RAD)){
+                    id->push_back(le->id);
+                    azimuth->push_back((float)az_);
+                    elevation->push_back((float)ele_);
+                    channel->push_back(le->channel);
+                  }
+                  printf("\n[%u=%u]%f/%f\t%f\t%f",le->id,le->channel,az_*180.0/M_PI, ele_*180.0/M_PI,angle, first_phi[le->id][le->channel]*180.0/M_PI);
+
+
+                }else{
+                  //angle_old[le->id][le->channel] =  angle;
+                  if(angle_rad > 0){
+                    first_phi[le->id][le->channel] = angle_rad;
+                  }
+
+
                 }
-                printf("\n[%u=%u]%f/%f",le->id,le->channel,az_*180.0/M_PI, ele_*180.0/M_PI);
-
-
-              }else{
-                //angle_old[le->id][le->channel] =  angle;
-                first_phi[le->id][le->channel] = angle_rad;
-
               }
               le++;
           }

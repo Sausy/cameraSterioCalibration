@@ -171,21 +171,21 @@ bool viveParse::parseLightV2(uint8_t * data_, bool cleanCall){
 
           //if(syncData > upperData){
           if(syncTimePerChannel[channel] > upperData){
-            /*le->TimeDiv =  0x800000 - syncTimePerChannel[channel];//timeDelta = 0x800000 - syncData;
-            int32_t timeDive_tmp = 0x800000 - upperData;
+            le->TimeDiv =  0x800000 - syncTimePerChannel[channel];//timeDelta = 0x800000 - syncData;
 
             //if(syncTimePerChannel[channel] > 0x800000){
             //  printf("\n[ERROR] %u", syncTimePerChannel[channel]);
             //}
             le->TimeDiv =  upperData + le->TimeDiv;//timeDelta = upperData + timeDelta;
-            */
+
           }else{
             le->TimeDiv = upperData - syncTimePerChannel[channel];//timeDelta = upperData - syncData;
           }
 
           angle = (double)le->TimeDiv/959000.0 * 360.0;
 
-          //printf("\n[V2][%u]%u/ %u | %d | %f", sensorID, channel, upperData, le->TimeDiv, angle);
+
+          printf("\n[V2][%u/%u]\t%u \t- %u | %d | %f", sensorID, channel, upperData, syncTimePerChannel[channel], le->TimeDiv, angle);
           pollLength++;
           le++;
       }

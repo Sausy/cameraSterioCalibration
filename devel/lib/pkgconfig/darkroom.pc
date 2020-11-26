@@ -1,8 +1,8 @@
-prefix=/home/userdev/Projects/lighthouse/cameraSterioCalibration/devel
+prefix=/home/sausy/Projects/lighthouse/cameraSterioCalibration/devel
 
 Name: darkroom
 Description: Description of darkroom
 Version: 0.0.0
-Cflags: -I/home/userdev/Projects/lighthouse/cameraSterioCalibration/src/roboy_darkroom/darkroom/include
+Cflags: -I/home/sausy/Projects/lighthouse/cameraSterioCalibration/src/roboy_darkroom/darkroom/include
 Libs: -L${prefix}/lib -lPoseEstimatorSensorCloud -lTransform -lTriangulate -lLighthouseEstimator -lLighthouseSimulator -lSensor -lTrackedObject
 Requires: message_runtime roboy_middleware_msgs common_utilities robot_localization xmlrpcpp pcl_ros

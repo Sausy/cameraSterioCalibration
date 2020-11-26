@@ -1,0 +1,26 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/sausy/Projects/lighthouse/cameraSterioCalibration/src/cameraCalibration/include/mathUtils/mathUtils.cpp
+iostream
+-
+stdint.h
+-
+stdlib.h
+-
+sstream
+-
+vector
+-
+math.h
+-
+mathUtils.hpp
+/home/sausy/Projects/lighthouse/cameraSterioCalibration/src/cameraCalibration/include/mathUtils/mathUtils.hpp
+
+/home/sausy/Projects/lighthouse/cameraSterioCalibration/src/cameraCalibration/include/mathUtils/mathUtils.hpp
+

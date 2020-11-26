@@ -263,10 +263,12 @@ int main(int argc, char const *argv[]) {
 
   //==================[usb driver]==================
   //init vive dongle
+  std::cout<<"\n=======\nConnect to usb" << std::flush;
   driverHtcDongle driver;//TODO: find usbDongle automatically
 
 
   //============Match Data init ============
+  std::cout<<"\n=======\nInit Datamatcher" << std::flush;
   DataMatcher dataM(params_Lighthouse, model.sensorData_3d.size());
   //match 2d data with 3d data
 
@@ -306,12 +308,10 @@ int main(int argc, char const *argv[]) {
       //we at least need two bases for further processing
       if(startPubRay){
           //ataRdy = dataM.twoCameraMatcher();
-          if(cFilter_sensor(&ray)){
-              robot.publishSensorData(&ray);
-          }
+          robot.publishSensorData(&ray);
 
       }else{
-        //only start the system if at least to lighthouseBases ar visible 
+        //only start the system if at least to lighthouseBases ar visible
         if(baseN >= 2){
           //due to system design, the lighthouse with the lower numerical value
           //and therfor lower polynome will be Position Zero

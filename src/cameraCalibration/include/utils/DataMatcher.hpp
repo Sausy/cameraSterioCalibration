@@ -33,8 +33,8 @@
 #define MAX_BASE_AMOUNT 16//we have 32Polynomes and per base 2 Polynomes are used
 #define MAX_SENSOR_CNT 30
 
-#define FILTER_HISTORY_LEN 10
-#define FILTER_HISTORY_LEN_CH 50
+#define FILTER_HISTORY_LEN 8
+#define FILTER_HISTORY_LEN_CH 20
 
 #define MAX_DATA_HISTORY 20
 

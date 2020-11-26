@@ -397,10 +397,10 @@ bool DataMatcher::customFilter(int id_, double * azimuth_, double * elevation_, 
     //bool lowerBound_az = (*azimuth_ >= (faz_perCh->mean - faz_perCh->variance));
     //bool upperBound_el = (*elevation_ <= (fele_perCh->mean + fele_perCh->variance));
     //bool lowerBound_el = (*elevation_ >= (fele_perCh->mean - fele_perCh->variance));
-    bool upperBound_az = (*azimuth_ <= (faz_perCh->mean + 0.2));
-    bool lowerBound_az = (*azimuth_ >= (faz_perCh->mean - 0.2));
-    bool upperBound_el = (*elevation_ <= (fele_perCh->mean +  0.2));
-    bool lowerBound_el = (*elevation_ >= (fele_perCh->mean -  0.2));
+    bool upperBound_az = (*azimuth_ <= (faz_perCh->mean + 0.3));
+    bool lowerBound_az = (*azimuth_ >= (faz_perCh->mean - 0.3));
+    bool upperBound_el = (*elevation_ <= (fele_perCh->mean +  0.3));
+    bool lowerBound_el = (*elevation_ >= (fele_perCh->mean -  0.3));
 
 
     if(!upperBound_az || !lowerBound_az || !upperBound_el || !lowerBound_el){
@@ -425,10 +425,10 @@ bool DataMatcher::customFilter(int id_, double * azimuth_, double * elevation_, 
 
   if(dataIsRdy){
     //for both values there are upper and lower boundaries
-    bool upperBound_az = (*azimuth_ <= (faz->mean + 0.1));
-    bool lowerBound_az = (*azimuth_ >= (faz->mean - 0.1));
-    bool upperBound_el = (*elevation_ <= (fele->mean +  0.1));
-    bool lowerBound_el = (*elevation_ >= (fele->mean -  0.1));
+    bool upperBound_az = (*azimuth_ <= (faz->mean + 0.2));
+    bool lowerBound_az = (*azimuth_ >= (faz->mean - 0.2));
+    bool upperBound_el = (*elevation_ <= (fele->mean +  0.2));
+    bool lowerBound_el = (*elevation_ >= (fele->mean -  0.2));
 
     //if both values are with a variance range of 1*var
     //we shall consider the as good
