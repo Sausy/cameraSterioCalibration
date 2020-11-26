@@ -171,11 +171,14 @@ bool viveParse::parseLightV2(uint8_t * data_, bool cleanCall){
 
           //if(syncData > upperData){
           if(syncTimePerChannel[channel] > upperData){
-            le->TimeDiv =  0x800000 - syncTimePerChannel[channel];//timeDelta = 0x800000 - syncData;
+            /*le->TimeDiv =  0x800000 - syncTimePerChannel[channel];//timeDelta = 0x800000 - syncData;
+            int32_t timeDive_tmp = 0x800000 - upperData;
+
             //if(syncTimePerChannel[channel] > 0x800000){
             //  printf("\n[ERROR] %u", syncTimePerChannel[channel]);
             //}
             le->TimeDiv =  upperData + le->TimeDiv;//timeDelta = upperData + timeDelta;
+            */
           }else{
             le->TimeDiv = upperData - syncTimePerChannel[channel];//timeDelta = upperData - syncData;
           }

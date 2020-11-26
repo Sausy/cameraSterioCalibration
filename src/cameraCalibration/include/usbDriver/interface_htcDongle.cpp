@@ -90,7 +90,7 @@ bool driverHtcDongle::pullData(std::vector<int> *id, std::vector<float> *azimuth
                   elevation->push_back((float)ele_);
                   channel->push_back(le->channel);
                 }
-                //printf("\n[%u=%u]%f/%f",le->id,le->channel,az_*180.0/M_PI, ele_*180.0/M_PI);
+                printf("\n[%u=%u]%f/%f",le->id,le->channel,az_*180.0/M_PI, ele_*180.0/M_PI);
 
 
               }else{
