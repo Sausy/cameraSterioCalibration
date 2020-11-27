@@ -311,8 +311,8 @@ int main(int argc, char const *argv[]) {
           //bool dataRdy = dataM.matchData(model.sensorData_3d,&ray);
           //bool dataRdy = dataM.twoCameraMatcher();
 
-          if(dataRdy){
-          }
+          //if(dataRdy){
+          //}
 
       }else{
         //only start the system if at least to lighthouseBases ar visible

@@ -7,10 +7,8 @@
 # new environment variables
 
 # modified environment variables
-export CMAKE_PREFIX_PATH="/home/sausy/Projects/lighthouse/cameraSterioCalibration/devel:$CMAKE_PREFIX_PATH"
-export LD_LIBRARY_PATH="/home/sausy/Projects/lighthouse/cameraSterioCalibration/devel/lib:$LD_LIBRARY_PATH"
-export PKG_CONFIG_PATH='/home/sausy/Projects/lighthouse/cameraSterioCalibration/devel/lib/pkgconfig:/opt/ros/melodic/lib/pkgconfig:/usr/local/lib/pkgconfig'
+export LD_LIBRARY_PATH='/opt/ros/melodic/lib'
+export PKG_CONFIG_PATH='/opt/ros/melodic/lib/pkgconfig:/usr/local/lib/pkgconfig:/usr/local/lib/pkgconfig'
 export PWD='/home/sausy/Projects/lighthouse/cameraSterioCalibration/build'
-export PYTHONPATH="/home/sausy/Projects/lighthouse/cameraSterioCalibration/devel/lib/python2.7/dist-packages:$PYTHONPATH"
-export ROSLISP_PACKAGE_DIRECTORIES='/home/sausy/Projects/lighthouse/cameraSterioCalibration/devel/share/common-lisp'
-export ROS_PACKAGE_PATH="/home/userdev/Projects/lighthouse/cameraSterioCalibration/src:/home/sausy/Projects/lighthouse/cameraSterioCalibration/src:$ROS_PACKAGE_PATH"
+export PYTHONPATH='/opt/ros/melodic/lib/python2.7/dist-packages'
+export ROS_PACKAGE_PATH='/home/sausy/Projects/lighthouse/cameraSterioCalibration/src:/opt/ros/melodic/share'
