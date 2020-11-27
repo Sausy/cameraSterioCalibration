@@ -168,6 +168,7 @@ int DataMatcher::registNewBaseStation(const std::vector<int> channel){
 }
 
 
+
 //overloaded function to also allow double as input
 bool DataMatcher::matchData(const std::vector<std::vector<double>> inVec,\
                             const std::vector<int> id,\
@@ -186,6 +187,22 @@ bool DataMatcher::matchData(const std::vector<std::vector<double>> inVec,\
   return (matchData(vec,id,azimuth,elevation,channel));
 }
 
+bool DataMatcher::matchData(const std::vector<std::vector<double>> inVec, std::vector<rawRayData> *ray_){
+
+  std::vector<int> id_;
+  std::vector<float> az_;
+  std::vector<float> el_;
+  std::vector<int> ch_;
+
+  for(std::vector<rawRayData>::iterator vIt = ray_->begin(); vIt != ray_->end(); ++vIt){
+    ch_.push_back(vIt->ch);
+    id_.push_back(vIt->id);
+    az_.push_back(vIt->azimuth);
+    el_.push_back(vIt->elevation);
+  }
+
+  return (matchData(inVec, id_, az_, el_, ch_));
+}
 
 
 //match 2d with 3d data

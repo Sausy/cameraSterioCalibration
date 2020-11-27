@@ -51,6 +51,7 @@ class DataMatcher{
       void reset_matchData();
 
       //match Data returns true if enough valid data was captured
+      bool matchData(const std::vector<std::vector<double>> inVec, std::vector<rawRayData> *ray_);
       bool matchData( const std::vector<std::vector<float>> inVec,\
                       const std::vector<int> id,\
                       const std::vector<float> azimuth,\

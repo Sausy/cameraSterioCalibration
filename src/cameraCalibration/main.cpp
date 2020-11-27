@@ -307,8 +307,12 @@ int main(int argc, char const *argv[]) {
       int baseN = dataM.registNewBaseStation(ray);
       //we at least need two bases for further processing
       if(startPubRay){
-          //ataRdy = dataM.twoCameraMatcher();
           robot.publishSensorData(&ray);
+          //bool dataRdy = dataM.matchData(model.sensorData_3d,&ray);
+          //bool dataRdy = dataM.twoCameraMatcher();
+
+          if(dataRdy){
+          }
 
       }else{
         //only start the system if at least to lighthouseBases ar visible
