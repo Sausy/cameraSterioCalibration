@@ -265,6 +265,9 @@ bool DataMatcher::matchData(const std::vector<std::vector<float>> inVec,\
             buf3d.z = (float)inVec[id[i]][2];
 
 
+            //list_points3d_dump.push_back(buf3d);
+            //list_points2d_dump.push_back(buf2d);
+
             list_points2d[ch_].push_back(buf2d);
             list_points3d[ch_].push_back(buf3d);
             list_id[ch_].push_back(id[i]);
@@ -339,8 +342,8 @@ bool DataMatcher::matchData(const std::vector<std::vector<float>> inVec,\
 
 
 
-    if(goodCount >= 8){
-      goodCount = 8;
+    if(goodCount >= 9){
+      goodCount = 9;
       return true;
       //break;
     }
@@ -363,8 +366,8 @@ void DataMatcher::filterfunc(std::vector<rawRayData> *ray){
 
 
     //Filter out obvious errors
-    if(vIt->elevation < (-43.0 * M_PI/180.0) || vIt->elevation  > (43.0 * M_PI/180.0) ){
-      if(vIt->azimuth < (30.0 * M_PI/180.0) || vIt->azimuth > (170.0 * M_PI/180.0)){
+    if(vIt->elevation < (-48.0 * M_PI/180.0) || vIt->elevation  > (48.0 * M_PI/180.0) ){
+      if(vIt->azimuth < (30.0 * M_PI/180.0) || vIt->azimuth > (160.0 * M_PI/180.0)){
         return;
       }
     }
@@ -393,8 +396,8 @@ void DataMatcher::filterfunc(std::vector<rawRayData> *ray){
 
 
 bool DataMatcher::customFilter(int id_, double * azimuth_, double * elevation_, int channel_){
-  if(*elevation_ < (-46.0 * M_PI/180.0) || *elevation_ > (46.0 * M_PI/180.0) ){
-    if(*azimuth_ < (45.0 * M_PI/180.0) || *azimuth_ > (160.0 * M_PI/180.0)){
+  if(*elevation_ < (-48.0 * M_PI/180.0) || *elevation_ > (48.0 * M_PI/180.0) ){
+    if(*azimuth_ < (34.0 * M_PI/180.0) || *azimuth_ > (160.0 * M_PI/180.0)){
       return false;
     }
   }
@@ -533,15 +536,16 @@ bool DataMatcher::customFilter(int id_, double * azimuth_, double * elevation_, 
 
 bool DataMatcher::twoCameraMatcher(){
   //todo create vector for this
-  const int histMatchSize = 4;
-  const int numIterationMax = 4;
+  const int histMatchSize = 2;
+  const int numIterationMax = 9;
 
   std::vector<int> ch;
-  int matchingCounter = 0;
+
 
   dataImg1_2D.clear();
   dataImg2_2D.clear();
 
+  //find 2 base channels that we want to process
   for (uint8_t i = 0; i < MAX_BASE_AMOUNT; i++) {
     if(dataReady[i]==true){
       //std::cout << "\nfound ch " << i << "/" << maxSensorAvailable << std::flush;
@@ -549,8 +553,8 @@ bool DataMatcher::twoCameraMatcher(){
     }
   }
 
-
-
+  //find matching sensor ID's and push them to dataImgx_2D
+  int matchingCounter = 0;
   if(ch.size() >= 2){
     //std::cout << "\n\nDo we have common Points " << ch.size() << std::flush;;
 
@@ -563,20 +567,62 @@ bool DataMatcher::twoCameraMatcher(){
             matchingCounter ++;
             dataImg1_2D.push_back(list_points2d[ch[i]][j]);
             dataImg2_2D.push_back(list_points2d[ch[i+1]][k]);
-            //std::cout << "\nch:" << ch[i];
-            //std::cout << "|id:" << list_id[ch[i]][j];
-            //std::cout << " / id2:" << list_id[ch[i+1]][k];
           }
         }
       }
-
-
-        ////std::cout << "\tch:" << list_points2d[ch[i]];
-        //std::cout << "\ndbg3 " << i;
-
-
     }
   }
+
+  //if we don't have enough matches func shall return false
+  if(matchingCounter < histMatchSize)
+    return false;
+
+  //if we have enough matching data we shall continue
+  //and push the data to a buffer
+  for (size_t i = 0; i < dataImg1_2D.size(); i++) {
+    dataImg1_2D_buffer.push_back(dataImg1_2D[i]);
+    dataImg2_2D_buffer.push_back(dataImg2_2D[i]);
+  }
+
+  twoCameraMatcher_itCnt++;
+  //we no have enough matches in this run
+  //but for prober data we need multiple runs
+  if(twoCameraMatcher_itCnt >= numIterationMax ){
+    //if we have enough runs and enough data per run
+    //we push back all the data to dataImgx_2D and return true
+    dataImg1_2D.clear();
+    dataImg2_2D.clear();
+
+    for (size_t i = 0; i < dataImg1_2D_buffer.size(); i++) {
+      std::cout << "\n[1] " << dataImg1_2D_buffer[i].x << "\t" <<  dataImg1_2D_buffer[i].y;
+      std::cout << "\n[2] " << dataImg2_2D_buffer[i].x << "\t" << dataImg2_2D_buffer[i].y;
+      dataImg1_2D.push_back(dataImg1_2D_buffer[i]);
+      dataImg2_2D.push_back(dataImg2_2D_buffer[i]);
+    }
+
+    //we shall now clear the buffer
+    dataImg1_2D_buffer.clear();
+    dataImg2_2D_buffer.clear();
+    twoCameraMatcher_itCnt = 0;
+
+    return true;
+
+  }else{
+    //if we don't have enough data
+    //print out a info msg on how to proceed
+    std::cout << "\n======================================";
+    std::cout << "\n\tInfo";
+    std::cout << "\n======================================";
+    std::cout << "\n please move the tracking object a bit" << std::flush;
+    usleep(4*1000000);
+    reset_matchData();
+    std::cout << "\n now keep it steady again" << std::flush;
+    usleep(2*1000000);
+  }
+
+  return false;
+
+  /*
 
   if(wasRepos[wasRepos_cnt] == false){
     if(matchingCounter >= histMatchSize){
@@ -585,6 +631,7 @@ bool DataMatcher::twoCameraMatcher(){
         dataImg1_2D_buffer.push_back(dataImg1_2D[i]);
         dataImg2_2D_buffer.push_back(dataImg2_2D[i]);
       }
+      iterationCnt++;
 
       std::cout << "\n======================================";
       std::cout << "\n\tInfo";
@@ -596,7 +643,7 @@ bool DataMatcher::twoCameraMatcher(){
       usleep(3*1000000);
       std::cout << "\nplease wait ..." << std::flush;
       wasRepos[wasRepos_cnt] = true;
-      if(wasRepos_cnt < numIterationMax-2)
+      if(wasRepos_cnt < numIterationMax-1)
         wasRepos_cnt++;
     }
   }else{
@@ -605,17 +652,18 @@ bool DataMatcher::twoCameraMatcher(){
       for (size_t i = 0; i < dataImg1_2D_buffer.size(); i++) {
         dataImg1_2D.push_back(dataImg1_2D_buffer[i]);
         dataImg2_2D.push_back(dataImg2_2D_buffer[i]);
-        matchingCounter ++;
+
       }
     }
   }
 
 
-  if(matchingCounter >= numIterationMax*histMatchSize){
+  if(iterationCnt >= numIterationMax){
     wasRepos[wasRepos_cnt] = false;
     std::cout << "\n found " << dataImg1_2D.size() << std::flush;
     return true;
   }
+  */
     /*
 
     dataImg1_2D[MAX_BASE_AMOUNT];

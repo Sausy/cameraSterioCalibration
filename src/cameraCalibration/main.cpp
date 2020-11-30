@@ -307,12 +307,71 @@ int main(int argc, char const *argv[]) {
       int baseN = dataM.registNewBaseStation(ray);
       //we at least need two bases for further processing
       if(startPubRay){
-          robot.publishSensorData(&ray);
-          //bool dataRdy = dataM.matchData(model.sensorData_3d,&ray);
-          //bool dataRdy = dataM.twoCameraMatcher();
+          //robot.publishSensorData(&ray);
+          bool dataRdy = dataM.matchData(model.sensorData_3d,&ray);
+          dataRdy = dataM.twoCameraMatcher();
 
-          //if(dataRdy){
-          //}
+          if(dataRdy){
+
+            cv::Mat essentialMatrix,fundamental_matrix;
+            cv::Mat rotMatrix, transMatrix, mask;
+            //cv::Mat K = cv::Mat::eye(3,3,CV_64F);
+            cv::Mat K = cv::Mat::zeros(3,3,CV_64FC1);
+
+            K.at<double>(0, 0) = params_Lighthouse[0];       //      [ fx   0  cx ]
+            K.at<double>(1, 1) = params_Lighthouse[1];       //      [  0  fy  cy ]
+            K.at<double>(0, 2) = params_Lighthouse[2];       //      [  0   0   1 ]
+            K.at<double>(1, 2) = params_Lighthouse[3];
+            K.at<double>(2, 2) = 1;
+
+            //cv::Mat K_ = cv::Mat::eye(3,3,CV_64F);
+
+            std::cout << "\n1 data: " << dataM.dataImg1_2D.size() << std::flush;
+            std::cout << "\n2 data: " << dataM.dataImg2_2D.size() << std::flush;
+
+
+            essentialMatrix = cv::findEssentialMat(dataM.dataImg1_2D, dataM.dataImg2_2D, 1.0,cv::Point2d(params_Lighthouse[2],params_Lighthouse[3]),  RANSAC, 0.999, 1.0, mask);
+            std::cout << "\nessential: " << essentialMatrix << std::flush;
+
+            cv::recoverPose(essentialMatrix, dataM.dataImg1_2D, dataM.dataImg2_2D, K, rotMatrix, transMatrix, mask);
+            std::cout << "\nTransl: " << transMatrix  << std::flush;
+            std::cout << "\nRotation: " << rotMatrix  << std::flush;
+
+            double retRol, retPitch, retYaw;
+            double A[3][3]= {
+              {rotMatrix.at<double>(0,0),rotMatrix.at<double>(0,1),rotMatrix.at<double>(0,2)},
+              {rotMatrix.at<double>(1,0),rotMatrix.at<double>(1,1),rotMatrix.at<double>(1,2)},
+              {rotMatrix.at<double>(2,0),rotMatrix.at<double>(2,1),rotMatrix.at<double>(2,2)}
+            };
+            converRotMatrixToEuler(A, retRol, retPitch, retYaw);
+
+
+            std::cout << "\nRotationEULER:\tRol: " << retRol << "\tPitch: " << retPitch << "\tYaw: "  << retYaw  << std::flush;
+
+            //Now we can transpose the center in respekt to World0
+            lhmsg.type = 1; //relativ==0 ; absolut ==1
+            //due to different coordinate system we need to map x,y,z proberly
+            float lh_x = transMatrix.at<float>(1);
+            float lh_y = transMatrix.at<float>(0) - 1; //because lh0 base already has a tranlation of -1
+            float lh_z = transMatrix.at<float>(2);
+            //send Translation and Rotation via ros to rviz
+            ///double foo = transMatrix(0);
+            position.setValue(lh_x,lh_y,lh_z);
+            orientation.setRPY(retPitch,retRol, retYaw);
+
+            std::cout << "\nSet transform data"  << std::flush;
+            tf.setOrigin(position);
+            tf.setRotation(orientation);
+
+            std::cout << "\nTransform Msg"  << std::flush;
+            tf::transformTFToMsg(tf, lhmsg.tf);
+
+            pubHandl_correctBase.publish(lhmsg);
+            ros::spinOnce();
+
+            std::cout << "\nPub msg"  << std::flush;
+
+          }
 
       }else{
         //only start the system if at least to lighthouseBases ar visible
@@ -339,6 +398,31 @@ int main(int argc, char const *argv[]) {
 
 
     }
+
+
+    /*
+
+    //Picture solver
+
+
+    std::cout << "\nRansac solver";
+    pnp_registration.estimatePoseRANSAC( dataM.list_points3d[1], dataM.list_points2d[1],
+                              pnpMethod, inliers_idx, iterationsCount, reprojectionError, confidence );
+
+    // Get the translation
+    cv::Mat translation_measured(3, 1, CV_64F);
+    translation_measured = pnp_registration.get_t_matrix();
+    std::cout << "\nTransl\n" << translation_measured;
+    // Get the rotation
+    cv::Mat rotation_measured(3, 3, CV_64F);
+    rotation_measured = pnp_registration.get_R_matrix();
+    std::cout << "\nRotation\n" << rotation_measured;
+
+    dataM.reset_matchData();
+
+    */
+
+
 
     /*
     id.clear();

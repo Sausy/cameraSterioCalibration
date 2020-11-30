@@ -3,6 +3,9 @@
 #include <linux/input.h>
 #include <linux/hidraw.h>
 
+/*udev*/
+//#include <libudev.h>
+
 /* Unix */
 #include <sys/ioctl.h>
 #include <sys/types.h>
@@ -35,6 +38,15 @@
 static int hid_fd;
 
 int HID_init(char * device_interface){
+	/*
+	struct udev* udev = udev_new();
+	if(!udev){
+		perror("udev new faild");
+		return 1;
+	}
+
+	enumerate_devices
+	*/
 
 	//int fd;
 	int i, res, desc_size = 0;

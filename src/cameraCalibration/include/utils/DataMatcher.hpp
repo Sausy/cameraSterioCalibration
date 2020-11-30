@@ -72,6 +72,9 @@ class DataMatcher{
 
       std::vector<cv::Point3f> list_points3d[MAX_BASE_AMOUNT]; // container for the model 3D coordinates found in the scene
       std::vector<cv::Point2f> list_points2d[MAX_BASE_AMOUNT]; // container for the model 2D coordinates found in the scene
+      //std::vector<cv::Point3f> list_points3d_dump; // container for the model 3D coordinates found in the scene
+      //std::vector<cv::Point2f> list_points2d_dump; // container for the model 2D coordinates found in the scene
+
       std::vector<int> list_id[MAX_BASE_AMOUNT];
 
       std::vector<cv::Point2f> dataImg1_2D;
@@ -112,6 +115,8 @@ class DataMatcher{
       ros::NodeHandlePtr  nh;
 
       int lastFilter_id[MAX_BASE_AMOUNT];
+
+      int twoCameraMatcher_itCnt;
 
 
 

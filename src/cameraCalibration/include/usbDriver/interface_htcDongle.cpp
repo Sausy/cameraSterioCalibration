@@ -12,7 +12,7 @@ driverHtcDongle::driverHtcDongle(){
     //TODO:BIG TODO
     //automate the path search for the htc usb device
     //this shouldn't be hardcoded .. could lead to huge fuck ups
-    (void)HID_init("/dev/hidraw2");
+    (void)HID_init("/dev/hidraw0");
     (void)HID_send_config();
 }
 
@@ -90,7 +90,7 @@ bool driverHtcDongle::pullData(std::vector<int> *id, std::vector<float> *azimuth
                     elevation->push_back((float)ele_);
                     channel->push_back(le->channel);
                   }
-                  printf("\n[%u=%u]%f/%f\t%f\t%f",le->id,le->channel,az_*180.0/M_PI, ele_*180.0/M_PI,angle, first_phi[le->id][le->channel]*180.0/M_PI);
+                  //printf("\n[%u=%u]%f/%f\t%f\t%f",le->id,le->channel,az_*180.0/M_PI, ele_*180.0/M_PI,angle, first_phi[le->id][le->channel]*180.0/M_PI);
 
 
                 }else{
