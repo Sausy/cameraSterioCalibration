@@ -564,9 +564,13 @@ bool DataMatcher::twoCameraMatcher(){
       for (size_t k = 0; k < list_points2d[ch[i+1]].size(); k++) {
         for (size_t j = 0; j < list_points2d[ch[i]].size(); j++) {
           if(list_id[ch[i]][j] ==  list_id[ch[i+1]][k]){
-            matchingCounter ++;
-            dataImg1_2D.push_back(list_points2d[ch[i]][j]);
-            dataImg2_2D.push_back(list_points2d[ch[i+1]][k]);
+            double point1 = list_points2d[ch[i]][j];
+            double point2 = list_points2d[ch[i]][j];
+            if(){
+              matchingCounter ++;
+              dataImg1_2D.push_back(list_points2d[ch[i]][j]);
+              dataImg2_2D.push_back(list_points2d[ch[i+1]][k]);
+            }
           }
         }
       }

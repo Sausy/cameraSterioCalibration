@@ -290,10 +290,204 @@ int main(int argc, char const *argv[]) {
   uint8_t cnt_ = 0;
 
 
+  //debug stuff
+  std::vector<cv::Point2f> dataImg1_2D;
+  std::vector<cv::Point2f> dataImg2_2D;
+
+  /*
+  cv::Point2f foo_[18] = {
+                        {.x= 1388.46 ,.y=	2971.99},
+                        {.x= 1405.28 ,.y=	3035.43},
+                        {.x= 1611.64 ,.y=	2716.08},
+                        {.x= 1613.65 ,.y=	2782.26},
+                        {.x= 1250.03 ,.y=	2124.18},
+                        {.x= 1249.4	 ,.y=2087.9},
+                        {.x= 1682.75 ,.y=	1586.79},
+                        {.x= 1695.05 ,.y=	1592.37},
+                        {.x= 1143.22 ,.y=	1835.64},
+                        {.x= 1167.67 ,.y=	1869.05},
+                        {.x= 1671.24 ,.y=	3259.4},
+                        {.x= 1704.24 ,.y=	3262.45},
+                        {.x= 1402.02 ,.y=	1655.77},
+                        {.x= 1405.16 ,.y=	1694.49},
+                        {.x= 1578.23 ,.y=	1213.66},
+                        {.x= 1568.63 ,.y=	1195.01},
+                        {.x= 1911.09 ,.y=	1919.96},
+                        {.x= 1887.94 ,.y=	1876.64}
+                        };
+  cv::Point2f foo2_[18] = {
+                          {.x = 1058.19	 ,.y = 2600.41},
+                          {.x = 1077.23	 ,.y = 2667.18},
+                          {.x = 1297.32	 ,.y = 2726.14},
+                          {.x = 1318.5	 ,.y = 2803.53},
+                          {.x = 1054.07	 ,.y = 1981.91},
+                          {.x = 1064	 ,.y = 1976.05},
+                          {.x = 1469.47	 ,.y = 1604.38},
+                          {.x = 1450.67	 ,.y = 1640.09},
+                          {.x = 937.071	 ,.y = 1743.43},
+                          {.x = 897.604	 ,.y = 1759.15},
+                          {.x = 1413.52	 ,.y = 3599.96},
+                          {.x = 1413.48	 ,.y = 3796.79},
+                          {.x = 1257.41	 ,.y = 1633.33},
+                          {.x = 1255.33	 ,.y = 1658.94},
+                          {.x = 1411.12 ,.y = 1148.4},
+                          {.x = 1402.29 ,.y = 1196.2},
+                          {.x = 1577.94	 ,.y = 2002.81},
+                          {.x = 1593.53	 ,.y = 2101.15}
+                        };
+                        */
+
+  cv::Point2f foo_[18] = {
+                        {.x= 1611.64 ,.y=	2716.08},
+                        {.x= 1613.65 ,.y=	2782.26},
+                        {.x= 1250.03 ,.y=	2124.18},
+                        {.x= 1249.4	 ,.y=2087.9},
+                        {.x= 1682.75 ,.y=	1586.79},
+                        {.x= 1695.05 ,.y=	1592.37},
+                        {.x= 1143.22 ,.y=	1835.64},
+                        {.x= 1167.67 ,.y=	1869.05},
+                        {.x= 1671.24 ,.y=	3259.4},
+                        {.x= 1704.24 ,.y=	3262.45},
+                        {.x= 1402.02 ,.y=	1655.77},
+                        {.x= 1405.16 ,.y=	1694.49},
+                        {.x= 1578.23 ,.y=	1213.66},
+                        {.x= 1568.63 ,.y=	1195.01}
+                        };
+  cv::Point2f foo2_[18] = {
+                          {.x = 1297.32	 ,.y = 2726.14},
+                          {.x = 1318.5	 ,.y = 2803.53},
+                          {.x = 1054.07	 ,.y = 1981.91},
+                          {.x = 1064	 ,.y = 1976.05},
+                          {.x = 1469.47	 ,.y = 1604.38},
+                          {.x = 1450.67	 ,.y = 1640.09},
+                          {.x = 937.071	 ,.y = 1743.43},
+                          {.x = 897.604	 ,.y = 1759.15},
+                          {.x = 1413.52	 ,.y = 3599.96},
+                          {.x = 1413.48	 ,.y = 3796.79},
+                          {.x = 1257.41	 ,.y = 1633.33},
+                          {.x = 1255.33	 ,.y = 1658.94},
+                          {.x = 1411.12 ,.y = 1148.4},
+                          {.x = 1402.29 ,.y = 1196.2}
+                        };
+
+
+
+  for (size_t i = 0; i < 18; i++) {
+    dataImg1_2D.push_back(foo_[i]);
+    dataImg2_2D.push_back(foo2_[i]);
+  }
+/*
+
+*/
+
+
+  cv::Mat essentialMatrix,fundamental_matrix;
+  cv::Mat rotMatrix, transMatrix, mask;
+
+  cv::Mat K = cv::Mat::zeros(3,3,CV_64FC1);
+
+  K.at<double>(0, 0) = params_Lighthouse[0];       //      [ fx   0  cx ]
+  K.at<double>(1, 1) = params_Lighthouse[1];       //      [  0  fy  cy ]
+  K.at<double>(0, 2) = params_Lighthouse[2];       //      [  0   0   1 ]
+  K.at<double>(1, 2) = params_Lighthouse[3];
+  K.at<double>(2, 2) = 1;
+
+
+  std::cout << "\n\n============\nDifferent Approach\nRANSAC\nf=0.1\noutl=1.0\n============\n";
+
+  essentialMatrix = cv::findEssentialMat(dataImg1_2D, dataImg2_2D, 0.1,cv::Point2d(params_Lighthouse[2],params_Lighthouse[3]),  RANSAC, 0.999, 1.0, mask);
+  std::cout << "\nessential: " << essentialMatrix << std::flush;
+
+  cv::recoverPose(essentialMatrix, dataImg1_2D, dataImg2_2D, K, rotMatrix, transMatrix, mask);
+  std::cout << "\nTransl: " << transMatrix  << std::flush;
+//  std::cout << "\nRotation: " << rotMatrix  << std::flush;
+
+  std::cout << "\n\n============\nDifferent Approach\nRANSAC\nf=1.0\noutl=1.0\n============\n";
+
+  essentialMatrix = cv::findEssentialMat(dataImg1_2D, dataImg2_2D, 1.0,cv::Point2d(params_Lighthouse[2],params_Lighthouse[3]),  RANSAC, 0.999, 1.0, mask);
+  std::cout << "\nessential: " << essentialMatrix << std::flush;
+
+  cv::recoverPose(essentialMatrix, dataImg1_2D, dataImg2_2D, K, rotMatrix, transMatrix, mask);
+  std::cout << "\nTransl: " << transMatrix  << std::flush;
+//  std::cout << "\nRotation: " << rotMatrix  << std::flush;
+
+  std::cout << "\n\n============\nDifferent Approach\nRANSAC\nf=0.1\noutl=5.0\n============\n";
+
+  essentialMatrix = cv::findEssentialMat(dataImg1_2D, dataImg2_2D, 0.1,cv::Point2d(params_Lighthouse[2],params_Lighthouse[3]),  RANSAC, 0.999, 5.0, mask);
+  std::cout << "\nessential: " << essentialMatrix << std::flush;
+
+  cv::recoverPose(essentialMatrix, dataImg1_2D, dataImg2_2D, K, rotMatrix, transMatrix, mask);
+  std::cout << "\nTransl: " << transMatrix  << std::flush;
+//  std::cout << "\nRotation: " << rotMatrix  << std::flush;
+
+  std::cout << "\n\n============\nDifferent Approach\nRANSAC\nf=1.0\noutl=5.0\n============\n";
+
+  essentialMatrix = cv::findEssentialMat(dataImg1_2D, dataImg2_2D, 1.0,cv::Point2d(params_Lighthouse[2],params_Lighthouse[3]),  RANSAC, 0.999, 5.0, mask);
+  std::cout << "\nessential: " << essentialMatrix << std::flush;
+
+  cv::recoverPose(essentialMatrix, dataImg1_2D, dataImg2_2D, K, rotMatrix, transMatrix, mask);
+  std::cout << "\nTransl: " << transMatrix  << std::flush;
+//  std::cout << "\nRotation: " << rotMatrix  << std::flush;
+
+
+
+
+
+
+  std::cout << "\n\n============\nDifferent Approach\nLMEDS\nf=0.1\noutl=1.0\n============\n";
+
+  essentialMatrix = cv::findEssentialMat(dataImg1_2D, dataImg2_2D, 0.1,cv::Point2d(params_Lighthouse[2],params_Lighthouse[3]),  LMEDS, 0.999, 1.0, mask);
+  std::cout << "\nessential: " << essentialMatrix << std::flush;
+
+  cv::recoverPose(essentialMatrix, dataImg1_2D, dataImg2_2D, K, rotMatrix, transMatrix, mask);
+  std::cout << "\nTransl: " << transMatrix  << std::flush;
+//  std::cout << "\nRotation: " << rotMatrix  << std::flush;
+
+  std::cout << "\n\n============\nDifferent Approach\nLMEDS\nf=1.0\noutl=1.0\n============\n";
+
+  essentialMatrix = cv::findEssentialMat(dataImg1_2D, dataImg2_2D, 1.0,cv::Point2d(params_Lighthouse[2],params_Lighthouse[3]),  LMEDS, 0.999, 1.0, mask);
+  std::cout << "\nessential: " << essentialMatrix << std::flush;
+
+  cv::recoverPose(essentialMatrix, dataImg1_2D, dataImg2_2D, K, rotMatrix, transMatrix, mask);
+  std::cout << "\nTransl: " << transMatrix  << std::flush;
+//  std::cout << "\nRotation: " << rotMatrix  << std::flush;
+
+  std::cout << "\n\n============\nDifferent Approach\nLMEDS\nf=0.1\noutl=5.0\n============\n";
+
+  essentialMatrix = cv::findEssentialMat(dataImg1_2D, dataImg2_2D, 0.1,cv::Point2d(params_Lighthouse[2],params_Lighthouse[3]),  LMEDS, 0.999, 5.0, mask);
+  std::cout << "\nessential: " << essentialMatrix << std::flush;
+
+  cv::recoverPose(essentialMatrix, dataImg1_2D, dataImg2_2D, K, rotMatrix, transMatrix, mask);
+  std::cout << "\nTransl: " << transMatrix  << std::flush;
+//  std::cout << "\nRotation: " << rotMatrix  << std::flush;
+
+  std::cout << "\n\n============\nDifferent Approach\nLMEDS\nf=1.0\noutl=5.0\n============\n";
+
+  essentialMatrix = cv::findEssentialMat(dataImg1_2D, dataImg2_2D, 1.0,cv::Point2d(params_Lighthouse[2],params_Lighthouse[3]),  LMEDS, 0.999, 5.0, mask);
+  std::cout << "\nessential: " << essentialMatrix << std::flush;
+
+  cv::recoverPose(essentialMatrix, dataImg1_2D, dataImg2_2D, K, rotMatrix, transMatrix, mask);
+  std::cout << "\nTransl: " << transMatrix  << std::flush;
+//  std::cout << "\nRotation: " << rotMatrix  << std::flush;
+
+
+  std::cout << "\n\n============\nDifferent Approach\n\nKAMERA MATRIX============\n";
+  std::cout << "\n\n============\nDifferent Approach\n============\n";
+
+  essentialMatrix = cv::findEssentialMat(dataImg1_2D, dataImg2_2D, K, RANSAC, 0.99, 4.0, mask);
+  std::cout << "\nessential: " << essentialMatrix << std::flush;
+
+  cv::recoverPose(essentialMatrix, dataImg1_2D, dataImg2_2D, K, rotMatrix, transMatrix, mask);
+  std::cout << "\nTransl: " << transMatrix  << std::flush;
+//  std::cout << "\nRotation: " << rotMatrix  << std::flush;
+
+  return 0;
+
 
   bool startPubRay = false;
   //============================ Main LOOP ===========================
   while(ros::ok()){
+    /*
     std::vector<rawRayData> ray;
 
     //pull/poll data from usb
