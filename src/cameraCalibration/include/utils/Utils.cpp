@@ -10,6 +10,7 @@
 
 #define PIC_WIDTH 2800.0
 
+
 //double * cameraParamter = {fx,fy,cx,cy}
 void getCameraMatrixForLighthouse(double * cameraParamter){
   //if we assume

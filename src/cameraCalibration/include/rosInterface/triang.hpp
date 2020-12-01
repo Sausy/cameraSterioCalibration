@@ -57,21 +57,27 @@ public:
      void resetLighthousePoses();
      void updateTrackedObjectInfo();
      void transformPublisher();
+
      bool addTrackedObject(const char *config_file_path);
+     void removeTrackedObject();
+
      void showRays();
      void startTriangulation();
+
 
      void receiveSensorStatus(const roboy_middleware_msgs::DarkRoomStatus::ConstPtr &msg);
 
      void publishSensorData(std::vector<rawRayData> *ray);
 
+     void receiveArucoPose(const roboy_middleware_msgs::ArucoPose::ConstPtr &msg);
+
 
 
     ros::NodeHandlePtr nh; /// ROS nodehandle
     ros::Publisher motor_command; /// motor command publisher
-    ros::Subscriber pose_correction_sub, interactive_marker_sub, sensor_status_sub, imu_sub, imu_pos;
+    ros::Subscriber pose_correction_sub, interactive_marker_sub, sensor_status_sub, imu_sub, imu_pos, aruco_pose_sub;
     ros::Publisher sensorPub;
-    
+
 
     //ros::AsyncSpinner *spinner;
 
@@ -83,7 +89,7 @@ public:
     //vector<TrackedObjectInfo> trackedObjectsInfo;
     vector<LighthouseSimulatorPtr> lighthouseSimulator;
 
-    bool publish_transform = true;
+    //bool publish_transform = true;
     tf::TransformBroadcaster tf_broadcaster;
     mutex mux;
 
@@ -100,6 +106,39 @@ public:
 
     bool random_pose = false;
     bool simulated = false;
-    bool update_tracked_object_info = false;
     vector<string> trackedObjectsIDs;
+    int object_counter = 0;
+    atomic<bool> publish_transform, update_tracked_object_info;
+
+    map<int,Vector3d> aruco_position_mean;
+    map<int,Vector3d> aruco_position_variance;
+    map<int,long> receive_counter;
+    LighthouseCalibration calibration[2][2];
+
+
+
+    /**
+     * Toggles poseestimation thread
+     */
+    void startPoseEstimationSensorCloud();
+    /**
+     * Toggles object poseestimation thread
+     */
+    void startObjectPoseEstimationSensorCloud(bool run);
+    /**
+     * Toggles distance estimation thread
+     */
+    void startEstimateSensorPositionsUsingRelativeDistances();
+    /**
+     * Toggles relative pose estimation thread
+     */
+    void startEstimateObjectPoseUsingRelativeDistances();
+    /**
+     * Toggles relative pose estimation epnp thread
+     */
+    void startEstimateObjectPoseEPNP(bool run);
+    /**
+     * Toggles object pose estimation using multi lighthouse approach
+     */
+    void startEstimateObjectPoseMultiLighthouse(bool run);
 };

@@ -8,6 +8,15 @@
 #include <unistd.h>
 
 #include <opencv2/core/types.hpp>
+#include <opencv2/core.hpp>
+#include <opencv2/core/utils/filesystem.hpp>
+#include <opencv2/highgui.hpp>
+#include <opencv2/imgproc.hpp>
+#include <opencv2/calib3d.hpp>
+#include <opencv2/video/tracking.hpp>
+#include <opencv2/features2d.hpp>
+
+#include <PnPProblem.hpp>
 
 // ROS
 #include <ros/ros.h>
@@ -21,6 +30,7 @@
 
 #include "DataMatcher.hpp"
 #include "Utils.hpp"
+#include <Utils_openCV.hpp>
 
 #include <filter.hpp>
 
@@ -40,7 +50,7 @@
 
 class DataMatcher{
   public:
-      DataMatcher(double * params_Lighthouse_, int maxSensorAvailable_);
+      DataMatcher(double * params_Lighthouse_, int maxSensorAvailable_, tf::Vector3 p_);
       int maxSensorAvailable;
       //if we get a certain amount of data from a base Station
       //it will be added to the list of known Base Stations
@@ -86,7 +96,25 @@ class DataMatcher{
       std::vector<double> azimuthHistory[MAX_BASE_AMOUNT][MAX_SENSOR_CNT];
       std::vector<double> elevatiHistory[MAX_BASE_AMOUNT][MAX_SENSOR_CNT];
 
+      bool gatherDataForCalib(const std::vector<std::vector<float>> inVec,std::vector<rawRayData> *ray);
+      void calcCalibrationMatrix();
+      void resetCalibration();
+      bool findProjectedPosition(int ch_);
+
+      void resetProjection(int ch_);
+
+      cv::KalmanFilter KF;
+
+      ros::Publisher pubHandl_correctBase;
+      roboy_middleware_msgs::LighthousePoseCorrection lhmsg;
+
     private:
+      void initKalmanFilter(cv::KalmanFilter &KF, int nStates, int nMeasurements, int nInputs, double dt);
+      void fillMeasurements( cv::Mat &measurements, const cv::Mat &translation_measured, const cv::Mat &rotation_measured);
+      void updateKalmanFilter( cv::KalmanFilter &KF, cv::Mat &measurement, cv::Mat &translation_estimated, cv::Mat &rotation_estimated );
+
+      cv::Mat measurements;
+
       double params_Lighthouse[4];
       uint16_t BaseStationsEventCount[MAX_BASE_AMOUNT];
       int goodCount;
@@ -117,6 +145,12 @@ class DataMatcher{
       int lastFilter_id[MAX_BASE_AMOUNT];
 
       int twoCameraMatcher_itCnt;
+
+      std::vector<int> listChannel();
+      std::vector<int> pushData_idHistory[MAX_BASE_AMOUNT];
+      std::vector<cv::Point2f> pushData_historyPoint[MAX_BASE_AMOUNT];
+
+      int pnpCounter;
 
 
 

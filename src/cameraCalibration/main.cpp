@@ -177,10 +177,10 @@ int main(int argc, char const *argv[]) {
 
   //==================[ROS]==================
 
-  ros::Publisher pubHandl_correctBase;
+  //ros::Publisher pubHandl_correctBase;
   ros::Publisher pubHandl_swapBase;
 
-  roboy_middleware_msgs::LighthousePoseCorrection lhmsg;
+  //roboy_middleware_msgs::LighthousePoseCorrection lhmsg;
   std_msgs::Bool lhswap;
 
   if (!ros::isInitialized()) {
@@ -195,11 +195,11 @@ int main(int argc, char const *argv[]) {
   ros::Publisher pubHandl_Sensor;
   roboy_middleware_msgs::DarkRoomSensorV2 ros_msg;
 
-  pubHandl_correctBase = nh.advertise<roboy_middleware_msgs::LighthousePoseCorrection>("/roboy/middleware/DarkRoom/lhcorrect", 1);
+  //pubHandl_correctBase = nh.advertise<roboy_middleware_msgs::LighthousePoseCorrection>("/roboy/middleware/DarkRoom/lhcorrect", 1);
   pubHandl_swapBase = nh.advertise<std_msgs::Bool>("/roboy/middleware/DarkRoom/lhswap", 1);
   //pubHandl_Sensor = nh.advertise<roboy_middleware_msgs::DarkRoomSensorV2>("/roboy/middleware/DarkRoom/sensorsLH2", 1);
 
-
+  /*
   tf::Transform tf;
 
   float x = 0.0;
@@ -218,6 +218,7 @@ int main(int argc, char const *argv[]) {
 
   tf::transformTFToMsg(tf, lhmsg.tf);
   pubHandl_correctBase.publish(lhmsg);
+  */
 
   TrackerClass robot;
 
@@ -269,7 +270,23 @@ int main(int argc, char const *argv[]) {
 
   //============Match Data init ============
   std::cout<<"\n=======\nInit Datamatcher" << std::flush;
-  DataMatcher dataM(params_Lighthouse, model.sensorData_3d.size());
+  float x = 0.7;
+  float y = -1.0;
+  float z = 0.0;
+
+  std::cout << "\nSize " << argc;
+  if(argc == 2){
+    x = std::stof(argv[1]);
+    std::cout << "\nx: " << x;
+  }else if(argc >= 4){
+    x = std::stof(argv[1]);
+    y = std::stof(argv[2]);
+    z = std::stof(argv[3]);
+  }
+
+
+  tf::Vector3 p_(x,y,z);
+  DataMatcher dataM(params_Lighthouse, model.sensorData_3d.size(),p_);
   //match 2d data with 3d data
 
 
@@ -294,200 +311,17 @@ int main(int argc, char const *argv[]) {
   std::vector<cv::Point2f> dataImg1_2D;
   std::vector<cv::Point2f> dataImg2_2D;
 
-  /*
-  cv::Point2f foo_[18] = {
-                        {.x= 1388.46 ,.y=	2971.99},
-                        {.x= 1405.28 ,.y=	3035.43},
-                        {.x= 1611.64 ,.y=	2716.08},
-                        {.x= 1613.65 ,.y=	2782.26},
-                        {.x= 1250.03 ,.y=	2124.18},
-                        {.x= 1249.4	 ,.y=2087.9},
-                        {.x= 1682.75 ,.y=	1586.79},
-                        {.x= 1695.05 ,.y=	1592.37},
-                        {.x= 1143.22 ,.y=	1835.64},
-                        {.x= 1167.67 ,.y=	1869.05},
-                        {.x= 1671.24 ,.y=	3259.4},
-                        {.x= 1704.24 ,.y=	3262.45},
-                        {.x= 1402.02 ,.y=	1655.77},
-                        {.x= 1405.16 ,.y=	1694.49},
-                        {.x= 1578.23 ,.y=	1213.66},
-                        {.x= 1568.63 ,.y=	1195.01},
-                        {.x= 1911.09 ,.y=	1919.96},
-                        {.x= 1887.94 ,.y=	1876.64}
-                        };
-  cv::Point2f foo2_[18] = {
-                          {.x = 1058.19	 ,.y = 2600.41},
-                          {.x = 1077.23	 ,.y = 2667.18},
-                          {.x = 1297.32	 ,.y = 2726.14},
-                          {.x = 1318.5	 ,.y = 2803.53},
-                          {.x = 1054.07	 ,.y = 1981.91},
-                          {.x = 1064	 ,.y = 1976.05},
-                          {.x = 1469.47	 ,.y = 1604.38},
-                          {.x = 1450.67	 ,.y = 1640.09},
-                          {.x = 937.071	 ,.y = 1743.43},
-                          {.x = 897.604	 ,.y = 1759.15},
-                          {.x = 1413.52	 ,.y = 3599.96},
-                          {.x = 1413.48	 ,.y = 3796.79},
-                          {.x = 1257.41	 ,.y = 1633.33},
-                          {.x = 1255.33	 ,.y = 1658.94},
-                          {.x = 1411.12 ,.y = 1148.4},
-                          {.x = 1402.29 ,.y = 1196.2},
-                          {.x = 1577.94	 ,.y = 2002.81},
-                          {.x = 1593.53	 ,.y = 2101.15}
-                        };
-                        */
-
-  cv::Point2f foo_[18] = {
-                        {.x= 1611.64 ,.y=	2716.08},
-                        {.x= 1613.65 ,.y=	2782.26},
-                        {.x= 1250.03 ,.y=	2124.18},
-                        {.x= 1249.4	 ,.y=2087.9},
-                        {.x= 1682.75 ,.y=	1586.79},
-                        {.x= 1695.05 ,.y=	1592.37},
-                        {.x= 1143.22 ,.y=	1835.64},
-                        {.x= 1167.67 ,.y=	1869.05},
-                        {.x= 1671.24 ,.y=	3259.4},
-                        {.x= 1704.24 ,.y=	3262.45},
-                        {.x= 1402.02 ,.y=	1655.77},
-                        {.x= 1405.16 ,.y=	1694.49},
-                        {.x= 1578.23 ,.y=	1213.66},
-                        {.x= 1568.63 ,.y=	1195.01}
-                        };
-  cv::Point2f foo2_[18] = {
-                          {.x = 1297.32	 ,.y = 2726.14},
-                          {.x = 1318.5	 ,.y = 2803.53},
-                          {.x = 1054.07	 ,.y = 1981.91},
-                          {.x = 1064	 ,.y = 1976.05},
-                          {.x = 1469.47	 ,.y = 1604.38},
-                          {.x = 1450.67	 ,.y = 1640.09},
-                          {.x = 937.071	 ,.y = 1743.43},
-                          {.x = 897.604	 ,.y = 1759.15},
-                          {.x = 1413.52	 ,.y = 3599.96},
-                          {.x = 1413.48	 ,.y = 3796.79},
-                          {.x = 1257.41	 ,.y = 1633.33},
-                          {.x = 1255.33	 ,.y = 1658.94},
-                          {.x = 1411.12 ,.y = 1148.4},
-                          {.x = 1402.29 ,.y = 1196.2}
-                        };
-
-
-
-  for (size_t i = 0; i < 18; i++) {
-    dataImg1_2D.push_back(foo_[i]);
-    dataImg2_2D.push_back(foo2_[i]);
-  }
-/*
-
-*/
-
-
-  cv::Mat essentialMatrix,fundamental_matrix;
-  cv::Mat rotMatrix, transMatrix, mask;
-
-  cv::Mat K = cv::Mat::zeros(3,3,CV_64FC1);
-
-  K.at<double>(0, 0) = params_Lighthouse[0];       //      [ fx   0  cx ]
-  K.at<double>(1, 1) = params_Lighthouse[1];       //      [  0  fy  cy ]
-  K.at<double>(0, 2) = params_Lighthouse[2];       //      [  0   0   1 ]
-  K.at<double>(1, 2) = params_Lighthouse[3];
-  K.at<double>(2, 2) = 1;
-
-
-  std::cout << "\n\n============\nDifferent Approach\nRANSAC\nf=0.1\noutl=1.0\n============\n";
-
-  essentialMatrix = cv::findEssentialMat(dataImg1_2D, dataImg2_2D, 0.1,cv::Point2d(params_Lighthouse[2],params_Lighthouse[3]),  RANSAC, 0.999, 1.0, mask);
-  std::cout << "\nessential: " << essentialMatrix << std::flush;
-
-  cv::recoverPose(essentialMatrix, dataImg1_2D, dataImg2_2D, K, rotMatrix, transMatrix, mask);
-  std::cout << "\nTransl: " << transMatrix  << std::flush;
-//  std::cout << "\nRotation: " << rotMatrix  << std::flush;
-
-  std::cout << "\n\n============\nDifferent Approach\nRANSAC\nf=1.0\noutl=1.0\n============\n";
-
-  essentialMatrix = cv::findEssentialMat(dataImg1_2D, dataImg2_2D, 1.0,cv::Point2d(params_Lighthouse[2],params_Lighthouse[3]),  RANSAC, 0.999, 1.0, mask);
-  std::cout << "\nessential: " << essentialMatrix << std::flush;
-
-  cv::recoverPose(essentialMatrix, dataImg1_2D, dataImg2_2D, K, rotMatrix, transMatrix, mask);
-  std::cout << "\nTransl: " << transMatrix  << std::flush;
-//  std::cout << "\nRotation: " << rotMatrix  << std::flush;
-
-  std::cout << "\n\n============\nDifferent Approach\nRANSAC\nf=0.1\noutl=5.0\n============\n";
-
-  essentialMatrix = cv::findEssentialMat(dataImg1_2D, dataImg2_2D, 0.1,cv::Point2d(params_Lighthouse[2],params_Lighthouse[3]),  RANSAC, 0.999, 5.0, mask);
-  std::cout << "\nessential: " << essentialMatrix << std::flush;
-
-  cv::recoverPose(essentialMatrix, dataImg1_2D, dataImg2_2D, K, rotMatrix, transMatrix, mask);
-  std::cout << "\nTransl: " << transMatrix  << std::flush;
-//  std::cout << "\nRotation: " << rotMatrix  << std::flush;
-
-  std::cout << "\n\n============\nDifferent Approach\nRANSAC\nf=1.0\noutl=5.0\n============\n";
-
-  essentialMatrix = cv::findEssentialMat(dataImg1_2D, dataImg2_2D, 1.0,cv::Point2d(params_Lighthouse[2],params_Lighthouse[3]),  RANSAC, 0.999, 5.0, mask);
-  std::cout << "\nessential: " << essentialMatrix << std::flush;
-
-  cv::recoverPose(essentialMatrix, dataImg1_2D, dataImg2_2D, K, rotMatrix, transMatrix, mask);
-  std::cout << "\nTransl: " << transMatrix  << std::flush;
-//  std::cout << "\nRotation: " << rotMatrix  << std::flush;
-
-
-
-
-
-
-  std::cout << "\n\n============\nDifferent Approach\nLMEDS\nf=0.1\noutl=1.0\n============\n";
-
-  essentialMatrix = cv::findEssentialMat(dataImg1_2D, dataImg2_2D, 0.1,cv::Point2d(params_Lighthouse[2],params_Lighthouse[3]),  LMEDS, 0.999, 1.0, mask);
-  std::cout << "\nessential: " << essentialMatrix << std::flush;
-
-  cv::recoverPose(essentialMatrix, dataImg1_2D, dataImg2_2D, K, rotMatrix, transMatrix, mask);
-  std::cout << "\nTransl: " << transMatrix  << std::flush;
-//  std::cout << "\nRotation: " << rotMatrix  << std::flush;
-
-  std::cout << "\n\n============\nDifferent Approach\nLMEDS\nf=1.0\noutl=1.0\n============\n";
-
-  essentialMatrix = cv::findEssentialMat(dataImg1_2D, dataImg2_2D, 1.0,cv::Point2d(params_Lighthouse[2],params_Lighthouse[3]),  LMEDS, 0.999, 1.0, mask);
-  std::cout << "\nessential: " << essentialMatrix << std::flush;
-
-  cv::recoverPose(essentialMatrix, dataImg1_2D, dataImg2_2D, K, rotMatrix, transMatrix, mask);
-  std::cout << "\nTransl: " << transMatrix  << std::flush;
-//  std::cout << "\nRotation: " << rotMatrix  << std::flush;
-
-  std::cout << "\n\n============\nDifferent Approach\nLMEDS\nf=0.1\noutl=5.0\n============\n";
-
-  essentialMatrix = cv::findEssentialMat(dataImg1_2D, dataImg2_2D, 0.1,cv::Point2d(params_Lighthouse[2],params_Lighthouse[3]),  LMEDS, 0.999, 5.0, mask);
-  std::cout << "\nessential: " << essentialMatrix << std::flush;
-
-  cv::recoverPose(essentialMatrix, dataImg1_2D, dataImg2_2D, K, rotMatrix, transMatrix, mask);
-  std::cout << "\nTransl: " << transMatrix  << std::flush;
-//  std::cout << "\nRotation: " << rotMatrix  << std::flush;
-
-  std::cout << "\n\n============\nDifferent Approach\nLMEDS\nf=1.0\noutl=5.0\n============\n";
-
-  essentialMatrix = cv::findEssentialMat(dataImg1_2D, dataImg2_2D, 1.0,cv::Point2d(params_Lighthouse[2],params_Lighthouse[3]),  LMEDS, 0.999, 5.0, mask);
-  std::cout << "\nessential: " << essentialMatrix << std::flush;
-
-  cv::recoverPose(essentialMatrix, dataImg1_2D, dataImg2_2D, K, rotMatrix, transMatrix, mask);
-  std::cout << "\nTransl: " << transMatrix  << std::flush;
-//  std::cout << "\nRotation: " << rotMatrix  << std::flush;
-
-
-  std::cout << "\n\n============\nDifferent Approach\n\nKAMERA MATRIX============\n";
-  std::cout << "\n\n============\nDifferent Approach\n============\n";
-
-  essentialMatrix = cv::findEssentialMat(dataImg1_2D, dataImg2_2D, K, RANSAC, 0.99, 4.0, mask);
-  std::cout << "\nessential: " << essentialMatrix << std::flush;
-
-  cv::recoverPose(essentialMatrix, dataImg1_2D, dataImg2_2D, K, rotMatrix, transMatrix, mask);
-  std::cout << "\nTransl: " << transMatrix  << std::flush;
-//  std::cout << "\nRotation: " << rotMatrix  << std::flush;
-
-  return 0;
-
+  robot.removeTrackedObject();
+  robot.addTrackedObject(sensor_model_path.c_str());
+  //robot.startPoseEstimationSensorCloud();
+  //robot.startObjectPoseEstimationSensorCloud(true);
+  robot.startEstimateObjectPoseMultiLighthouse(true);
 
   bool startPubRay = false;
+  bool baseWasCalibrated[MAX_BASE_AMOUNT] = {0};
   //============================ Main LOOP ===========================
   while(ros::ok()){
-    /*
+
     std::vector<rawRayData> ray;
 
     //pull/poll data from usb
@@ -501,71 +335,24 @@ int main(int argc, char const *argv[]) {
       int baseN = dataM.registNewBaseStation(ray);
       //we at least need two bases for further processing
       if(startPubRay){
-          //robot.publishSensorData(&ray);
-          bool dataRdy = dataM.matchData(model.sensorData_3d,&ray);
-          dataRdy = dataM.twoCameraMatcher();
+          robot.publishSensorData(&ray);
+          //bool dataRdy = dataM.matchData(model.sensorData_3d,&ray);
+          //dataRdy = dataM.twoCameraMatcher();
 
-          if(dataRdy){
+          //bool dataRdy = dataM.gatherDataForCalib(model.sensorData_3d,&ray);
 
-            cv::Mat essentialMatrix,fundamental_matrix;
-            cv::Mat rotMatrix, transMatrix, mask;
-            //cv::Mat K = cv::Mat::eye(3,3,CV_64F);
-            cv::Mat K = cv::Mat::zeros(3,3,CV_64FC1);
+          //if(dataRdy && (dataM.list_points3d[1].size() > 6)){
+            //dataM.calcCalibrationMatrix();
+            /*
+            if(baseWasCalibrated[1] == false)
+              baseWasCalibrated[1] = dataM.findProjectedPosition(1);
 
-            K.at<double>(0, 0) = params_Lighthouse[0];       //      [ fx   0  cx ]
-            K.at<double>(1, 1) = params_Lighthouse[1];       //      [  0  fy  cy ]
-            K.at<double>(0, 2) = params_Lighthouse[2];       //      [  0   0   1 ]
-            K.at<double>(1, 2) = params_Lighthouse[3];
-            K.at<double>(2, 2) = 1;
+            if(baseWasCalibrated[2] == false)
+              baseWasCalibrated[2] = dataM.findProjectedPosition(2);
+            */
 
-            //cv::Mat K_ = cv::Mat::eye(3,3,CV_64F);
+          //}
 
-            std::cout << "\n1 data: " << dataM.dataImg1_2D.size() << std::flush;
-            std::cout << "\n2 data: " << dataM.dataImg2_2D.size() << std::flush;
-
-
-            essentialMatrix = cv::findEssentialMat(dataM.dataImg1_2D, dataM.dataImg2_2D, 1.0,cv::Point2d(params_Lighthouse[2],params_Lighthouse[3]),  RANSAC, 0.999, 1.0, mask);
-            std::cout << "\nessential: " << essentialMatrix << std::flush;
-
-            cv::recoverPose(essentialMatrix, dataM.dataImg1_2D, dataM.dataImg2_2D, K, rotMatrix, transMatrix, mask);
-            std::cout << "\nTransl: " << transMatrix  << std::flush;
-            std::cout << "\nRotation: " << rotMatrix  << std::flush;
-
-            double retRol, retPitch, retYaw;
-            double A[3][3]= {
-              {rotMatrix.at<double>(0,0),rotMatrix.at<double>(0,1),rotMatrix.at<double>(0,2)},
-              {rotMatrix.at<double>(1,0),rotMatrix.at<double>(1,1),rotMatrix.at<double>(1,2)},
-              {rotMatrix.at<double>(2,0),rotMatrix.at<double>(2,1),rotMatrix.at<double>(2,2)}
-            };
-            converRotMatrixToEuler(A, retRol, retPitch, retYaw);
-
-
-            std::cout << "\nRotationEULER:\tRol: " << retRol << "\tPitch: " << retPitch << "\tYaw: "  << retYaw  << std::flush;
-
-            //Now we can transpose the center in respekt to World0
-            lhmsg.type = 1; //relativ==0 ; absolut ==1
-            //due to different coordinate system we need to map x,y,z proberly
-            float lh_x = transMatrix.at<float>(1);
-            float lh_y = transMatrix.at<float>(0) - 1; //because lh0 base already has a tranlation of -1
-            float lh_z = transMatrix.at<float>(2);
-            //send Translation and Rotation via ros to rviz
-            ///double foo = transMatrix(0);
-            position.setValue(lh_x,lh_y,lh_z);
-            orientation.setRPY(retPitch,retRol, retYaw);
-
-            std::cout << "\nSet transform data"  << std::flush;
-            tf.setOrigin(position);
-            tf.setRotation(orientation);
-
-            std::cout << "\nTransform Msg"  << std::flush;
-            tf::transformTFToMsg(tf, lhmsg.tf);
-
-            pubHandl_correctBase.publish(lhmsg);
-            ros::spinOnce();
-
-            std::cout << "\nPub msg"  << std::flush;
-
-          }
 
       }else{
         //only start the system if at least to lighthouseBases ar visible
@@ -592,176 +379,6 @@ int main(int argc, char const *argv[]) {
 
 
     }
-
-
-    /*
-
-    //Picture solver
-
-
-    std::cout << "\nRansac solver";
-    pnp_registration.estimatePoseRANSAC( dataM.list_points3d[1], dataM.list_points2d[1],
-                              pnpMethod, inliers_idx, iterationsCount, reprojectionError, confidence );
-
-    // Get the translation
-    cv::Mat translation_measured(3, 1, CV_64F);
-    translation_measured = pnp_registration.get_t_matrix();
-    std::cout << "\nTransl\n" << translation_measured;
-    // Get the rotation
-    cv::Mat rotation_measured(3, 3, CV_64F);
-    rotation_measured = pnp_registration.get_R_matrix();
-    std::cout << "\nRotation\n" << rotation_measured;
-
-    dataM.reset_matchData();
-
-    */
-
-
-
-    /*
-    id.clear();
-    azimuth.clear();
-    elevation.clear();
-    channel.clear();
-    */
-
-    /*
-    //============Poll usb data ============
-    bool dataWasTransmitted = driver.pullData(&id,&azimuth,&elevation, &channel);
-
-    if(dataWasTransmitted && (id.size() > 0) ){
-
-        //if we get a certain amount of data from a base Station
-        //it will be added to the list of known Base Stations
-        int baseN = dataM.registNewBaseStation(channel);
-
-        sucessCnt++;
-
-        if(wasCalibrated == false){
-          bool dataRdy = false;
-          dataRdy = dataM.matchData(model.sensorData_3d,id,azimuth,elevation,channel);
-
-          dataRdy = dataM.twoCameraMatcher();
-          if(dataRdy){
-            cv::Mat essentialMatrix,fundamental_matrix;
-            cv::Mat rotMatrix, transMatrix, mask;
-            //cv::Mat K = cv::Mat::eye(3,3,CV_64F);
-            cv::Mat K = cv::Mat::zeros(3,3,CV_64FC1);
-
-            K.at<double>(0, 0) = params_Lighthouse[0];       //      [ fx   0  cx ]
-            K.at<double>(1, 1) = params_Lighthouse[1];       //      [  0  fy  cy ]
-            K.at<double>(0, 2) = params_Lighthouse[2];       //      [  0   0   1 ]
-            K.at<double>(1, 2) = params_Lighthouse[3];
-            K.at<double>(2, 2) = 1;
-
-            //cv::Mat K_ = cv::Mat::eye(3,3,CV_64F);
-
-            std::cout << "\n1 data: " << dataM.dataImg1_2D.size() << std::flush;
-            std::cout << "\n2 data: " << dataM.dataImg2_2D.size() << std::flush;
-
-
-            essentialMatrix = cv::findEssentialMat(dataM.dataImg1_2D, dataM.dataImg2_2D, 1.0,cv::Point2d(params_Lighthouse[2],params_Lighthouse[3]),  RANSAC, 0.999, 1.0, mask);
-            std::cout << "\nessential: " << essentialMatrix << std::flush;
-
-            cv::recoverPose(essentialMatrix, dataM.dataImg1_2D, dataM.dataImg2_2D, K, rotMatrix, transMatrix, mask);
-            std::cout << "\nTransl: " << transMatrix  << std::flush;
-            std::cout << "\nRotation: " << rotMatrix  << std::flush;
-
-            double retRol, retPitch, retYaw;
-            double A[3][3]= {
-              {rotMatrix.at<double>(0,0),rotMatrix.at<double>(0,1),rotMatrix.at<double>(0,2)},
-              {rotMatrix.at<double>(1,0),rotMatrix.at<double>(1,1),rotMatrix.at<double>(1,2)},
-              {rotMatrix.at<double>(2,0),rotMatrix.at<double>(2,1),rotMatrix.at<double>(2,2)}
-            };
-            converRotMatrixToEuler(A, retRol, retPitch, retYaw);
-
-
-            std::cout << "\nRotationEULER:\tRol: " << retRol << "\tPitch: " << retPitch << "\tYaw: "  << retYaw  << std::flush;
-
-            //Now we can transpose the center in respekt to World0
-            lhmsg.type = 1; //relativ==0 ; absolut ==1
-            //due to different coordinate system we need to map x,y,z proberly
-            double lh_x = transMatrix.at<double>(1);
-            double lh_y = transMatrix.at<double>(0) - 1; //because lh0 base already has a tranlation of -1
-            double lh_z = transMatrix.at<double>(2);
-            //send Translation and Rotation via ros to rviz
-            ///double foo = transMatrix(0);
-            position.setValue(lh_x,lh_y,lh_z);
-            orientation.setRPY(retPitch,retRol, retYaw);
-
-            tf.setOrigin(position);
-            tf.setRotation(orientation);
-
-            tf::transformTFToMsg(tf, lhmsg.tf);
-
-            pubHandl_correctBase.publish(lhmsg);
-            ros::spinOnce();
-
-
-            //due to system design, the lighthouse with the numerical lower
-            //polynome will be Position Zero
-            //to ensure that in the darkroom funktion ... we call the first base once
-            for (size_t lhCnt = 0; lhCnt < MAX_BASE_AMOUNT; lhCnt++) {
-              if(dataM.dataReady[lhCnt] == true){
-                ros_msg.object_id = "noclue";
-                ros_msg.base = lhCnt;
-                ros_msg.SensorID = 0;
-                ros_msg.elevation = -15.0 * M_PI/180.0;
-                ros_msg.azimuth = 30.0 * M_PI/180.0;
-                pubHandl_Sensor.publish(ros_msg);
-                break;
-              }
-            }
-
-
-
-
-
-            wasCalibrated = true;
-          }
-        }else{
-
-          if(baseN > 0){
-            //wasCalibrated = true;//todo remove
-
-
-            for(size_t i = 0; i < id.size(); i++){
-              //if(cFilter(channel[i], &azimuth[i], &elevation[i])){
-              if(elevation[i] > (-30.0 * M_PI/180.0) && elevation[i] < (30.0 * M_PI/180.0) ){
-                if(azimuth[i] > (35.0 * M_PI/180.0) && azimuth[i] < (160.0 * M_PI/180.0)){
-                  //if(cFilter(channel[i], &azimuth[i], &elevation[i])){
-                  if(cFilter_sensor(channel[i], id[i], &azimuth[i], &elevation[i])){
-                    //======[ROS Msg]=====
-                    ros_msg.object_id = "noclue";
-                    //ros_msg.base = (uint8_t)channel[i];
-                    ros_msg.base = channel[i];
-                    ros_msg.SensorID = (uint8_t)id[i];
-
-                    ros_msg.elevation = elevation[i];
-                    ros_msg.azimuth = azimuth[i];
-                    pubHandl_Sensor.publish(ros_msg);
-                  }
-                }
-
-              }
-
-              //}
-
-            }
-
-
-          }else{
-            ;
-
-          }
-
-
-        }
-
-
-
-    }
-    */
 
     ros::spinOnce();
     //rate.sleep();

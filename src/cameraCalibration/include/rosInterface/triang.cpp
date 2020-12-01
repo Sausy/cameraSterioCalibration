@@ -41,8 +41,9 @@ TrackerClass::TrackerClass(){
 
     statistics_sub = nh->subscribe("/roboy/middleware/DarkRoom/Statistics", 2, &TrackerClass::receiveStatistics, this);
     ootx_sub = nh->subscribe("/roboy/middleware/DarkRoom/ootx", 1, &TrackerClass::receiveOOTXData, this);
-    aruco_pose_sub = nh->subscribe("/roboy/middleware/ArucoPose", 1, &TrackerClass::receiveArucoPose, this);
     */
+    aruco_pose_sub = nh->subscribe("/roboy/middleware/ArucoPose", 1, &TrackerClass::receiveArucoPose, this);
+
 
     sensor_status_sub = nh->subscribe("/roboy/middleware/DarkRoom/status", 1, &TrackerClass::receiveSensorStatus, this);
 
@@ -67,17 +68,13 @@ TrackerClass::TrackerClass(){
             new std::thread(&TrackerClass::updateTrackedObjectInfo, this));
     update_tracked_object_info_thread->detach();
 
-    //interactive_marker_sub = nh->subscribe("/interactive_markers/feedback", 1,
-    //                                       &TrackerClass::interactiveMarkersFeedback, this);
-
-
+    interactive_marker_sub = nh->subscribe("/interactive_markers/feedback", 1,
+                                           &TrackerClass::interactiveMarkersFeedback, this);
 
     /*
     if (nh->hasParam("simulated")) {
         nh->getParam("simulated", simulated);
     }*/
-
-
 
 
     rvizVis.make6DofMarker(false, visualization_msgs::InteractiveMarkerControl::MOVE_ROTATE_3D, lighthouse1.getOrigin(),
@@ -98,8 +95,6 @@ TrackerClass::TrackerClass(){
 
 
 
-
-
     vector<string> joint_names;
     nh->getParam("joint_names", joint_names);
 
@@ -112,6 +107,9 @@ TrackerClass::TrackerClass(){
 
     //LighthouseEstimator::publishRays
     //publishRays
+
+
+
 
     ROS_INFO("Finished setup");
 }
@@ -178,6 +176,129 @@ void TrackerClass::startTriangulation() {
                     ));
             trackedObjects[i]->tracking_thread->detach();
 
+        trackedObjects[i]->mux.unlock();
+    }
+}
+
+void TrackerClass::startPoseEstimationSensorCloud() {
+    ROS_DEBUG("pose_correction_sensor_cloud clicked");
+    for (uint i = 0; i < trackedObjects.size(); i++) {
+        trackedObjects[i]->mux.lock();
+        ROS_INFO("starting pose estimation thread");
+        trackedObjects[i]->poseestimating = true;
+        trackedObjects[i]->poseestimation_thread = boost::shared_ptr<boost::thread>(
+                new boost::thread([this, i]() {
+                    this->trackedObjects[i]->lighthousePoseEstimationLeastSquares();
+                }));
+        trackedObjects[i]->poseestimation_thread->detach();
+        trackedObjects[i]->mux.unlock();
+    }
+}
+
+void TrackerClass::startObjectPoseEstimationSensorCloud(bool run) {
+    ROS_DEBUG("object pose estimation clicked");
+    for (uint i = 0; i < trackedObjects.size(); i++) {
+        trackedObjects[i]->mux.lock();
+        if (run) {
+            ROS_INFO("starting pose estimation thread");
+            if(run){
+                ROS_INFO("starting tracking thread");
+                trackedObjects[i]->tracking = true;
+                trackedObjects[i]->tracking_thread = boost::shared_ptr<boost::thread>(
+                        new boost::thread(
+                                [this, i]() { this->trackedObjects[i]->triangulateSensors(); }
+                        ));
+                trackedObjects[i]->tracking_thread->detach();
+            }
+            trackedObjects[i]->objectposeestimating = true;
+            trackedObjects[i]->objectposeestimation_thread = boost::shared_ptr<boost::thread>(
+                    new boost::thread([this, i]() {
+                        this->trackedObjects[i]->objectPoseEstimationLeastSquares();
+                    }));
+            trackedObjects[i]->objectposeestimation_thread->detach();
+        } else {
+            if (trackedObjects[i]->objectposeestimation_thread != nullptr) {
+                ROS_INFO("stopping pose estimation thread");
+                trackedObjects[i]->objectposeestimating = false;
+                if (trackedObjects[i]->objectposeestimation_thread->joinable()) {
+                    ROS_INFO_THROTTLE(1, "Waiting for pose estimation thread to terminate");
+                    trackedObjects[i]->objectposeestimation_thread->join();
+                }
+            }
+        }
+        trackedObjects[i]->mux.unlock();
+    }
+}
+
+void TrackerClass::startEstimateSensorPositionsUsingRelativeDistances() {
+    ROS_DEBUG("position_estimation_relativ_sensor_distances clicked");
+    for (uint i = 0; i < trackedObjects.size(); i++) {
+        trackedObjects[i]->mux.lock();
+        ROS_INFO("starting relativ distance thread for lighthouse 1");
+        trackedObjects[i]->distance_thread_1 = boost::shared_ptr<boost::thread>(
+                new boost::thread([this, i]() {
+                    this->trackedObjects[i]->estimateSensorPositionsUsingRelativeDistances(LIGHTHOUSE_A);
+                }));
+        trackedObjects[i]->distance_thread_1->detach();
+        ROS_INFO("starting relativ distance thread for lighthouse 2");
+        trackedObjects[i]->distance_thread_2 = boost::shared_ptr<boost::thread>(
+                new boost::thread([this, i]() {
+                    this->trackedObjects[i]->estimateSensorPositionsUsingRelativeDistances(LIGHTHOUSE_B);
+                }));
+        trackedObjects[i]->distance_thread_2->detach();
+        trackedObjects[i]->mux.unlock();
+    }
+}
+
+void TrackerClass::startEstimateObjectPoseUsingRelativeDistances() {
+    ROS_DEBUG("pose_estimation_relativ_sensor_distances clicked");
+    for (uint i = 0; i < trackedObjects.size(); i++) {
+        trackedObjects[i]->mux.lock();
+        ROS_INFO("starting relativ pose thread");
+        trackedObjects[i]->relative_pose_thread = boost::shared_ptr<boost::thread>(
+                new boost::thread([this, i]() {
+                    this->trackedObjects[i]->estimateObjectPoseUsingRelativeDistances();
+                }));
+        trackedObjects[i]->relative_pose_thread->detach();
+        trackedObjects[i]->mux.unlock();
+    }
+}
+
+void TrackerClass::startEstimateObjectPoseEPNP(bool run) {
+    ROS_DEBUG("pose_estimation_epnp clicked");
+    for (uint i = 0; i < trackedObjects.size(); i++) {
+        trackedObjects[i]->mux.lock();
+        if(run) {
+            ROS_INFO("starting relativ pose epnp thread");
+            trackedObjects[i]->poseestimating_epnp = true;
+            trackedObjects[i]->relative_pose_epnp_thread = boost::shared_ptr<boost::thread>(
+                    new boost::thread([this, i]() {
+                        this->trackedObjects[i]->estimateObjectPoseEPNP();
+                    }));
+            trackedObjects[i]->relative_pose_epnp_thread->detach();
+        }else{
+            trackedObjects[i]->poseestimating_epnp = false;
+        }
+        trackedObjects[i]->mux.unlock();
+    }
+}
+
+
+void TrackerClass::startEstimateObjectPoseMultiLighthouse(bool run) {
+    ROS_DEBUG("pose_estimation_multi_lighthouse clicked");
+    for (uint i = 0; i < trackedObjects.size(); i++) {
+        trackedObjects[i]->mux.lock();
+        if(run) {
+            ROS_INFO("starting multi lighthouse pose estimation thread");
+            trackedObjects[i]->poseestimating_multiLighthouse = true;
+            trackedObjects[i]->object_pose_estimation_multi_lighthouse_thread = boost::shared_ptr<boost::thread>(
+                    new boost::thread([this, i]() {
+                        this->trackedObjects[i]->estimateObjectPoseMultiLighthouse();
+                    }));
+            trackedObjects[i]->object_pose_estimation_multi_lighthouse_thread->detach();
+        }else{
+            trackedObjects[i]->poseestimating_multiLighthouse = false;
+        }
         trackedObjects[i]->mux.unlock();
     }
 }
@@ -292,36 +413,14 @@ void TrackerClass::transformPublisher() {
     double boundary = 0.5;
     while (publish_transform) {
         mux.lock();
+
         tf_broadcaster.sendTransform(tf::StampedTransform(lighthouse1, ros::Time::now(), "world", "lighthouse1"));
         tf_broadcaster.sendTransform(tf::StampedTransform(lighthouse2, ros::Time::now(), "world", "lighthouse2"));
-            if (random_pose) {
-                // randomly moves all objects
-                for (auto &object:trackedObjects) {
-                    object->pose.setOrigin( tf::Vector3(pos(0),pos(1),pos(2)));
-                    tf::Quaternion q(0, 0, 0, 1);
-                    q.setRPY(random_pose_roll, random_pose_pitch, random_pose_yaw);
-                    object->pose.setRotation(q);
 
-                    pos(0) += vel(0)*1/1000.0+(rand()/(double)RAND_MAX-0.5)*0.001;
-                    pos(1) += vel(1)*1/1000.0+(rand()/(double)RAND_MAX-0.5)*0.001;
-                    pos(2) += vel(2)*1/1000.0+(rand()/(double)RAND_MAX-0.5)*0.001;
-                    random_pose_roll += rand()/(double)RAND_MAX*1/1000.0;
-                    random_pose_pitch += rand()/(double)RAND_MAX*1/1000.0;
-                    random_pose_yaw += rand()/(double)RAND_MAX*1/1000.0;
-
-                    if(pos(0)>boundary || pos(0)<-boundary)
-                        vel(0) = -(vel(0)+(rand()/(double)RAND_MAX-0.5));
-                    if(pos(1)>boundary || pos(1)<-boundary)
-                        vel(1) = -(vel(1)+(rand()/(double)RAND_MAX-0.5));
-                    if(pos(2)>boundary || pos(2)<-boundary)
-                        vel(2) = -(vel(2)+(rand()/(double)RAND_MAX-0.5));
-//
-                }
-            }
-            for (auto &object:trackedObjects) {
-                tf_broadcaster.sendTransform(tf::StampedTransform(object->pose, ros::Time::now(),
-                                                                  "world", object->name.c_str()));
-            }
+        for (auto &object:trackedObjects) {
+            tf_broadcaster.sendTransform(tf::StampedTransform(object->pose, ros::Time::now(),
+                                                              "world", object->name.c_str()));
+        }
 //        }
         mux.unlock();
         rate.sleep();
@@ -329,6 +428,7 @@ void TrackerClass::transformPublisher() {
 }
 
 
+/*
 bool TrackerClass::addTrackedObject(const char *config_file_path) {
     mux.lock();
     TrackedObjectPtr newObject = TrackedObjectPtr(new TrackedObject(nh));
@@ -363,6 +463,7 @@ bool TrackerClass::addTrackedObject(const char *config_file_path) {
 
     return true;
 }
+*/
 
 
 void TrackerClass::showRays() {
@@ -404,4 +505,100 @@ void TrackerClass::publishSensorData(std::vector<rawRayData> *ray){
   }
 
 
+}
+
+bool TrackerClass::addTrackedObject(const char *config_file_path) {
+    mux.lock();
+    TrackedObjectPtr newObject = TrackedObjectPtr(new TrackedObject(nh));
+
+    if (!newObject->init(config_file_path))
+        return false;
+
+    ROS_DEBUG_STREAM("adding tracked object " << config_file_path);
+    trackedObjects.push_back(newObject);
+    trackedObjectsIDs.push_back(newObject->objectID);
+    object_counter++;
+
+
+    mux.unlock();
+    return true;
+}
+
+/**
+ * removes the selected tracked object
+ */
+void TrackerClass::removeTrackedObject() {
+    mux.lock();
+    publish_transform = false;
+
+    if (transform_thread->joinable()) {
+        ROS_INFO("waiting for transform thread to shut down");
+        transform_thread->join();
+    }
+    update_tracked_object_info = false;
+    if (update_tracked_object_info_thread->joinable()) {
+        ROS_INFO("waiting for update_tracked_object_info_thread to shut down");
+        update_tracked_object_info_thread->join();
+    }
+    int i = 0;
+  /*  for (auto it = trackedObjects.begin(); it != trackedObjects.end();) {
+        if (trackedObjectsInfo[i].selected->isChecked()) {
+            // remove gui elements
+            delete trackedObjectsInfo[i].name;
+            delete trackedObjectsInfo[i].activeSensors;
+            delete trackedObjectsInfo[i].selected;
+            delete trackedObjectsInfo[i].widget;
+            trackedObjectsInfo.erase(trackedObjectsInfo.begin() + i);
+            // if we are simulating, shutdown lighthouse simulators
+            // erase the trackedObject
+            it = trackedObjects.erase(it);
+        } else {
+            i++;
+            ++it;
+        }
+    }
+    */
+    publish_transform = true;
+    transform_thread = boost::shared_ptr<std::thread>(new std::thread(&TrackerClass::transformPublisher, this));
+    transform_thread->detach();
+
+    update_tracked_object_info = true;
+    update_tracked_object_info_thread = boost::shared_ptr<std::thread>(
+            new std::thread(&TrackerClass::updateTrackedObjectInfo, this));
+    update_tracked_object_info_thread->detach();
+
+    mux.unlock();
+}
+
+void TrackerClass::receiveArucoPose(const roboy_middleware_msgs::ArucoPose::ConstPtr &msg){
+    int i=0;
+    // running mean and variance (cf https://www.johndcook.com/blog/standard_deviation/ )
+    stringstream str;
+    for(int id:msg->id){
+        if(receive_counter.find(id)==receive_counter.end()){
+            receive_counter[id] = 1;
+            aruco_position_mean[id].setZero();
+            aruco_position_variance[id].setZero();
+        }
+
+        Vector3d pos(msg->pose[i].position.x,
+                     msg->pose[i].position.y,
+                     msg->pose[i].position.z);
+        // using lazy average at this point
+        Vector3d new_mean = aruco_position_mean[id]*0.9 + pos * 0.1;
+        aruco_position_variance[id](0) += (pos(0)-aruco_position_mean[id](0))*(pos(0)-new_mean(0));
+        aruco_position_variance[id](1) += (pos(1)-aruco_position_mean[id](1))*(pos(1)-new_mean(1));
+        aruco_position_variance[id](2) += (pos(2)-aruco_position_mean[id](2))*(pos(2)-new_mean(2));
+        aruco_position_mean[id] = new_mean;
+        str << "\naruco id " << id << " \nmean " << aruco_position_mean[id].transpose() << " \nvariance " << aruco_position_variance[id].transpose() << endl;
+        i++;
+        receive_counter[id]++;
+    }
+
+    for(auto &object:trackedObjects){
+        object->pose.setOrigin(tf::Vector3(aruco_position_mean[282](0),aruco_position_mean[282](1),aruco_position_mean[282](2)));
+    }
+
+
+    ROS_INFO_STREAM_THROTTLE(1,str.str());
 }

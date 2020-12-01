@@ -391,6 +391,22 @@ unistd.h
 -
 opencv2/core/types.hpp
 -
+opencv2/core.hpp
+-
+opencv2/core/utils/filesystem.hpp
+-
+opencv2/highgui.hpp
+-
+opencv2/imgproc.hpp
+-
+opencv2/calib3d.hpp
+-
+opencv2/video/tracking.hpp
+-
+opencv2/features2d.hpp
+-
+PnPProblem.hpp
+-
 ros/ros.h
 -
 std_msgs/String.h
@@ -409,12 +425,16 @@ DataMatcher.hpp
 /home/sausy/Projects/lighthouse/cameraSterioCalibration/src/cameraCalibration/include/utils/DataMatcher.hpp
 Utils.hpp
 /home/sausy/Projects/lighthouse/cameraSterioCalibration/src/cameraCalibration/include/utils/Utils.hpp
+Utils_openCV.hpp
+-
 filter.hpp
 -
 datatype_htcDongle.h
 -
 
 /home/sausy/Projects/lighthouse/cameraSterioCalibration/src/cameraCalibration/include/utils/Utils.hpp
+opencv2/features2d.hpp
+-
 
 /home/sausy/Projects/lighthouse/cameraSterioCalibration/src/cameraCalibration/main.cpp
 iostream
@@ -6254,6 +6274,8 @@ mutex
 opencv2/core/utils/instrumentation.hpp
 /usr/local/include/opencv4/opencv2/core/opencv2/core/utils/instrumentation.hpp
 
+/usr/local/include/opencv4/opencv2/core/utils/filesystem.hpp
+
 /usr/local/include/opencv4/opencv2/core/utils/instrumentation.hpp
 opencv2/core/utility.hpp
 -
@@ -6317,6 +6339,12 @@ opencv2/core.hpp
 /usr/local/include/opencv4/opencv2/opencv2/core.hpp
 
 /usr/local/include/opencv4/opencv2/opencv_modules.hpp
+
+/usr/local/include/opencv4/opencv2/video/tracking.hpp
+opencv2/core.hpp
+/usr/local/include/opencv4/opencv2/video/opencv2/core.hpp
+opencv2/imgproc.hpp
+/usr/local/include/opencv4/opencv2/video/opencv2/imgproc.hpp
 
 /usr/local/include/opencv4/opencv2/videoio.hpp
 opencv2/core.hpp

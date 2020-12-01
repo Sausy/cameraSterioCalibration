@@ -12,18 +12,30 @@
 
 #include <unistd.h>
 */
+#include <opencv2/calib3d.hpp>
 
-
-
-DataMatcher::DataMatcher(double * params_Lighthouse_, int maxSensorAvailable_):\
+DataMatcher::DataMatcher(double * params_Lighthouse_, int maxSensorAvailable_, tf::Vector3 p_):\
                         BaseStationsEventCount{0},\
                         availableBaseStations{false},\
                         dataReady{false}
 {
+
     for (size_t i = 0; i < 4; i++) {
       params_Lighthouse[i] = *params_Lighthouse_;
       params_Lighthouse_++;
     }
+
+    //init Kalman Filter
+    int nStates = 18;            // the number of states
+    int nMeasurements = 6;       // the number of measured states
+    int nInputs = 0;             // the number of action control
+    double dt = 0.125;           // time between measurements (1/FPS)
+    initKalmanFilter(KF, nStates, nMeasurements, nInputs, dt);    // init function
+
+    cv::Mat m_(nMeasurements, 1, CV_64FC1);
+    measurements = m_;
+    measurements.setTo(cv::Scalar(0));
+
 
     //init filters .. there should be one for each lighthouse base
     for (size_t i = 0; i < MAX_BASE_AMOUNT; i++){
@@ -58,9 +70,127 @@ DataMatcher::DataMatcher(double * params_Lighthouse_, int maxSensorAvailable_):\
 
     ROS_INFO("init[STARTED]...lighthouse2Data");
 
+    pubHandl_correctBase = nh->advertise<roboy_middleware_msgs::LighthousePoseCorrection>("/roboy/middleware/DarkRoom/lhcorrect", 1);
+    tf::Transform tf;
+
+    float x = 0.7;
+    float y = -1.0;
+    float z = 0.0;
+
+    lhmsg.id = 1;
+    lhmsg.type = 1; //relativ==0 ; absolut ==1
+
+    tf::Vector3 position(p_);
+    tf::Quaternion orientation;//(x,quat_y,quat_z,quat_w);
+    orientation.setRPY( 0, 0, 0 );
+
+    tf.setOrigin(position);
+    tf.setRotation(orientation);
+
+    tf::transformTFToMsg(tf, lhmsg.tf);
+    pubHandl_correctBase.publish(lhmsg);
+
 
 }
 
+
+void DataMatcher::initKalmanFilter(cv::KalmanFilter &KF, int nStates, int nMeasurements, int nInputs, double dt){
+  KF.init(nStates, nMeasurements, nInputs, CV_64F);                 // init Kalman Filter
+  cv::setIdentity(KF.processNoiseCov, cv::Scalar::all(1e-5));       // set process noise
+  cv::setIdentity(KF.measurementNoiseCov, cv::Scalar::all(1e-4));   // set measurement noise
+  cv::setIdentity(KF.errorCovPost, cv::Scalar::all(1));             // error covariance
+                 /* DYNAMIC MODEL */
+  //  [1 0 0 dt  0  0 dt2   0   0 0 0 0  0  0  0   0   0   0]
+  //  [0 1 0  0 dt  0   0 dt2   0 0 0 0  0  0  0   0   0   0]
+  //  [0 0 1  0  0 dt   0   0 dt2 0 0 0  0  0  0   0   0   0]
+  //  [0 0 0  1  0  0  dt   0   0 0 0 0  0  0  0   0   0   0]
+  //  [0 0 0  0  1  0   0  dt   0 0 0 0  0  0  0   0   0   0]
+  //  [0 0 0  0  0  1   0   0  dt 0 0 0  0  0  0   0   0   0]
+  //  [0 0 0  0  0  0   1   0   0 0 0 0  0  0  0   0   0   0]
+  //  [0 0 0  0  0  0   0   1   0 0 0 0  0  0  0   0   0   0]
+  //  [0 0 0  0  0  0   0   0   1 0 0 0  0  0  0   0   0   0]
+  //  [0 0 0  0  0  0   0   0   0 1 0 0 dt  0  0 dt2   0   0]
+  //  [0 0 0  0  0  0   0   0   0 0 1 0  0 dt  0   0 dt2   0]
+  //  [0 0 0  0  0  0   0   0   0 0 0 1  0  0 dt   0   0 dt2]
+  //  [0 0 0  0  0  0   0   0   0 0 0 0  1  0  0  dt   0   0]
+  //  [0 0 0  0  0  0   0   0   0 0 0 0  0  1  0   0  dt   0]
+  //  [0 0 0  0  0  0   0   0   0 0 0 0  0  0  1   0   0  dt]
+  //  [0 0 0  0  0  0   0   0   0 0 0 0  0  0  0   1   0   0]
+  //  [0 0 0  0  0  0   0   0   0 0 0 0  0  0  0   0   1   0]
+  //  [0 0 0  0  0  0   0   0   0 0 0 0  0  0  0   0   0   1]
+  // position
+  KF.transitionMatrix.at<double>(0,3) = dt;
+  KF.transitionMatrix.at<double>(1,4) = dt;
+  KF.transitionMatrix.at<double>(2,5) = dt;
+  KF.transitionMatrix.at<double>(3,6) = dt;
+  KF.transitionMatrix.at<double>(4,7) = dt;
+  KF.transitionMatrix.at<double>(5,8) = dt;
+  KF.transitionMatrix.at<double>(0,6) = 0.5*pow(dt,2);
+  KF.transitionMatrix.at<double>(1,7) = 0.5*pow(dt,2);
+  KF.transitionMatrix.at<double>(2,8) = 0.5*pow(dt,2);
+  // orientation
+  KF.transitionMatrix.at<double>(9,12) = dt;
+  KF.transitionMatrix.at<double>(10,13) = dt;
+  KF.transitionMatrix.at<double>(11,14) = dt;
+  KF.transitionMatrix.at<double>(12,15) = dt;
+  KF.transitionMatrix.at<double>(13,16) = dt;
+  KF.transitionMatrix.at<double>(14,17) = dt;
+  KF.transitionMatrix.at<double>(9,15) = 0.5*pow(dt,2);
+  KF.transitionMatrix.at<double>(10,16) = 0.5*pow(dt,2);
+  KF.transitionMatrix.at<double>(11,17) = 0.5*pow(dt,2);
+       /* MEASUREMENT MODEL */
+  //  [1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0]
+  //  [0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0]
+  //  [0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0]
+  //  [0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0]
+  //  [0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0]
+  //  [0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0]
+  KF.measurementMatrix.at<double>(0,0) = 1;  // x
+  KF.measurementMatrix.at<double>(1,1) = 1;  // y
+  KF.measurementMatrix.at<double>(2,2) = 1;  // z
+  KF.measurementMatrix.at<double>(3,9) = 1;  // roll
+  KF.measurementMatrix.at<double>(4,10) = 1; // pitch
+  KF.measurementMatrix.at<double>(5,11) = 1; // yaw
+}
+
+
+void DataMatcher::fillMeasurements( cv::Mat &measurements,
+                   const cv::Mat &translation_measured, const cv::Mat &rotation_measured)
+{
+    // Convert rotation matrix to euler angles
+    cv::Mat measured_eulers(3, 1, CV_64F);
+    measured_eulers = rot2euler(rotation_measured);
+    // Set measurement to predict
+    measurements.at<double>(0) = translation_measured.at<double>(0); // x
+    measurements.at<double>(1) = translation_measured.at<double>(1); // y
+    measurements.at<double>(2) = translation_measured.at<double>(2); // z
+    measurements.at<double>(3) = measured_eulers.at<double>(0);      // roll
+    measurements.at<double>(4) = measured_eulers.at<double>(1);      // pitch
+    measurements.at<double>(5) = measured_eulers.at<double>(2);      // yaw
+}
+
+void DataMatcher::updateKalmanFilter( cv::KalmanFilter &KF, cv::Mat &measurement, cv::Mat &translation_estimated, cv::Mat &rotation_estimated )
+{
+    // First predict, to update the internal statePre variable
+    cv::Mat prediction = KF.predict();
+
+    // The "correct" phase that is going to use the predicted value and our measurement
+    cv::Mat estimated = KF.correct(measurement);
+
+    // Estimated translation
+    translation_estimated.at<double>(0) = estimated.at<double>(0);
+    translation_estimated.at<double>(1) = estimated.at<double>(1);
+    translation_estimated.at<double>(2) = estimated.at<double>(2);
+
+    // Estimated euler angles
+    cv::Mat eulers_estimated(3, 1, CV_64F);
+    eulers_estimated.at<double>(0) = estimated.at<double>(9);
+    eulers_estimated.at<double>(1) = estimated.at<double>(10);
+    eulers_estimated.at<double>(2) = estimated.at<double>(11);
+
+    // Convert estimated quaternion to rotation matrix
+    rotation_estimated = euler2rot(eulers_estimated);
+}
 
 //resets all data proberly
 //to start a new run
@@ -536,7 +666,7 @@ bool DataMatcher::customFilter(int id_, double * azimuth_, double * elevation_, 
 
 bool DataMatcher::twoCameraMatcher(){
   //todo create vector for this
-  const int histMatchSize = 2;
+  const int histMatchSize = 1;
   const int numIterationMax = 9;
 
   std::vector<int> ch;
@@ -564,13 +694,9 @@ bool DataMatcher::twoCameraMatcher(){
       for (size_t k = 0; k < list_points2d[ch[i+1]].size(); k++) {
         for (size_t j = 0; j < list_points2d[ch[i]].size(); j++) {
           if(list_id[ch[i]][j] ==  list_id[ch[i+1]][k]){
-            double point1 = list_points2d[ch[i]][j];
-            double point2 = list_points2d[ch[i]][j];
-            if(){
-              matchingCounter ++;
-              dataImg1_2D.push_back(list_points2d[ch[i]][j]);
-              dataImg2_2D.push_back(list_points2d[ch[i+1]][k]);
-            }
+            matchingCounter ++;
+            dataImg1_2D.push_back(list_points2d[ch[i]][j]);
+            dataImg2_2D.push_back(list_points2d[ch[i+1]][k]);
           }
         }
       }
@@ -624,67 +750,340 @@ bool DataMatcher::twoCameraMatcher(){
     usleep(2*1000000);
   }
 
+
   return false;
 
-  /*
+}
 
-  if(wasRepos[wasRepos_cnt] == false){
-    if(matchingCounter >= histMatchSize){
-      for (size_t i = 0; i < dataImg1_2D.size(); i++) {
+std::vector<int> DataMatcher::listChannel(){
+  std::vector<int> ch;
 
-        dataImg1_2D_buffer.push_back(dataImg1_2D[i]);
-        dataImg2_2D_buffer.push_back(dataImg2_2D[i]);
-      }
-      iterationCnt++;
-
-      std::cout << "\n======================================";
-      std::cout << "\n\tInfo";
-      std::cout << "\n======================================";
-      std::cout << "\n please move the tracking object a bit" << std::flush;
-      usleep(5*1000000);
-      reset_matchData();
-      std::cout << "\n now keep it steady again" << std::flush;
-      usleep(3*1000000);
-      std::cout << "\nplease wait ..." << std::flush;
-      wasRepos[wasRepos_cnt] = true;
-      if(wasRepos_cnt < numIterationMax-1)
-        wasRepos_cnt++;
+  for (uint8_t i = 0; i < MAX_BASE_AMOUNT; i++) {
+    if(availableBaseStations[i]==true){
+      ch.push_back(i);
     }
-  }else{
-    if(matchingCounter >= histMatchSize){
-      //push the buffer back onto the datapoints
-      for (size_t i = 0; i < dataImg1_2D_buffer.size(); i++) {
-        dataImg1_2D.push_back(dataImg1_2D_buffer[i]);
-        dataImg2_2D.push_back(dataImg2_2D_buffer[i]);
+  }
+  return ch;
+}
 
+bool DataMatcher::gatherDataForCalib(const std::vector<std::vector<float>> inVec, std::vector<rawRayData> *ray){
+  std::vector<int> ch = listChannel();
+
+  if(ch.size() < 2)
+    return false;
+
+  for(std::vector<rawRayData>::iterator vIt = ray->begin(); vIt != ray->end(); ++vIt){
+    std::vector<double> Vec2D = azimuthTo2D(vIt->azimuth, vIt->elevation, &params_Lighthouse[0]);
+
+    cv::Point2f buf2d;
+    cv::Point3f buf3d;
+
+    buf2d.x = (float)Vec2D[0];
+    buf2d.y = (float)Vec2D[1];
+
+    pushData_idHistory[vIt->ch].push_back(vIt->id);
+    pushData_historyPoint[vIt->ch].push_back(buf2d);
+    buf3d.x = (float)inVec[vIt->id][0];
+    buf3d.y = (float)inVec[vIt->id][1];
+    buf3d.z = (float)inVec[vIt->id][2];
+
+
+    //make it a ring buffer
+    if(pushData_historyPoint[vIt->ch].size() >= 10){
+      std::vector<cv::Point2f> data_temp(pushData_historyPoint[vIt->ch]);
+      pushData_historyPoint[vIt->ch].clear();
+      pushData_historyPoint[vIt->ch].insert(pushData_historyPoint[vIt->ch].begin(),data_temp.begin()+1,data_temp.end());
+
+      std::vector<int> id_temp(pushData_idHistory[vIt->ch]);
+      pushData_idHistory[vIt->ch].clear();
+      pushData_idHistory[vIt->ch].insert(pushData_idHistory[vIt->ch].begin(),id_temp.begin()+1,id_temp.end());
+    }
+
+
+    //if()
+    //list_points2d[vIt->ch].push_back(buf2d);
+    //list_points3d[vIt->ch].push_back(buf3d);
+
+  }
+
+
+  std::vector<cv::Point2f> *sDat = &pushData_historyPoint[ch[0]];
+  std::vector<cv::Point2f> *lDat = &pushData_historyPoint[ch[1]];
+
+  if(sDat->size() < 9)
+    return false;
+  if(lDat->size() < 9)
+    return false;
+
+
+
+
+  //limit to 2 Lighthouse Bases
+  std::vector<int> *sId = &pushData_idHistory[ch[0]];
+  std::vector<int> *lId = &pushData_idHistory[ch[1]];
+
+  for (size_t i = 0; i < sId->size(); i++) {
+    for (size_t j = 0; j < lId->size(); j++) {
+      if(sId->at(i) == lId->at(j)){
+        dataImg1_2D.push_back(sDat->at(i));
+        dataImg2_2D.push_back(lDat->at(j));
+        sId->clear();
+        lId->clear();
+        sDat->clear();
+        lDat->clear();
+
+        //i = sId->size();
+        //break;
       }
     }
   }
 
-
-  if(iterationCnt >= numIterationMax){
-    wasRepos[wasRepos_cnt] = false;
-    std::cout << "\n found " << dataImg1_2D.size() << std::flush;
+  std::cout << "\nmatched data : " << dataImg2_2D.size();
+  if (dataImg2_2D.size() >= 100){
     return true;
   }
-  */
-    /*
 
-    dataImg1_2D[MAX_BASE_AMOUNT];
-    std::vector<cv::Point2f> dataImg2_2D[MAX_BASE_AMOUNT];
-
-    int point_count = 100;
-    vector<Point2f> points1(point_count);
-    vector<Point2f> points2(point_count);
-    // initialize the points here ...
-    for( int i = 0; i < point_count; i++ )
-    {
-        points1[i] = ...;
-        points2[i] = ...;
-    }
-    Mat fundamental_matrix =  findFundamentalMat(points1, points2, FM_RANSAC, 3, 0.99);
-    */
-  //}
   return false;
+
+
+}
+void DataMatcher::resetCalibration(){
+  for (size_t i = 0; i < MAX_BASE_AMOUNT; i++) {
+    pushData_idHistory[i].clear();
+    pushData_historyPoint[i].clear();
+  }
+
+}
+
+void DataMatcher::calcCalibrationMatrix(){
+
+  cv::Mat essentialMatrix,fundamental_matrix;
+  cv::Mat rotMatrix, transMatrix, mask;
+  //cv::Mat K = cv::Mat::eye(3,3,CV_64F);
+  cv::Mat K = cv::Mat::zeros(3,3,CV_64FC1);
+
+  K.at<double>(0, 0) = params_Lighthouse[0];       //      [ fx   0  cx ]
+  K.at<double>(1, 1) = params_Lighthouse[1];       //      [  0  fy  cy ]
+  K.at<double>(0, 2) = params_Lighthouse[2];       //      [  0   0   1 ]
+  K.at<double>(1, 2) = params_Lighthouse[3];
+  K.at<double>(2, 2) = 1;
+
+
+  std::cout << "\n\n============\nDifferent Approach\nLMEDS\nf=0.1\noutl=1.0\n============\n";
+  essentialMatrix = cv::findEssentialMat(dataImg1_2D, dataImg1_2D, 0.1,cv::Point2d(params_Lighthouse[2],params_Lighthouse[3]),  cv::LMEDS, 0.999, 4.0, mask);
+  std::cout << "\nessential: " << essentialMatrix << std::flush;
+
+  cv::recoverPose(essentialMatrix, dataImg1_2D, dataImg1_2D, K, rotMatrix, transMatrix, mask);
+  std::cout << "\nTransl: " << transMatrix  << std::flush;
+
+  std::cout << "\n\n============\nDifferent Approach\nRANSAC\nK matrix\n============\n";
+
+
+  essentialMatrix = cv::findEssentialMat(dataImg1_2D, dataImg2_2D, K, cv::RANSAC, 0.999, 4.0, mask);
+  std::cout << "\nessential: " << essentialMatrix << std::flush;
+
+  cv::recoverPose(essentialMatrix, dataImg1_2D, dataImg2_2D, K, rotMatrix, transMatrix, mask);
+  std::cout << "\nTransl: " << transMatrix  << std::flush;
+
+
+  std::cout << "\n\n============\nDifferent Approach\nRANSAC\nf=1.0\noutl=1.0\n============\n";
+  essentialMatrix = cv::findEssentialMat(dataImg1_2D, dataImg2_2D, 1.0,cv::Point2d(params_Lighthouse[2],params_Lighthouse[3]),  cv::RANSAC, 0.999, 1.0, mask);
+  std::cout << "\nessential: " << essentialMatrix << std::flush;
+
+  cv::recoverPose(essentialMatrix, dataImg1_2D, dataImg2_2D, K, rotMatrix, transMatrix, mask);
+  std::cout << "\nTransl: " << transMatrix  << std::flush;
+  //std::cout << "\nRotation: " << rotMatrix  << std::flush;
+
+  std::cout << "\n\n============\nDifferent Approach\nRANSAC\nf=0.1\noutl=1.0\n============\n";
+  essentialMatrix = cv::findEssentialMat(dataImg1_2D, dataImg2_2D, 0.1,cv::Point2d(params_Lighthouse[2],params_Lighthouse[3]),  cv::RANSAC, 0.999, 1.0, mask);
+  std::cout << "\nessential: " << essentialMatrix << std::flush;
+
+  cv::recoverPose(essentialMatrix, dataImg1_2D, dataImg2_2D, K, rotMatrix, transMatrix, mask);
+  std::cout << "\nTransl: " << transMatrix  << std::flush;
+  //std::cout << "\nRotation: " << rotMatrix  << std::flush;
+
+  std::cout << "\n\n============\nDifferent Approach\nRANSAC\nf=0.1\noutl=1.0\n============\n";
+  essentialMatrix = cv::findEssentialMat(dataImg1_2D, dataImg2_2D, 1.0,cv::Point2d(0,0),  cv::RANSAC, 0.999, 1.0, mask);
+  std::cout << "\nessential: " << essentialMatrix << std::flush;
+
+  cv::recoverPose(essentialMatrix, dataImg1_2D, dataImg2_2D, K, rotMatrix, transMatrix, mask);
+  std::cout << "\nTransl: " << transMatrix  << std::flush;
+  //std::cout << "\nRotation: " << rotMatrix  << std::flush;
+
+
+  double retRol, retPitch, retYaw;
+  double A[3][3]= {
+    {rotMatrix.at<double>(0,0),rotMatrix.at<double>(0,1),rotMatrix.at<double>(0,2)},
+    {rotMatrix.at<double>(1,0),rotMatrix.at<double>(1,1),rotMatrix.at<double>(1,2)},
+    {rotMatrix.at<double>(2,0),rotMatrix.at<double>(2,1),rotMatrix.at<double>(2,2)}
+  };
+
+
+}
+
+void DataMatcher::resetProjection(int ch_){
+  //clear old filter
+  //for (size_t i = 0; i < MAX_BASE_AMOUNT; i++){
+    dataReady[ch_] = false;
+    list_points2d[ch_].clear();
+    list_points3d[ch_].clear();
+
+    delete(filterClass_perCh[ch_][0]);
+    delete(filterClass_perCh[ch_][1]);
+    filterClass_perCh[ch_][0] = new filter(FILTER_HISTORY_LEN_CH);
+    filterClass_perCh[ch_][1] = new filter(FILTER_HISTORY_LEN_CH);
+
+    for (size_t k = 0; k < maxSensorAvailable; k++) {
+      for (size_t j = 0; j < 2; j++) {
+        //clear old filter
+        delete(filterClass[ch_][k][j]);
+        //init them again
+        filterClass[ch_][k][j] = new filter(FILTER_HISTORY_LEN);
+      }
+      //reset all taken flags from all sensors;
+      idIsTaken[ch_][k] = false;
+      idIsTaken_cnt[ch_][k] = 0;
+    }
+  //}
+  goodCount = 0;
+  //pnpCounter = 0;
+}
+
+bool DataMatcher::findProjectedPosition(int ch_){
+
+  std::vector<int> ch_list = listChannel();
+  int minInliersKalman = 6;
+
+  PnPProblem pnp_(params_Lighthouse);
+  // PnP parameters
+  //int pnpMethod = cv::SOLVEPNP_ITERATIVE;
+  int pnpMethod = cv::SOLVEPNP_EPNP;
+  int iterationsCount = 500;      // number of Ransac iterations.
+  float reprojectionError = 3.0;  // maximum allowed distance to consider it an inlier.
+  double confidence = 0.99;       // ransac successful confidence.
+  cv::Mat inliers_idx;
+
+  cv::Mat essentialMatrix,fundamental_matrix;
+  cv::Mat rotMatrix, transMatrix, mask;
+  cv::Mat translation_measured(3, 1, CV_64F);
+  cv::Mat rotation_measured(3, 3, CV_64F);
+  cv::Mat K = cv::Mat::zeros(3,3,CV_64FC1);
+
+
+  //if(list_points3d[ch_].size()-pnpCounter < 8)
+  //    return;
+
+  //pnpCounter = list_points3d[ch_].size();
+  if(list_points3d[ch_].size() < 8)
+    return false;
+
+
+  //==== pos solver ====
+  std::vector<cv::Point3f> d3D(list_points3d[ch_]);
+  std::vector<cv::Point2f> d2D(list_points2d[ch_]);
+  std::cout << "\nRansac solver " << ch_;
+  std::cout << "\n3dList size\t " << d3D.size() << "\t" <<  std::flush;
+//  std::cout << "\n3dList \t " << d3D << "\t" <<  std::flush;
+
+  std::cout << "\n2dList size\t " << d2D.size() << "\t" <<  std::flush;
+//  std::cout << "\n2dList \t " << d2D << "\t" <<  std::flush;
+
+  pnp_.estimatePoseRANSAC( d3D, d2D, pnpMethod, inliers_idx, iterationsCount, reprojectionError, confidence );
+
+
+  std::cout << "\n\nInliers Index " << inliers_idx.rows << std::flush;
+
+  //if( inliers_idx.rows >= minInliersKalman ){
+    std::cout << "\nEnough Inliers";
+
+    // Get the translation
+
+    translation_measured = pnp_.get_t_matrix();
+    std::cout << "\nTransl\n" << translation_measured;
+    //std::cout << "\nX\n" << translation_measured.at<double>(0);
+    //std::cout << "\nX\n" << translation_measured.at<float>(0);
+    // Get the rotation
+
+    rotation_measured = pnp_.get_R_matrix();
+    std::cout << "\nRotation\n" << rotation_measured;
+
+    //fillMeasurements(measurements,translation_measured,rotation_measured);
+  //}
+
+  // update the Kalman filter with good measurements, otherwise with previous valid measurements
+  cv::Mat translation_estimated(3, 1, CV_64FC1);
+  cv::Mat rotation_estimated(3, 3, CV_64FC1);
+  updateKalmanFilter( KF, measurements, translation_estimated, rotation_estimated);
+
+  // -- Step 6: Set estimated projection matrix
+  //pnp_detection_est.set_P_matrix(rotation_estimated, translation_estimated);
+
+  std::cout << "\n===\nEST.\n====\nTransl\n" << translation_estimated;
+  // Get the rotation
+  cv::Mat rot_es(3, 3, CV_64F);
+  rot_es = pnp_.get_R_matrix();
+  std::cout << "\nRotation\n" << rot_es;
+
+  resetProjection(ch_);
+
+  cv::Mat euler(rot2euler(rotation_measured));
+
+  float Yrot = (float)euler.at<double>(0);
+  float Zrot = (float)euler.at<double>(1);
+  float Xrot = (float)euler.at<double>(2);
+  /*
+
+  double A[3][3]= {
+    {rotation_measured.at<double>(0,0),rotation_measured.at<double>(0,1),rotation_measured.at<double>(0,2)},
+    {rotation_measured.at<double>(1,0),rotation_measured.at<double>(1,1),rotation_measured.at<double>(1,2)},
+    {rotation_measured.at<double>(2,0),rotation_measured.at<double>(2,1),rotation_measured.at<double>(2,2)}
+  };
+  //converRotMatrixToEuler(A, retRol, retPitch, retYaw);
+  std::cout << "\n======\nRotationEULER:\tRol: " << retRol << "\tPitch: " << retPitch << "\tYaw: "  << retYaw  << std::flush;
+
+  */
+  std::cout << "\n======\nRotationEULER:\tYrot: " << Yrot << "\tYitch: " << Zrot << "\tXaw: "  << Xrot  << std::flush;
+
+
+  tf::Transform tf;
+  float lh_x = (float)translation_measured.at<double>(0)/1000;
+  float lh_y = (float)translation_measured.at<double>(2)/1000;
+  float lh_z = (float)translation_measured.at<double>(1)/1000;
+  lh_y = -1 * lh_y;
+
+  std::cout << "\nTranslation:\tX: " << lh_x << "\tY: " << lh_y << "\tZ: "  << lh_z  << std::flush;
+
+  if(ch_list[0] == ch_){
+    lhmsg.id = 1;
+  }else{
+    lhmsg.id = 0;
+  }
+
+  //Now we can transpose the center in respekt to World0
+  lhmsg.type = 1; //relativ==0 ; absolut ==1
+  //due to different coordinate system we need to map x,y,z proberly
+
+  //send Translation and Rotation via ros to rviz
+  ///double foo = transMatrix(0);
+  tf::Vector3 position;
+  tf::Quaternion orientation;//(x,quat_y,quat_z,quat_w);
+
+  position.setValue(lh_x,lh_y,lh_z);
+  orientation.setRPY(0.0, 0.0, 0.0);//retPitch
+  //orientation.setEulerZYX(retRol, retPitch, retYaw);
+  //orientation.setRPY(0.0,0.0,retYaw);
+
+  std::cout << "\nSet transform data"  << std::flush;
+  tf.setOrigin(position);
+  tf.setRotation(orientation);
+
+  std::cout << "\nTransform Msg"  << std::flush;
+  tf::transformTFToMsg(tf, lhmsg.tf);
+
+  pubHandl_correctBase.publish(lhmsg);
+  ros::spinOnce();
+
+  return true;
+
 
 }
