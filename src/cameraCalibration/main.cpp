@@ -311,11 +311,12 @@ int main(int argc, char const *argv[]) {
   std::vector<cv::Point2f> dataImg1_2D;
   std::vector<cv::Point2f> dataImg2_2D;
 
-  robot.removeTrackedObject();
-  robot.addTrackedObject(sensor_model_path.c_str());
+  //robot.removeTrackedObject();
+  //robot.addTrackedObject(sensor_model_path.c_str());
   //robot.startPoseEstimationSensorCloud();
   //robot.startObjectPoseEstimationSensorCloud(true);
-  robot.startEstimateObjectPoseMultiLighthouse(true);
+
+  //robot.startEstimateObjectPoseMultiLighthouse(true);
 
   bool startPubRay = false;
   bool baseWasCalibrated[MAX_BASE_AMOUNT] = {0};
